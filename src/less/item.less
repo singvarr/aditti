@@ -1,0 +1,63 @@
+.item {
+	position: relative;
+	float: left;
+	margin: 40px 0 0 6%;
+	padding-bottom: 35px;
+	width: 24%;
+	border: 1px solid @gray;
+	text-align: center;
+
+	&:hover {
+		button[name="buy"],
+		&::after {
+			background-color: @darkcyan;
+		}
+
+		img {
+			transform: scale(1.15);
+		}
+	}
+
+	&:nth-of-type(3n) {
+		margin-right: 6%;
+	}
+
+	&::after {
+		position: absolute;
+		content: '';
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 3px;
+		background-color: @green;
+	}
+				
+	figure {
+		line-height: 160px;
+		overflow: hidden;
+
+		img {
+			vertical-align: middle;
+			transition: all 0.5s ease-out;
+		}
+	}
+
+	figcaption {
+		.title {
+			display: block;
+			margin: 10px 0;
+			.text(@gray, 27px 'bebas-neue-regular');
+		}
+
+		.price {
+			.text(@gray, 27px 'bebas-neue-regular');
+		}
+
+		button[name="buy"] {
+			margin-left: 15px;
+			.input(75px, 35px, 3px);
+			.button(@green);
+			.text(@white, 20px 'bebas-neue-regular');
+		}
+	}
+}
