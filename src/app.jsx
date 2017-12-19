@@ -4,8 +4,10 @@ import GalleryContainer from "./containers/GalleryContainer";
 import BucketContainer from "./containers/BucketContainer";
 
 import links from './store/links.json';
+import slides from './store/slides.json';
 
-import Menu from "./components/menu.jsx"
+import Menu from "./components/menu.jsx";
+import CarouselWrapper from './components/carousel.jsx';
 import Footer from "./components/footer.jsx";
 
 class App extends Component {
@@ -17,7 +19,8 @@ class App extends Component {
 					</div>
 					<Menu menu={links.mainMenu}/>
 				</header>,
-				<main key='menu'>
+				<main key='main'>
+					<CarouselWrapper slides={slides}/>
 					<GalleryContainer/>
 				</main>,
 				<Footer
