@@ -2,6 +2,7 @@ const path = require('path');
 	
 	HtmlWebpackPlugin = require("html-webpack-plugin");
 	ExtractTextPlugin = require("extract-text-webpack-plugin");
+	webpack = require('webpack');
 
 module.exports = {
 	entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -40,10 +41,13 @@ module.exports = {
     	new HtmlWebpackPlugin({
       		template: path.resolve(__dirname, 'public', 'index.html'),
     	}),
-    	new ExtractTextPlugin("style.css")
+    	new ExtractTextPlugin("style.css"),
+    	new webpack.NamedModulesPlugin(),
+		new webpack.HotModuleReplacementPlugin()
   	],
   	devServer: {
-  		hot: true,
-  		port: 9000
+  		port: 9000,
+  		contentBase: path.resolve(__dirname, 'public'),
+  		hot: true
 	}
 };
