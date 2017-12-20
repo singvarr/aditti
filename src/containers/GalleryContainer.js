@@ -2,9 +2,16 @@ import { connect } from "react-redux";
 import { addItem, increaseQuantity } from "../actions";
 import Gallery from "../components/gallery.jsx";
 
+function getCategoryItems(items, category) {
+	switch (true) {
+		case (category == 'all'): return items;
+		case (category != 'all'): return items.filter(item => item.category == category);
+	}
+}
+
 function mapStateToProps(state) {
 	return {
-		items: state.items
+		items: getCategoryItems(state.items, state.category)
 	}
 }
 
