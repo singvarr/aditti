@@ -1,0 +1,33 @@
+.slide {
+    height: 450px;
+    background: url('../../public/assets/img/bg.png') repeat;
+
+    .slide-img {
+        float: left;
+        width: 40%;
+    }
+    
+    .slide-info {
+        float: left;
+        width: 60%;
+
+        h1 {
+            margin-bottom: 26px;
+            .text(@white, 60px @main-font);
+        }
+
+        p {
+           width: 80%;
+           .text(@white, 17px @sub-font);
+           line-height: 28px;
+        }
+
+        button[name="shop-now"] {
+            margin-top: 20px;
+            .input(130px, 45px, 5px);
+            .text(@white, 27px @main-font);
+            background-color: transparent;
+            border: solid 3px @white;
+        }
+    }
+}
