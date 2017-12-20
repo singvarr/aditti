@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 
-import GalleryContainer from "./containers/GalleryContainer";
 import BucketContainer from "./containers/BucketContainer";
+import CategoriesContainer from './containers/CategoriesContainer';
+import GalleryContainer from "./containers/GalleryContainer";
 
 import links from './store/links.json';
 import slides from './store/slides.json';
@@ -21,6 +22,7 @@ class App extends Component {
 				</header>,
 				<main key='main'>
 					<CarouselWrapper slides={slides}/>
+					<CategoriesContainer/>
 					<GalleryContainer/>
 				</main>,
 				<Footer

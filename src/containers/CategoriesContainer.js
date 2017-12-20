@@ -1,16 +1,18 @@
 import { connect } from "react-redux";
-import Categories from "../components/categories.jsx";
 import { setCategory } from "../actions";
+import categories from "../store/categories.json";
+import Categories from "../components/categories.jsx";
 
 function mapStateToProps(state) {
     return {
-        categories: state.category
+        categories,
+        activeCategory: state.category
     }
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		onFilter: filter => dispatch(setCategory(filter))
+		onFilter: category => dispatch(setCategory(category))
 	}
 }
 
