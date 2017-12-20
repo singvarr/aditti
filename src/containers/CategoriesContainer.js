@@ -5,8 +5,7 @@ import Categories from "../components/categories.jsx";
 
 function mapStateToProps(state) {
     return {
-        categories,
-        activeCategory: state.category
+        categories
     }
 }
 
