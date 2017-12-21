@@ -1,0 +1,30 @@
+.category {
+	width: 33%;
+	height: 190px;
+	border-right: solid 1px @gray;
+						
+	&:last-child {
+		border-right: none;
+	}
+			
+	&-img {
+		float: left;
+		width: 200px;
+		text-align: center;
+		overflow: hidden;
+	}
+
+	&-title {
+		span {
+			display: block;
+			margin: 50px 0 20px 2px;
+			.text(@gray, 27px @main-font);
+		}
+
+		button[name="shop"] {
+			.input(60px, 35px, 3px);
+			.text(@white, 19px @main-font);
+			.button(@cyan);
+		}
+	}
+}
