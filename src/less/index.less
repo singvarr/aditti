@@ -1,0 +1,26 @@
+@import url('mixins/index.less');
+@import url('../../public/vendor/reset.css');
+@import url('../../public/assets/fonts/index.css');
+
+.wrapper {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.clearfix {
+	&::after {
+		display: table;
+		content: "";
+		clear: both;
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+@import url('header.less');
+@import url('slide.less');
+@import url('category.less');
+@import url('gallery.less');
+@import url('footer.less');
