@@ -1,0 +1,35 @@
+#main-menu {
+	background-color: @cyan;
+	
+	ul {
+		text-align: center;
+
+		li {
+			position: relative;
+			display: inline-block;
+			
+			&:not(:last-child)::after {
+				display: block;	
+				position: absolute;
+				content: "";
+				top: 25%;
+				right: -1px;
+				z-index: 2;
+				width: 2px;
+				height: 18px;
+				background-color: @white;
+			}
+
+			a {
+				display: block;
+				height: 36px;
+				padding: 0 25px;
+				.text(@white, 21px 'bebas-neue-regular');
+				
+				&:hover {
+					background-color: @darkcyan;
+				}
+			}
+		}
+	}
+}	
