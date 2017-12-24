@@ -1,16 +1,7 @@
-export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const CLEAR_BUCKET = "CLEAR_BUCKET";
-
-export function addItem(name, quantity) {
-	return {
-		type: ADD_ITEM,
-		name,
-		quantity
-	}
-}
 
 export function removeItem(name) {
 	return {
