@@ -21,7 +21,7 @@ export default function reducer(state = [], action) {
 			state[index].quantity -= 1;
 			break;
 		
-		case CLEAR_BUCKET: return state.map(item => Object.assign({}, item, {quantity: 0}))
+		case CLEAR_BUCKET: return state.map(item => Object.assign({}, item, {quantity: 0}));
 
 		default: return state;
 	}
