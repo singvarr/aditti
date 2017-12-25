@@ -26,5 +26,5 @@ export default function reducer(state = [], action) {
 		default: return state;
 	}
 
-	return [...state.slice(0, index), state[index], ...state.slice(index + 1)]
+	return [...state.slice(0, index), state[index], ...state.slice(index + 1)];
 }
