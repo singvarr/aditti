@@ -1,25 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Item extends Component {
-	render() {
-		return (
-			<div className="item">
-				<figure><img
-					src={this.props.src}
-					alt={this.props.name}/>
-				</figure>
-				<figcaption>
-					<span className="title">{this.props.name}</span>
-					<span className="price">$ {this.props.price}</span>
-					<button 
-						name="buy"
-						value={this.props.price}
-						onClick={() => this.props.onAdd(this.props.name)}
-					>Buy now</button>
-				</figcaption>
-			</div>
-		)
-	}
+function Item(props) {
+	return (
+		<div className="item">
+			<figure><img
+				src={props.src}
+				alt={props.name}/>
+			</figure>
+			<figcaption>
+				<span className="title">{props.name}</span>
+				<span className="price">$ {props.price}</span>
+				<button 
+					name="buy"
+					value={props.price}
+					onClick={() => props.onAdd(props.name)}>Buy now
+				</button>
+			</figcaption>
+		</div>
+	)
 }
 
 export default Item;
