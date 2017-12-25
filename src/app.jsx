@@ -1,36 +1,24 @@
-import React, {Component} from "react";
+import React from "react";
 
-import BucketContainer from "./containers/BucketContainer";
+import Header from './components/header.jsx'
+import CarouselWrapper from './components/carousel.jsx';
 import CategoriesContainer from './containers/CategoriesContainer';
 import GalleryContainer from "./containers/GalleryContainer";
+import Footer from "./components/footer.jsx";
 
 import links from './store/links.json';
 import slides from './store/slides.json';
 
-import Menu from "./components/menu.jsx";
-import CarouselWrapper from './components/carousel.jsx';
-import Footer from "./components/footer.jsx";
-
-class App extends Component {
-	render() {
-		return [
-				<header key='header'>
-					<div className="wrapper">
-						<BucketContainer/>
-					</div>
-					<Menu menu={links.mainMenu}/>
-				</header>,
-				<main key='main'>
-					<CarouselWrapper slides={slides}/>
-					<CategoriesContainer/>
-					<GalleryContainer/>
-				</main>,
-				<Footer
-					key='footer'
-					linksList={links.footerLinks}
-				/>
-		]
-	}
+function App() {
+	return [
+		<Header key='header' links={links.mainMenu}/>,
+		<main key='main'>
+			<CarouselWrapper slides={slides}/>
+			<CategoriesContainer/>
+			<GalleryContainer/>
+		</main>,
+		<Footer key='footer' linksList={links.footerLinks}/>
+	]
 }
 
 export default App;
