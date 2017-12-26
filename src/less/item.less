@@ -1,9 +1,8 @@
 .item {
 	position: relative;
-	float: left;
-	margin: 40px 0 0 6%;
 	padding-bottom: 35px;
-	width: 24%;
+	flex-basis: 250px;
+	margin: 0 30px 30px 0;
 	border: 1px solid @gray;
 	text-align: center;
 
@@ -16,10 +15,6 @@
 		img {
 			transform: scale(1.15);
 		}
-	}
-
-	&:nth-of-type(3n) {
-		margin-right: 6%;
 	}
 
 	&::after {
