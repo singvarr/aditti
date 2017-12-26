@@ -3,20 +3,26 @@ header {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		align-content: center;
+		align-items: center;
 		height: 82px;
 
 		#search-form {
 			input[name="search-field"] {
-				width: 400px;
-				padding: 5px;
+				.input(430px, 35px, 2px);
+				padding: 0 5px;
 				border: solid 1px @gray;				
 				border-right: none;
-				.text(@gray, 25px OpenSansRegular);
+				.text(@gray, 25px @sub-font);
 			}
 
-			button {
-				.button(@gray);
+			.flaticon-search {
+				margin-top: 0;
+				height: 35px;
+				border: solid 1px @gray;
+				border-left: none;
+				outline: none;
+				background-color: transparent;
+				color: @gray;
 			}
 		}
 	}
