@@ -1,6 +1,8 @@
 #main-menu {
+	border: solid 1px @gray;
 	background-color: @cyan;
-	
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+
 	ul {
 		text-align: center;
 
@@ -24,7 +26,8 @@
 				display: block;
 				height: 36px;
 				padding: 0 25px;
-				.text(@white, 21px 'bebas-neue-regular');
+				.text(@white, 21px @main-font);
+				line-height: 36px;
 				
 				&:hover {
 					background-color: @darkcyan;
@@ -32,4 +35,4 @@
 			}
 		}
 	}
-}	
+}
