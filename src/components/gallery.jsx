@@ -8,7 +8,7 @@ class Gallery extends Component {
 				<h2>
 					<div className="wrapper">featured items</div>	
 				</h2>
-				<div className="items wrapper clearfix">{
+				<div className="items wrapper">{
 					this.props.items.map((item, index) => {
 						return <Item
 							key={index}

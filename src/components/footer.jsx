@@ -3,7 +3,7 @@ import React from "react";
 function Footer(props) {
     return (
         <footer>
-            <div className="wrapper clearfix">
+            <div className="wrapper">
                 {
                     props.linksList.map((obj, index) => {
                         return (
