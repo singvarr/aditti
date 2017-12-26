@@ -36,7 +36,7 @@ class Categories extends Component {
                 ]}
             >
                 {this.props.categories.map((category, index) => {
-                    return <div className="category" key={index}>
+                    return <div className="category clearfix" key={index}>
                         <div className="category-img">
                             <img src={category.src} alt={category.name}/>
                         </div>
