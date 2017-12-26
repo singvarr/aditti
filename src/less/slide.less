@@ -1,33 +1,36 @@
-.slide {
-    height: 450px;
+.carousel  {
     background: url('../../public/assets/img/bg.png') repeat;
 
-    .slide-img {
-        float: left;
-        width: 40%;
-    }
-    
-    .slide-info {
-        float: left;
-        width: 60%;
+    .slide {
+        height: 450px;
 
-        h1 {
-            margin-bottom: 26px;
-            .text(@white, 60px @main-font);
+        .slide-img {
+            float: left;
+            width: 40%;
         }
+        
+        .slide-info {
+            float: left;
+            width: 60%;
 
-        p {
-           width: 80%;
-           .text(@white, 17px @sub-font);
-           line-height: 28px;
-        }
+            h1 {
+                margin-bottom: 26px;
+                .text(@white, 60px @main-font);
+            }
 
-        button[name="shop-now"] {
-            margin-top: 20px;
-            .input(130px, 45px, 5px);
-            .text(@white, 27px @main-font);
-            background-color: transparent;
-            border: solid 3px @white;
+            p {
+               width: 80%;
+               .text(@white, 17px @sub-font);
+               line-height: 28px;
+            }
+
+            button[name="shop-now"] {
+                margin-top: 20px;
+                .input(130px, 45px, 5px);
+                .text(@white, 27px @main-font);
+                background-color: transparent;
+                border: solid 3px @white;
+            }
         }
     }
 }
