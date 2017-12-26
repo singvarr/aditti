@@ -30,39 +30,45 @@ class Bucket extends Component {
 	}
 
 	render() {
-		let EMPTY_BUCKET = [
-			<h2 className="dialog-header" key={1}>Your bucket is empty</h2>,
-			<button key={2} onClick={() => this.handleCloseModal()}></button>
-		];
+		const EMPTY_BUCKET = <div className="dialog empty-dialog">
+			<h2 className="dialog-header">Your bucket is empty</h2>
+			<button onClick={() => this.handleCloseModal()}>Close Modal</button>
+		</div>
+	
 
-		let FULL_BUCKET = <div>
+		const FULL_BUCKET = <div className="dialog">
 			<h2 className="dialog-header">Your bucket</h2>
+			<div className="dialog-main">
 			{this.props.items.map((item, index) => {
 				if (item.quantity) {
 					return (
-						<div className="dialog-content" key={index}>
+						<div className="item-row" key={index}>
 							<div className="item-controls">
-								<button onClick={() => this.props.onRemoveItem(item.name)}>Remove</button>
-								<button onClick={() => this.props.onDecreaseQuantity(item.name)}>Decrease</button>
-								<img src={item.src} alt={item.name} />
-								<button onClick={() => this.props.onIncreaseQuantity(item.name)}>Increase</button>
+								<button 
+									className="flaticon-cancel"
+									onClick={() => this.props.onRemoveItem(item.name)}/>
+								<button 
+									className="flaticon-minus"
+									onClick={() => this.props.onDecreaseQuantity(item.name)}/>
+								<img src={item.src} alt={item.name}/>
+								<button 
+									className="flaticon-plus"
+									onClick={() => this.props.onIncreaseQuantity(item.name)}/>
 							</div>
 							<div className="item-name">{item.name}</div>
 							<div className="item-total">
 								<span>{item.quantity}</span>
-								<span>{item.quantity * item.price}</span>
+								<span>* {item.price}</span>
+								<span> = {item.quantity * item.price}</span>
 							</div>
 						</div>
 					)
 				}
 			})}
+			</div>
 			<div className="dialog-footer">
 				<span>Your total sum is ${this.getTotalSum()}</span>
-				<button onClick={() => this.handleCloseModal()}>Return to items</button>
-				<button onClick={() => {
-					this.props.onClearBucket();
-					this.handleCloseModal();
-				}}>Clear bucket</button>
+				<button onClick={() => this.props.onClearBucket()}>Clear bucket</button>
 				<button onClick={() => this.handleCloseModal()}>Close Modal</button>
 			</div>
 		</div>
@@ -71,10 +77,11 @@ class Bucket extends Component {
 			<div className='bucket'>
 				<button id='open-bucket' onClick={() => this.handleOpenModal()}/>
 				<div className='total-sum'>
-					{this.getTotalSum()}
+					$ {this.getTotalSum()}
 					<span className='total-quantity'>{this.getTotalQuantity()}</span>
 				</div>
-				<ReactModal isOpen={this.state.showModal} contentLabel="Bucket Modal">
+				<ReactModal
+					isOpen={this.state.showModal} contentLabel="Bucket Modal">
 					{this.getTotalQuantity() ? FULL_BUCKET : EMPTY_BUCKET}
 				</ReactModal>
 			</div>
