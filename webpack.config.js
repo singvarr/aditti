@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
+const proxyUrl = "http://localhost:3000/";
+
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
@@ -40,7 +42,7 @@ module.exports = {
         hot: true,
         proxy: {
             "/api/**": {
-                target: "http://localhost:3000/",
+                target: proxyUrl,
                 secure: false,
                 logLevel: "debug",
                 changeOrigin: true,
