@@ -5,19 +5,17 @@
     "parserOptions": {
         "ecmaVersion": 7,
         "ecmaFeatures": {
-        "jsx": true
+            "jsx": true
         }
     },
     "rules": {
-        "camelcase": "warn",
+        "camelcase": "error",
         "indent": "error",
-        "quotes": "error"
+        "quotes": "error",
+        "object-curly-spacing": ["error", "always"]
     },
-    "globals": {
-        "console": false,
-        "require": false,
-        "__dirname": false,
-        "module": false,
-        "process": false
+    "env": {
+        "es6": true,
+        "node": true
     }
 }
