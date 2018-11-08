@@ -1,16 +1,23 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parser": "babel-eslint",
-  "plugins": ["react"],
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "ecmaFeatures": {
-      "jsx": true
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "parser": "babel-eslint",
+    "plugins": ["react"],
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "ecmaFeatures": {
+        "jsx": true
+        }
+    },
+    "rules": {
+        "camelcase": "warn",
+        "indent": "error",
+        "quotes": "error"
+    },
+    "globals": {
+        "console": false,
+        "require": false,
+        "__dirname": false,
+        "module": false,
+        "process": false
     }
-  },
-  "rules": {
-    "camelcase": "warn",
-    "indent": "error",
-    "quotes": "error"
-  }
 }
