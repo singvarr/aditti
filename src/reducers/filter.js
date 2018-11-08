@@ -1,4 +1,4 @@
-import { SET_CATEGORY } from '../actions';
+import { SET_CATEGORY } from 'actions';
 
 function reducer(state = 'all', action) {
     switch (action.type) {

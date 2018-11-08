@@ -14,12 +14,12 @@ module.exports = {
     resolve: {
         extensions: [".jsx", ".js", ".json"],
         alias: {
-            actions: path.join(__dirname, "src", "actions"),
+            store: path.join(__dirname, "src", "store"),
+            actions: path.join(__dirname, "src", "store", "actions"),
+            reducers: path.join(__dirname, "src", "reducers"),
             components: path.join(__dirname, "src", "components"),
             containers: path.join(__dirname, "src", "containers"),
-            less: path.join(__dirname, "src", "less"),
-            reducers: path.join(__dirname, "src", "reducers"),
-            store: path.join(__dirname, "src", "store"),
+            less: path.join(__dirname, "src", "less")
         }
     },
     module: {

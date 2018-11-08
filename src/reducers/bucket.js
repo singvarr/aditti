@@ -3,7 +3,7 @@ import {
 	INCREASE_QUANTITY, 
 	DECREASE_QUANTITY,
 	CLEAR_BUCKET,
-} from "../actions";
+} from "actions";
 
 export default function reducer(state = [], action) {
 	const index = state.findIndex(item => item.name == action.name);

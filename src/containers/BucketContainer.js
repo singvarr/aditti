@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Bucket from "../components/bucket.jsx";
-import { increaseQuantity, decreaseQuantity, clearBucket, removeItem } from "../actions";
+import { increaseQuantity, decreaseQuantity, clearBucket, removeItem } from "actions";
 
 function mapStateToProps(state) {
     return {

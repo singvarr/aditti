@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addItem, increaseQuantity } from "../actions";
+import { addItem, increaseQuantity } from "actions";
 import Gallery from "../components/gallery.jsx";
 
 function getCategoryItems(items, category) {

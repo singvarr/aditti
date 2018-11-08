@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setCategory } from "../actions";
+import { setCategory } from "actions";
 import categories from "../store/categories.json";
 import Categories from "../components/categories.jsx";
 
