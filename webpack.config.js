@@ -20,10 +20,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                    use: [
-                        { loader: "css-loader" },
-                        { loader: "less-loader" }
-                    ],
+                    use: [{ loader: "css-loader" }, { loader: "less-loader" }],
                     fallback: "style-loader"
                 })
             },
