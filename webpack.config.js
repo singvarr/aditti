@@ -37,6 +37,22 @@ module.exports = {
         	}
 		]	
 	},
+	devServer: {
+		port: 7000,
+		contentBase: path.resolve(__dirname, "public"),
+		hot: true,
+		proxy: {
+			"/api/**": {
+				target: "http://localhost:3000/",
+				secure: false,
+				logLevel: "debug",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/api": ""
+				},
+			}
+		}
+	},
 	plugins: [
     	new HtmlWebpackPlugin({
       		template: path.resolve(__dirname, 'public', 'index.html'),
@@ -44,10 +60,5 @@ module.exports = {
     	new ExtractTextPlugin("style.css"),
     	new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin()
-  	],
-  	devServer: {
-  		port: 9000,
-  		contentBase: path.resolve(__dirname, 'public'),
-  		hot: true
-	}
+  	]
 };
