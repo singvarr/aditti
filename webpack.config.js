@@ -3,11 +3,24 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
+const proxyUrl = "http://localhost:3000/";
+
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "bundle.js"
+    },
+    resolve: {
+        extensions: [".jsx", ".js", ".json"],
+        alias: {
+            actions: path.join(__dirname, "src", "actions"),
+            components: path.join(__dirname, "src", "components"),
+            containers: path.join(__dirname, "src", "containers"),
+            less: path.join(__dirname, "src", "less"),
+            reducers: path.join(__dirname, "src", "reducers"),
+            store: path.join(__dirname, "src", "store"),
+        }
     },
     module: {
         rules: [
@@ -40,7 +53,7 @@ module.exports = {
         hot: true,
         proxy: {
             "/api/**": {
-                target: "http://localhost:3000/",
+                target: proxyUrl,
                 secure: false,
                 logLevel: "debug",
                 changeOrigin: true,
