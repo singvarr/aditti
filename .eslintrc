@@ -7,7 +7,9 @@
         "indent": "error",
         "quotes": "error",
         "object-curly-spacing": ["error", "always"],
-        "eol-last": "error"
+        "eol-last": "error",
+        "comma-dangle": "error",
+        "no-trailing-spaces": "error"
     },
     "env": {
         "es6": true,
