@@ -20,6 +20,7 @@ function reducer(state = defaultState, action) {
             ? state.update(action.id, quantity => (quantity += 1))
             : state.set(action.id, 1);
     }
+
     case DECREASE_ITEM_QUANTITY: {
         const itemQuantity = state.get(action.id);
 
