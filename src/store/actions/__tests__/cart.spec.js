@@ -1,14 +1,14 @@
 import {
     REMOVE_ITEM,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    CLEAR_BUCKET
+    INCREASE_ITEM_QUANTITY,
+    DECREASE_ITEM_QUANTITY,
+    CLEAR_CART
 } from "constants/cart";
 import {
     removeItem,
-    increaseQuantity,
-    decreaseQuantity,
-    clearBucket
+    increaseItemQuantity,
+    decreaseItemQuantity,
+    clearCart
 } from "actions/cart";
 
 describe("cart actions", () => {
@@ -21,20 +21,20 @@ describe("cart actions", () => {
     });
 
     it("should create action to add one item to cart", () => {
-        const expectedAction = { type: INCREASE_QUANTITY, name: itemName };
+        const expectedAction = { type: INCREASE_ITEM_QUANTITY, name: itemName };
 
-        expect(increaseQuantity(itemName)).toEqual(expectedAction);
+        expect(increaseItemQuantity(itemName)).toEqual(expectedAction);
     });
 
     it("should create action to remove one item from cart", () => {
-        const expectedAction = { type: DECREASE_QUANTITY, name: itemName };
+        const expectedAction = { type: DECREASE_ITEM_QUANTITY, name: itemName };
 
-        expect(decreaseQuantity(itemName)).toEqual(expectedAction);
+        expect(decreaseItemQuantity(itemName)).toEqual(expectedAction);
     });
 
     it("should create action to delete all items from cart", () => {
-        const expectedAction = { type: CLEAR_BUCKET };
+        const expectedAction = { type: CLEAR_CART };
 
-        expect(clearBucket()).toEqual(expectedAction);
+        expect(clearCart()).toEqual(expectedAction);
     });
 });

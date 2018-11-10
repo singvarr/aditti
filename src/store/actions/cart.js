@@ -1,8 +1,8 @@
 import {
     REMOVE_ITEM,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    CLEAR_BUCKET
+    INCREASE_ITEM_QUANTITY,
+    DECREASE_ITEM_QUANTITY,
+    CLEAR_CART
 } from "constants/cart";
 
 export function removeItem(name) {
@@ -12,22 +12,22 @@ export function removeItem(name) {
     };
 }
 
-export function increaseQuantity(name) {
+export function increaseItemQuantity(name) {
     return {
-        type: INCREASE_QUANTITY,
+        type: INCREASE_ITEM_QUANTITY,
         name
     };
 }
 
-export function decreaseQuantity(name) {
+export function decreaseItemQuantity(name) {
     return {
-        type: DECREASE_QUANTITY,
+        type: DECREASE_ITEM_QUANTITY,
         name
     };
 }
 
-export function clearBucket() {
+export function clearCart() {
     return {
-        type: CLEAR_BUCKET
+        type: CLEAR_CART
     };
 }
