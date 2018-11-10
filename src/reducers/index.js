@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import {default as items} from './bucket';
-import {default as category} from './filter';
+import items from "reducers/bucket";
+import category from "reducers/filter";
 
 const reducer = combineReducers({
     items,
     category
-})
+});
 
 export default reducer;
