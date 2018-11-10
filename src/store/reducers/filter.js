@@ -1,6 +1,6 @@
-import { SET_CATEGORY } from '../actions';
+import { SET_CATEGORY } from "actions/filter";
 
-function reducer(state = 'all', action) {
+function reducer(state = "all", action) {
     switch (action.type) {
         case SET_CATEGORY:
             return action.category;
