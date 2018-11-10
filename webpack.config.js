@@ -4,9 +4,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
 const proxyUrl = "http://localhost:3000/";
+const developmentMode = "development";
 
 module.exports = {
-    devtool: "cheap-module-eval-source-map",
+    devtool: process.env.NODE_ENV === developmentMode ? "source-map" : "",
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
@@ -71,6 +72,9 @@ module.exports = {
         }),
         new ExtractTextPlugin("style.css"),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+        })
     ]
 };
