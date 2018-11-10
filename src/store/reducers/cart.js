@@ -1,9 +1,9 @@
 import {
     REMOVE_ITEM,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    CLEAR_BUCKET
-} from "actions/cart";
+    INCREASE_ITEM_QUANTITY,
+    DECREASE_ITEM_QUANTITY,
+    CLEAR_CART
+} from "constants/cart";
 
 function reducer(state = [], action) {
     const index = state.findIndex(item => item.name == action.name);
@@ -13,15 +13,15 @@ function reducer(state = [], action) {
             state[index].quantity = 0;
             break;
 
-        case INCREASE_QUANTITY:
+        case INCREASE_ITEM_QUANTITY:
             state[index].quantity += 1;
             break;
 
-        case DECREASE_QUANTITY:
+        case DECREASE_ITEM_QUANTITY:
             state[index].quantity -= 1;
             break;
 
-        case CLEAR_BUCKET:
+        case CLEAR_CART:
             return state.map(item => Object.assign({}, item, { quantity: 0 }));
 
         default:
