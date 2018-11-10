@@ -10,15 +10,15 @@ import {
 
 function mapStateToProps(state) {
     return {
-        items: state.items
+        items: state.catalogue
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onIncreaseQuantity: name => dispatch(increaseQuantity(name)),
-        onDecreaseQuantity: name => dispatch(decreaseQuantity(name)),
-        onRemoveItem: name => dispatch(removeItem(name)),
+        onIncreaseQuantity: id => dispatch(increaseQuantity(id)),
+        onDecreaseQuantity: id => dispatch(decreaseQuantity(id)),
+        onRemoveItem: id => dispatch(removeItem(id)),
         onClearBucket: () => dispatch(clearBucket())
     };
 }

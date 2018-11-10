@@ -12,24 +12,24 @@ import {
 } from "actions/cart";
 
 describe("cart actions", () => {
-    const itemName = "shoes";
+    const id = "1";
 
     it("should create action to remove all items of one type from cart", () => {
-        const expectedAction = { type: REMOVE_ITEM, name: itemName };
+        const expectedAction = { type: REMOVE_ITEM, id };
 
-        expect(removeItem(itemName)).toEqual(expectedAction);
+        expect(removeItem(id)).toEqual(expectedAction);
     });
 
     it("should create action to add one item to cart", () => {
-        const expectedAction = { type: INCREASE_ITEM_QUANTITY, name: itemName };
+        const expectedAction = { type: INCREASE_ITEM_QUANTITY, id };
 
-        expect(increaseItemQuantity(itemName)).toEqual(expectedAction);
+        expect(increaseItemQuantity(id)).toEqual(expectedAction);
     });
 
     it("should create action to remove one item from cart", () => {
-        const expectedAction = { type: DECREASE_ITEM_QUANTITY, name: itemName };
+        const expectedAction = { type: DECREASE_ITEM_QUANTITY, id };
 
-        expect(decreaseItemQuantity(itemName)).toEqual(expectedAction);
+        expect(decreaseItemQuantity(id)).toEqual(expectedAction);
     });
 
     it("should create action to delete all items from cart", () => {

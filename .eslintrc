@@ -11,7 +11,8 @@
         "comma-dangle": "error",
         "no-trailing-spaces": "error",
         "default-case": "error",
-        "no-var": "error"
+        "no-var": "error",
+        "semi": "error"
     },
     "env": {
         "es6": true,

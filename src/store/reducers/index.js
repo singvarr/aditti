@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 
-import items from "reducers/cart";
+import catalogue from "reducers/catalogue";
+import cart from "reducers/cart";
 import category from "reducers/filter";
 
 const reducer = combineReducers({
-    items,
+    catalogue,
+    cart,
     category
 });
 

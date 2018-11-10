@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import {
     REMOVE_ITEM,
     INCREASE_ITEM_QUANTITY,
@@ -5,30 +6,35 @@ import {
     CLEAR_CART
 } from "constants/cart";
 
-function reducer(state = [], action) {
-    const index = state.findIndex(item => item.name == action.name);
+export const defaultState = Map();
 
+function reducer(state = defaultState, action) {
     switch (action.type) {
-        case REMOVE_ITEM:
-            state[index].quantity = 0;
-            break;
+    case REMOVE_ITEM:
+        return state.delete(action.id);
 
-        case INCREASE_ITEM_QUANTITY:
-            state[index].quantity += 1;
-            break;
+    case INCREASE_ITEM_QUANTITY: {
+        const isItemInCart = state.has(action.id);
 
-        case DECREASE_ITEM_QUANTITY:
-            state[index].quantity -= 1;
-            break;
-
-        case CLEAR_CART:
-            return state.map(item => Object.assign({}, item, { quantity: 0 }));
-
-        default:
-            return state;
+        return isItemInCart
+            ? state.update(action.id, quantity => (quantity += 1))
+            : state.set(action.id, 1);
     }
 
-    return [...state.slice(0, index), state[index], ...state.slice(index + 1)];
+    case DECREASE_ITEM_QUANTITY: {
+        const itemQuantity = state.get(action.id);
+
+        return itemQuantity > 1 ?
+            state.update(action.id, quantity => (quantity -= 1)) :
+            state.delete(action.id);
+    }
+
+    case CLEAR_CART:
+        return state.clear();
+
+    default:
+        return state;
+    }
 }
 
 export default reducer;
