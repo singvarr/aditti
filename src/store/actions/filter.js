@@ -1,8 +1,8 @@
-export const SET_CATEGORY = "SET_CATEGORY"
+import { SET_CATEGORY } from "constants/filter";
 
 export function setCategory(category) {
-	return {
-		type: SET_CATEGORY,
-		category
-	}
+    return {
+        type: SET_CATEGORY,
+        category
+    };
 }
