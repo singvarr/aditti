@@ -1,40 +1,45 @@
 {
-	"items": [
-		{
-		 	"name": "branded shoes",
-			"price": 200,
-			"category": "shoes",
-			"src": "./assets/img/items/shoes.png",
-			"quantity": 0
-		},
-		{
-			"name": "levis tshort",
-			"price": 300,
-			"category": "tshirts",
-			"src": "./assets/img/items/t-short_levis.png",
-			"quantity": 0
-		},
-		{
-			"name": "gray tshort",
-			"price": 350,
-			"category": "tshirts",
-			"src": "./assets/img/items/t-shirt_gray.png",
-			"quantity": 0
-		},
-		{
-			"name": "purse",
-			"price": 250,
-			"category": "accesories",
-			"src": "./assets/img/items/purse.png",
-			"quantity": 0
-		},
-		{
-			"name": "ems women bag",
-			"price": 400,
-			"category": "accesories",
-			"src": "./assets/img/items/woman_bag.png",
-			"quantity": 0
-		}
-	],
-	"category": "all"
+    "items": [
+        {
+            "id": "1",
+            "name": "branded shoes",
+            "price": 200,
+            "category": "shoes",
+            "src": "./assets/img/items/shoes.png",
+            "quantity": 0
+        },
+        {
+            "id": "2",
+            "name": "levis tshort",
+            "price": 300,
+            "category": "tshirts",
+            "src": "./assets/img/items/t-short_levis.png",
+            "quantity": 0
+        },
+        {
+            "id": "3",
+            "name": "gray tshort",
+            "price": 350,
+            "category": "tshirts",
+            "src": "./assets/img/items/t-shirt_gray.png",
+            "quantity": 0
+        },
+        {
+            "id": "4",
+            "name": "purse",
+            "price": 250,
+            "category": "accesories",
+            "src": "./assets/img/items/purse.png",
+            "quantity": 0
+        },
+        {
+            "id": "5",
+            "name": "ems women bag",
+            "price": 400,
+            "category": "accesories",
+            "src": "./assets/img/items/woman_bag.png",
+            "quantity": 0
+        }
+    ],
+    "category": "all"
 }
