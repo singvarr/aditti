@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { increaseQuantity } from "actions/cart";
+import { increaseItemQuantity } from "actions/cart";
 import Gallery from "components/gallery";
 
 function getCategoryItems(items, category) {
@@ -14,13 +14,13 @@ function getCategoryItems(items, category) {
 
 function mapStateToProps(state) {
     return {
-        items: getCategoryItems(state.items, state.category)
+        items: getCategoryItems(state.catalogue, state.category)
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onAdd: name => dispatch(increaseQuantity(name))
+        onAdd: id => dispatch(increaseItemQuantity(id))
     };
 }
 

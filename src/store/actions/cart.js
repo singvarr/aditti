@@ -5,24 +5,24 @@ import {
     CLEAR_CART
 } from "constants/cart";
 
-export function removeItem(name) {
+export function removeItem(id) {
     return {
         type: REMOVE_ITEM,
-        name
+        id
     };
 }
 
-export function increaseItemQuantity(name) {
+export function increaseItemQuantity(id) {
     return {
         type: INCREASE_ITEM_QUANTITY,
-        name
+        id
     };
 }
 
-export function decreaseItemQuantity(name) {
+export function decreaseItemQuantity(id) {
     return {
         type: DECREASE_ITEM_QUANTITY,
-        name
+        id
     };
 }
 
