@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Bucket from "components/bucket.jsx";
+import Bucket from "components/bucket";
 import {
     increaseQuantity,
     decreaseQuantity,
