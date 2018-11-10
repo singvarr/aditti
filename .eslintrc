@@ -4,12 +4,13 @@
     "plugins": ["react"],
     "rules": {
         "camelcase": "error",
-        "indent": "error",
+        "indent": ["error", { "SwitchCase": 1 }],
         "quotes": "error",
         "object-curly-spacing": ["error", "always"],
         "eol-last": "error",
         "comma-dangle": "error",
-        "no-trailing-spaces": "error"
+        "no-trailing-spaces": "error",
+        "default-case": "error"
     },
     "env": {
         "es6": true,
