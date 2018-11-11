@@ -32,7 +32,7 @@ class Bucket extends Component {
             <div className="dialog">
                 <h2 className="dialog-header">Your bucket</h2>
                 <div className="dialog-main">
-                    {this.props.items.map((item, index) => {
+                    {this.props.cartItems.map((item, index) => {
                         if (item.quantity) {
                             return (
                                 <div className="item-row" key={index}>
@@ -119,7 +119,7 @@ Bucket.propTypes = {
     onDecreaseQuantity: PropTypes.func.isRequired,
     onRemoveItem: PropTypes.func.isRequired,
     onClearBucket: PropTypes.func.isRequired,
-    items: PropTypes.arrayOf(
+    cartItems: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
