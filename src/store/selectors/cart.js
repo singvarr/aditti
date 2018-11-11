@@ -19,3 +19,21 @@ export const getCartTotalQuantity = createSelector([cartSelector], cart => {
         return (initialValue += value);
     }, 0);
 });
+
+export const getCartItems = createSelector(
+    [catalogueSelector, cartSelector],
+    (catalogue, cart) => {
+        return catalogue.reduce((initialValue, item) => {
+            if (cart.has(item.id)) {
+                const itemQuantity = cart.get(item.id);
+                const itemWithPrice = Object.assign({}, item, {
+                    quantity: itemQuantity
+                });
+
+                initialValue.push(itemWithPrice);
+            }
+
+            return initialValue;
+        }, []);
+    }
+);
