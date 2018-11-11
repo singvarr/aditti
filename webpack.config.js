@@ -20,6 +20,7 @@ module.exports = {
             actions: path.join(__dirname, "src", "store", "actions"),
             constants: path.join(__dirname, "src", "store", "constants"),
             reducers: path.join(__dirname, "src", "store", "reducers"),
+            selectors: path.join(__dirname, "src", "store", "selectors"),
             components: path.join(__dirname, "src", "components"),
             containers: path.join(__dirname, "src", "containers"),
             less: path.join(__dirname, "src", "less")
