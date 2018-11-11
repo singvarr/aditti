@@ -7,9 +7,12 @@ import {
     clearBucket,
     removeItem
 } from "actions/cart";
+import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
 
 function mapStateToProps(state) {
     return {
+        totalPrice: getCartTotalPrice(state),
+        totalQuantity: getCartTotalQuantity(state),
         items: state.catalogue
     };
 }
