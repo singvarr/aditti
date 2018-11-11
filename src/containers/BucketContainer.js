@@ -17,7 +17,6 @@ function mapStateToProps(state) {
     return {
         totalPrice: getCartTotalPrice(state),
         totalQuantity: getCartTotalQuantity(state),
-        items: state.catalogue,
         cartItems: getCartItems(state)
     };
 }
