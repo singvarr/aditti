@@ -67,14 +67,16 @@ describe("cart reducer", () => {
         }
     );
 
-    it(`
-        ${DECREASE_ITEM_QUANTITY}: should delete single item from cart`, () => {
-        const itemId = "item1";
-        const action = { type: DECREASE_ITEM_QUANTITY, id: itemId };
-        const expectedState = Map({ item2: 5, item3: 10 });
+    it(
+        `${DECREASE_ITEM_QUANTITY}: should delete single item from cart`,
+        () => {
+            const itemId = "item1";
+            const action = { type: DECREASE_ITEM_QUANTITY, id: itemId };
+            const expectedState = Map({ item2: 5, item3: 10 });
 
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
+            expect(reducer(state, action)).toEqual(expectedState);
+        }
+    );
 
     it(`${CLEAR_CART}: should clear all items from cart`, () => {
         const action = { type: CLEAR_CART };
