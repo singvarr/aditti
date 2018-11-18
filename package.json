@@ -1,14 +1,16 @@
 {
-  "name": "Aditti",
+  "name": "aditti",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --hot",
+    "start": "npm run start:frontend & npm run start:server",
+    "start:frontend": "NODE_ENV=development webpack-dev-server --hot",
+    "start:server": "NODE_ENV=development nodemon server/index.js",
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
