@@ -38,6 +38,7 @@
     "html-webpack-plugin": "^2.30.1",
     "immutable": "^4.0.0-rc.12",
     "jest": "^23.6.0",
+    "jest-immutable-matchers": "^2.0.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "nodemon": "^1.18.6",
