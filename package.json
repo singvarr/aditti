@@ -1,7 +1,7 @@
 {
   "name": "aditti",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple clothes online-shop",
   "main": "src/index.js",
   "scripts": {
     "start": "npm run start:frontend & npm run start:server",
@@ -9,7 +9,7 @@
     "start:server": "NODE_ENV=development nodemon server/index.js",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": ["clothes", "online-shop"],
   "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
