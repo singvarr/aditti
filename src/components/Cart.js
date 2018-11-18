@@ -60,7 +60,7 @@ class Cart extends Component {
                 </div>
                 <div className="dialog-footer">
                     <span>`Your total sum is ${this.props.totalPrice}`</span>
-                    <button onClick={() => this.props.onClearBucket()}>
+                    <button onClick={() => this.props.onClearCart()}>
                         Clear bucket
                     </button>
                 </div>
@@ -99,7 +99,7 @@ Cart.propTypes = {
             src: PropTypes.string.isRequired
         })
     ).isRequired,
-    onClearBucket: PropTypes.func.isRequired,
+    onClearCart: PropTypes.func.isRequired,
     onDecreaseQuantity: PropTypes.func.isRequired,
     onIncreaseQuantity: PropTypes.func.isRequired,
     onRemoveItem: PropTypes.func.isRequired,
