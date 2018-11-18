@@ -4,6 +4,7 @@
     "plugins": ["react"],
     "rules": {
         "camelcase": "error",
+        "max-len": "error",
         "indent": ["error"],
         "quotes": "error",
         "object-curly-spacing": ["error", "always"],
