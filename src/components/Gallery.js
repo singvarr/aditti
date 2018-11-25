@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Item from "components/item";
@@ -27,6 +28,12 @@ function Gallery(props) {
     );
 }
 
+function mapStateToProps(state) {
+    return {
+        items: state.catalogue
+    };
+}
+
 Gallery.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -39,4 +46,4 @@ Gallery.propTypes = {
     ).isRequired
 };
 
-export default Gallery;
+export default connect(mapStateToProps)(Gallery);
