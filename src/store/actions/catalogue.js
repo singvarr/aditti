@@ -5,7 +5,7 @@ import {
     FETCH_CATALOGUE_ERROR
 } from "constants/catalogue";
 
-const catalogueEndpoint = "/api/catalogue";
+const catalogueEndpoint = "/api/";
 
 function fetchCatalogue() {
     return {
