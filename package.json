@@ -9,7 +9,10 @@
     "start:server": "NODE_ENV=development nodemon server/index.js",
     "test": "jest"
   },
-  "keywords": ["clothes", "online-shop"],
+  "keywords": [
+    "clothes",
+    "online-shop"
+  ],
   "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
