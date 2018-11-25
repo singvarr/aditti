@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import Carousel from "components/Carousel";
 import Categories from "components/Categories";
+import ErrorMessage from "components/ErrorMessage";
 import Gallery from "components/Gallery";
 import Loading from "components/Loading";
 
@@ -15,9 +16,13 @@ class CatalogueRoute extends Component {
     }
 
     render() {
-        return this.props.isLoading ? (
-            <Loading />
-        ) : (
+        if (this.props.isLoading) {
+            return <Loading />;
+        } else if (this.props.hasError) {
+            return <ErrorMessage />;
+        }
+
+        return (
             <Fragment>
                 <Carousel />
                 <Categories />
