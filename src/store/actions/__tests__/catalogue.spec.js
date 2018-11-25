@@ -46,7 +46,9 @@ describe("fetchCatalogue: test fetch catalogue", () => {
     });
 
     it(`fires ${FETCH_CATALOGUE_ERROR} on error`, () => {
-        fetchMock.getOnce(catalogueEndpoint, 404);
+        const errorStatus = 404;
+
+        fetchMock.getOnce(catalogueEndpoint, errorStatus);
 
         const expectedActions = [
             { type: FETCH_CATALOGUE_LOADING },
