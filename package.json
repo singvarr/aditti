@@ -1,14 +1,16 @@
 {
-  "name": "Aditti",
+  "name": "aditti",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "description": "Simple clothes online-shop",
+  "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --hot",
+    "start": "npm run start:frontend & npm run start:server",
+    "start:frontend": "NODE_ENV=development webpack-dev-server --hot",
+    "start:server": "NODE_ENV=development nodemon server/index.js",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["clothes", "online-shop"],
+  "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
@@ -17,6 +19,7 @@
     "react-dom": "^16.0.0",
     "react-modal": "^3.1.8",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.3.1",
     "react-slick": "^0.16.0",
     "redux": "^3.7.2",
     "redux-api-middleware": "^3.0.0",

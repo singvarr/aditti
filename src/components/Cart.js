@@ -1,34 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import ReactModal from "react-modal";
 
-class Bucket extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showModal: false
-        };
-    }
+import {
+    increaseItemQuantity,
+    decreaseItemQuantity,
+    clearCart,
+    removeItem
+} from "actions/cart";
+import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-    handleOpenModal() {
-        this.setState({ showModal: true });
-    }
-
-    handleCloseModal() {
-        this.setState({ showModal: false });
-    }
-
+class Cart extends Component {
     render() {
-        const EMPTY_BUCKET = (
-            <div className="dialog empty-dialog">
-                <h2 className="dialog-header">Your bucket is empty</h2>
-                <button onClick={() => this.handleCloseModal()}>
-                    Close Modal
-                </button>
-            </div>
-        );
-
-        const FULL_BUCKET = (
+        return this.props.totalPrice ? (
             <div className="dialog">
                 <h2 className="dialog-header">Your bucket</h2>
                 <div className="dialog-main">
@@ -40,16 +24,14 @@ class Bucket extends Component {
                                         <button
                                             className="flaticon-cancel"
                                             onClick={() =>
-                                                this.props.onRemoveItem(
-                                                    item.name
-                                                )
+                                                this.props.onRemoveItem(item.id)
                                             }
                                         />
                                         <button
                                             className="flaticon-minus"
                                             onClick={() =>
                                                 this.props.onDecreaseQuantity(
-                                                    item.name
+                                                    item.id
                                                 )
                                             }
                                         />
@@ -58,7 +40,7 @@ class Bucket extends Component {
                                             className="flaticon-plus"
                                             onClick={() =>
                                                 this.props.onIncreaseQuantity(
-                                                    item.name
+                                                    item.id
                                                 )
                                             }
                                         />
@@ -68,8 +50,7 @@ class Bucket extends Component {
                                         <span>{item.quantity}</span>
                                         <span>* {item.price}</span>
                                         <span>
-                                            {" "}
-                                            = {item.quantity * item.price}
+                                            {` = ${item.quantity * item.price}`}
                                         </span>
                                     </div>
                                 </div>
@@ -79,46 +60,36 @@ class Bucket extends Component {
                 </div>
                 <div className="dialog-footer">
                     <span>`Your total sum is ${this.props.totalPrice}`</span>
-                    <button onClick={() => this.props.onClearBucket()}>
+                    <button onClick={() => this.props.onClearCart()}>
                         Clear bucket
-                    </button>
-                    <button onClick={() => this.handleCloseModal()}>
-                        Close Modal
                     </button>
                 </div>
             </div>
-        );
-
-        return (
-            <div className="bucket">
-                <button
-                    id="open-bucket"
-                    onClick={() => this.handleOpenModal()}
-                />
-                <div className="total-sum">
-                    {`$ ${this.props.totalPrice}`}
-                    <span className="total-quantity">
-                        {this.props.totalQuantity}
-                    </span>
-                </div>
-                <ReactModal
-                    isOpen={this.state.showModal}
-                    contentLabel="Bucket Modal"
-                >
-                    {this.props.totalQuantity ? FULL_BUCKET : EMPTY_BUCKET}
-                </ReactModal>
+        ) : (
+            <div className="dialog empty-dialog">
+                <h2 className="dialog-header">Your bucket is empty</h2>
             </div>
         );
     }
 }
 
-Bucket.propTypes = {
-    totalPrice: PropTypes.number.isRequired,
-    totalQuantity: PropTypes.number.isRequired,
-    onIncreaseQuantity: PropTypes.func.isRequired,
-    onDecreaseQuantity: PropTypes.func.isRequired,
-    onRemoveItem: PropTypes.func.isRequired,
-    onClearBucket: PropTypes.func.isRequired,
+function mapStateToProps(state) {
+    return {
+        totalPrice: getCartTotalPrice(state),
+        cartItems: getCartItems(state)
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onIncreaseQuantity: id => dispatch(increaseItemQuantity(id)),
+        onDecreaseQuantity: id => dispatch(decreaseItemQuantity(id)),
+        onRemoveItem: id => dispatch(removeItem(id)),
+        onClearCart: () => dispatch(clearCart())
+    };
+}
+
+Cart.propTypes = {
     cartItems: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -127,7 +98,15 @@ Bucket.propTypes = {
             category: PropTypes.string.isRequired,
             src: PropTypes.string.isRequired
         })
-    ).isRequired
+    ).isRequired,
+    onClearCart: PropTypes.func.isRequired,
+    onDecreaseQuantity: PropTypes.func.isRequired,
+    onIncreaseQuantity: PropTypes.func.isRequired,
+    onRemoveItem: PropTypes.func.isRequired,
+    totalPrice: PropTypes.number.isRequired
 };
 
-export default Bucket;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Cart);
