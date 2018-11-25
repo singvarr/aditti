@@ -4,7 +4,7 @@ import {
     FETCH_CATALOGUE_ERROR
 } from "constants/catalogue";
 
-const defaultState = {
+export const defaultState = {
     data: {
         catalogue: {
             items: []
