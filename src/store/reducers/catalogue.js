@@ -6,7 +6,9 @@ import {
 
 const defaultState = {
     data: {
-        catalogue: [],
+        catalogue: {
+            items: []
+        },
         categories: [],
         slides: []
     },

@@ -30,7 +30,7 @@ function Gallery(props) {
 
 function mapStateToProps(state) {
     return {
-        items: state.catalogue
+        items: state.catalogue.data.catalogue.items
     };
 }
 
