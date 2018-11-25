@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
-const proxyUrl = "http://localhost:3000/";
+const proxyUrl = "http://localhost:4000/";
 const developmentMode = "development";
 
 module.exports = {
