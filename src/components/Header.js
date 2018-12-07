@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import Menu from "components/menu";
+import Menu from "components/Menu";
 import CartIcon from "components/CartIcon";
 
 function Header(props) {
