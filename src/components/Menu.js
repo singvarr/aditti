@@ -18,10 +18,12 @@ function Menu(props) {
 }
 
 Menu.propTypes = {
-    menu: PropTypes.arrayOf({
-        name: PropTypes.string.isRequired,
-        href: PropTypes.string.isRequired
-    }).isRequired
+    menu: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            href: PropTypes.string.isRequired
+        }).isRequired
+    ).isRequired
 };
 
 export default Menu;

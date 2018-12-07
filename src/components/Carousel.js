@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import CarouselWrapper from "nuka-carousel";
-import Slide from "components/slide";
+import Slide from "components/Slide";
 
 class Carousel extends Component {
     render() {
