@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 function Slide(props) {
     return (
-        <div className="slide clearfix">
-            <div className="slide-img ">
+        <div className={classnames("slide", props.className)}>
+            <div className="slide-img">
                 <img src={props.image} alt={props.heading} />
             </div>
             <div className="slide-info">
@@ -17,9 +18,14 @@ function Slide(props) {
 }
 
 Slide.propTypes = {
-    heading: PropTypes.string.isRequired,
+    className: PropTypes.string,
     description: PropTypes.string.isRequired,
+    heading: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
+};
+
+Slide.defaultProps = {
+    className: null
 };
 
 export default Slide;
