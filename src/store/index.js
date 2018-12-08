@@ -3,7 +3,6 @@ import { apiMiddleware } from "redux-api-middleware";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import reducer from "reducers";
-import state from "./state.json";
 
 const developmentMode = "development";
 const env = process.env.NODE_ENV || developmentMode;
@@ -14,6 +13,6 @@ const enhancer =
         ? composeWithDevTools(applyMiddleware(...middlewares))
         : applyMiddleware(...middlewares);
 
-const store = createStore(reducer, state, enhancer);
+const store = createStore(reducer, enhancer);
 
 export default store;
