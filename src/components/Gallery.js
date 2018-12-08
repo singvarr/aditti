@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Item from "components/item";
+import Item from "components/Item";
 
 function Gallery(props) {
     return (

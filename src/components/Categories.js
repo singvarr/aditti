@@ -2,74 +2,52 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Carousel from "nuka-carousel";
-import categories from "store/categories";
-
-const decoratorStyle = {
-    width: 30,
-    height: 90,
-    outline: "none",
-    border: "none",
-    background: "url('./assets/img/control-left.png') 50% 50%"
-};
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.min.css";
 
 class Categories extends Component {
+    constructor(props) {
+        super(props);
+
+        this.categories = React.createRef();
+    }
+
+    componentDidMount() {
+        new Swiper(this.categories.current, { slidesPerView: 3 });
+    }
+
     render() {
         return (
-            <Carousel
-                width={1024}
-                slidesToShow={3}
-                ref="carousel"
-                dragging={false}
-                style={{ margin: "0 auto" }}
-                decorators={[
-                    {
-                        component: () => (
-                            <button
-                                style={decoratorStyle}
-                                onClick={() =>
-                                    this.refs.carousel.previousSlide()
-                                }
-                            />
-                        ),
-                        position: "CenterLeft",
-                        style: { left: -40 }
-                    },
-                    {
-                        component: () => (
-                            <button
-                                style={Object.assign({}, decoratorStyle, {
-                                    transform: "rotate(180deg)"
-                                })}
-                                onClick={() => this.refs.carousel.nextSlide()}
-                            />
-                        ),
-                        position: "CenterRight",
-                        style: { right: -40 }
-                    }
-                ]}
-            >
-                {this.props.categories.map((category, index) => {
-                    return (
-                        <div className="category clearfix" key={index}>
-                            <div className="category-img">
-                                <img src={category.src} alt={category.name} />
+            <div className="categories swiper-container" ref={this.categories}>
+                <div className="swiper-wrapper">
+                    {this.props.categories.map(category => {
+                        return (
+                            <div
+                                className="swiper-slide category"
+                                key={category.name}
+                            >
+                                <div className="category-img">
+                                    <img
+                                        src={category.src}
+                                        alt={category.name}
+                                    />
+                                </div>
+                                <div className="category-title">
+                                    <span>{category.name}</span>
+                                    <button name="shop">Buy</button>
+                                </div>
                             </div>
-                            <div className="category-title">
-                                <span>{category.name}</span>
-                                <button name="shop">Buy</button>
-                            </div>
-                        </div>
-                    );
-                })}
-            </Carousel>
+                        );
+                    })}
+                </div>
+            </div>
         );
     }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
-        categories
+        categories: state.catalogue.data.categories
     };
 }
 

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from "components/Header";
-import Footer from "components/footer";
+import Footer from "components/Footer";
 import CatalogueRoute from "routes/CatalogueRoute";
 import CartRoute from "routes/CartRoute";
 
