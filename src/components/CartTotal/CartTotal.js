@@ -5,16 +5,17 @@ import PropTypes from "prop-types";
 
 import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
 
-function CartIcon(props) {
+import "./CartTotal.less";
+
+function CartTotal(props) {
     return (
         <Link to="/cart">
-            <div className="bucket">
-                <div id="open-bucket" />
-                <div className="total-sum">
-                    {`$ ${props.totalPrice}`}
-                    <span className="total-quantity">
-                        {props.totalQuantity}
-                    </span>
+            <div className="cart-total">
+                <div className="cart-total__price">{`$ ${
+                    props.totalPrice
+                }`}</div>
+                <div className="cart-total__quantity">
+                    {props.totalQuantity}
                 </div>
             </div>
         </Link>
@@ -28,9 +29,9 @@ function mapStateToProps(state) {
     };
 }
 
-CartIcon.propTypes = {
+CartTotal.propTypes = {
     totalPrice: PropTypes.number.isRequired,
     totalQuantity: PropTypes.number.isRequired
 };
 
-export default connect(mapStateToProps)(CartIcon);
+export default connect(mapStateToProps)(CartTotal);
