@@ -1,0 +1,104 @@
+.dialog {
+    &-header {
+        padding-left: 40px;
+        line-height: 60px;
+        .text(@white, 30px @main-font);
+        background: url("../../public/assets/img/bg.png") repeat;
+    }
+
+    &-main .item-row {
+        height: 90px;
+        border-bottom: solid 1px @gray;
+        text-align: center;
+
+        &:nth-child(2n) {
+            background-color: lighten(@cyan, 40%);
+        }
+
+        .item-controls,
+        .item-name,
+        .item-total {
+            float: left;
+            height: 90px;
+            line-height: 90px !important;
+        }
+
+        .item-controls {
+            width: 30%;
+
+            button {
+                display: inline-block;
+                vertical-align: middle;
+                border: none;
+                outline: none;
+                background-color: transparent;
+            }
+
+            .flaticon-cancel {
+                margin: 0 10px;
+
+                &::before {
+                    color: maroon;
+                }
+            }
+
+            img {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 10px;
+                max-height: 90px;
+                width: auto;
+            }
+
+            .flaticon-minus::before,
+            .flaticon-plus::before {
+                .text(@cyan, 30px Flaticon);
+            }
+        }
+
+        .item-name {
+            width: 50%;
+            .text(@gray, 40px @main-font);
+        }
+
+        .item-total {
+            width: 20%;
+
+            span {
+                margin-right: 10px;
+                .text(@gray, 40px @main-font);
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    &-footer {
+        text-align: left;
+
+        span {
+            .text(@gray, 30px @main-font);
+        }
+
+        button {
+            .input(100px, 30px, 3px);
+            margin-left: 20px;
+            .button(@cyan);
+            .text(@white, 25px @main-font);
+        }
+    }
+}
+
+.empty-dialog {
+    .dialog-header {
+        margin-bottom: 20px;
+    }
+
+    button {
+        .input(120px, 40px, 2px);
+        .button(@darkcyan);
+        .text(@white, 20px @main-font);
+    }
+}
