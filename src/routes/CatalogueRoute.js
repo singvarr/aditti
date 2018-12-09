@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import Carousel from "components/Carousel";
 import Categories from "components/Categories";
 import ErrorMessage from "components/ErrorMessage";
+import LoadingMessage from "components/LoadingMessage";
 import Catalogue from "components/Catalogue";
-import Loading from "components/Loading";
 
 import fetchCatalogue from "actions/catalogue";
 
@@ -17,7 +17,7 @@ class CatalogueRoute extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return <Loading />;
+            return <LoadingMessage />;
         } else if (this.props.hasError) {
             return <ErrorMessage />;
         }
