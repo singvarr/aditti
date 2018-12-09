@@ -16,6 +16,8 @@ module.exports = {
     resolve: {
         extensions: [".jsx", ".js", ".json"],
         alias: {
+            assets: path.join(__dirname, "src", "assets"),
+            vendor: path.join(__dirname, "src", "vendor"),
             store: path.join(__dirname, "src", "store"),
             actions: path.join(__dirname, "src", "store", "actions"),
             constants: path.join(__dirname, "src", "store", "constants"),

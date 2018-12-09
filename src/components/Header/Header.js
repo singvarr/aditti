@@ -10,7 +10,7 @@ function Header() {
     return (
         <header className="header">
             <Link to="/" className="logo-link">
-                <img className="logo" src="./assets/img/logo.png" alt="logo" />
+                <img className="logo" src="assets/img/logo.png" alt="logo" />
             </Link>
             <Autosuggest />
             <CartTotal />

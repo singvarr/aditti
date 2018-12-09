@@ -10,6 +10,10 @@ import CatalogueRoute from "routes/CatalogueRoute";
 import CartRoute from "routes/CartRoute";
 
 import store from "store";
+
+import "assets/fonts/index.css";
+import "assets/icons/flaticon.css";
+import "vendor/reset.css";
 import "less/index.less";
 
 import links from "store/links";
@@ -19,7 +23,7 @@ render(
         <BrowserRouter>
             <Fragment>
                 <Header />
-                <Menu menu={links.mainMenu}/>
+                <Menu menu={links.mainMenu} />
                 <main>
                     <Switch>
                         <Route exact path="/" component={CatalogueRoute} />
