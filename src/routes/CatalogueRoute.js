@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Carousel from "components/Carousel";
 import Categories from "components/Categories";
 import ErrorMessage from "components/ErrorMessage";
-import Gallery from "components/Gallery";
+import Catalogue from "components/Catalogue";
 import Loading from "components/Loading";
 
 import fetchCatalogue from "actions/catalogue";
@@ -26,7 +26,7 @@ class CatalogueRoute extends Component {
             <Fragment>
                 <Carousel />
                 <Categories />
-                <Gallery />
+                <Catalogue />
             </Fragment>
         );
     }
