@@ -4,21 +4,28 @@ import PropTypes from "prop-types";
 
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
+import "./Categories.less";
 
 class Categories extends Component {
     constructor(props) {
         super(props);
 
         this.categories = React.createRef();
+        this.slidesPerView = 3;
     }
 
     componentDidMount() {
-        new Swiper(this.categories.current, { slidesPerView: 3 });
+        new Swiper(this.categories.current, {
+            slidesPerView: this.slidesPerView
+        });
     }
 
     render() {
         return (
-            <div className="categories swiper-container" ref={this.categories}>
+            <section
+                className="categories swiper-container"
+                ref={this.categories}
+            >
                 <div className="swiper-wrapper">
                     {this.props.categories.map(category => {
                         return (
@@ -26,21 +33,30 @@ class Categories extends Component {
                                 className="swiper-slide category"
                                 key={category.name}
                             >
-                                <div className="category-img">
+                                <div className="category__img-container">
                                     <img
+                                        className="category__img"
                                         src={category.src}
                                         alt={category.name}
                                     />
                                 </div>
-                                <div className="category-title">
-                                    <span>{category.name}</span>
-                                    <button name="shop">Buy</button>
+                                <div className="category__info">
+                                    <div className="category__name">
+                                        {category.name}
+                                    </div>
+                                    <button
+                                        className="category__btn"
+                                        name="shop"
+                                        type="button"
+                                    >
+                                        Buy
+                                    </button>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-            </div>
+            </section>
         );
     }
 }
