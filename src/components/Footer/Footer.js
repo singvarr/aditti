@@ -1,19 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Footer.less";
 
 function Footer(props) {
     return (
-        <footer>
-            <div className="wrapper">
+        <footer className="footer">
+            <div className="footer__links-wrapper">
                 {props.linksList.map((obj, index) => {
                     return (
-                        <div className="links" key={index}>
-                            <h3>{obj.name}</h3>
-                            <ul>
+                        <div className="footer__links" key={index}>
+                            <div className="footer__links-title">
+                                {obj.name}
+                            </div>
+                            <ul className="footer__links-list">
                                 {obj.links.map((item, index) => {
                                     return (
                                         <li key={index}>
-                                            <a href={item.href}>{item.name}</a>
+                                            <a
+                                                className="footer__link"
+                                                href={item.href}
+                                            >
+                                                {item.name}
+                                            </a>
                                         </li>
                                     );
                                 })}
@@ -22,9 +30,7 @@ function Footer(props) {
                     );
                 })}
             </div>
-            <div className="copyright">
-                <small>Copyright 2013 CSS Author</small>
-            </div>
+            <div className="footer__copyright">Copyright 2013 CSS Author</div>
         </footer>
     );
 }

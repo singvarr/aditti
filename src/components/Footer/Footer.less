@@ -1,0 +1,38 @@
+@import url("../../less/index.less");
+
+.footer {
+    background-color: @cyan;
+    color: @white;
+
+    &__links-wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: @desktop-width;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    &__links-title {
+        margin-bottom: 15px;
+        font: 27px @heading-font;
+        text-transform: uppercase;
+    }
+
+    &__link {
+        font: 15px/28px @main-font;
+        color: @white;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__copyright {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        font: 15px @main-font;
+        background-color: @darkcyan;
+    }
+}
