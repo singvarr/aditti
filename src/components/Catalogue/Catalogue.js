@@ -2,24 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Item from "components/Item";
+import Product from "components/Product";
+import "./Catalogue.less";
 
-function Gallery(props) {
+function Catalogue(props) {
     return (
-        <section className="gallery">
-            <h2>
-                <div className="wrapper">featured items</div>
-            </h2>
-            <div className="items wrapper">
-                {props.items.map((item, index) => {
+        <section className="catalogue">
+            <div className="catalogue__title-wrapper">
+                <h2 className="catalogue__title">featured items</h2>
+            </div>
+            <div className="catalogue__products">
+                {props.items.map(item => {
                     return (
-                        <Item
-                            key={index}
-                            id={item.id}
-                            name={item.name}
-                            price={item.price}
-                            category={item.category}
-                            src={item.src}
+                        <Product
+                            key={item.id}
+                            className="catalogue__product"
+                            data={item}
                         />
                     );
                 })}
@@ -34,7 +32,7 @@ function mapStateToProps(state) {
     };
 }
 
-Gallery.propTypes = {
+Catalogue.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -46,4 +44,4 @@ Gallery.propTypes = {
     ).isRequired
 };
 
-export default connect(mapStateToProps)(Gallery);
+export default connect(mapStateToProps)(Catalogue);
