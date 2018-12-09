@@ -6,14 +6,14 @@ function Footer(props) {
     return (
         <footer className="footer">
             <div className="footer__links-wrapper">
-                {props.linksList.map((obj, index) => {
+                {props.linksList.map((linksList, index) => {
                     return (
                         <div className="footer__links" key={index}>
                             <div className="footer__links-title">
-                                {obj.name}
+                                {linksList.name}
                             </div>
                             <ul className="footer__links-list">
-                                {obj.links.map((item, index) => {
+                                {linksList.links.map((item, index) => {
                                     return (
                                         <li key={index}>
                                             <a
