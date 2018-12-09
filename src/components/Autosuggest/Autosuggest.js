@@ -13,7 +13,7 @@ class Autosuggest extends Component {
                 />
                 <button
                     type="button"
-                    className="autosuggest__submit flaticon-search btn-reset"
+                    className="autosuggest__submit flaticon-search"
                 />
             </form>
         );
