@@ -35,7 +35,7 @@ module.exports = {
                 use: ["babel-loader", "eslint-loader"]
             },
             {
-                test: /\.less$/,
+                test: /\.(less|css)$/,
                 use: ExtractTextPlugin.extract({
                     use: [{ loader: "css-loader" }, { loader: "less-loader" }],
                     fallback: "style-loader"
