@@ -1,14 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Menu.less";
+
 function Menu(props) {
     return (
-        <nav id="main-menu">
-            <ul>
-                {props.menu.map((item, i) => {
+        <nav className="main-menu">
+            <ul className="main-menu__container">
+                {props.menu.map(item => {
                     return (
-                        <li key={i}>
-                            <a href={item.href}>{item.name}</a>
+                        <li key={item.name} className="main-menu__item">
+                            <a className="main-menu__link" href={item.href}>
+                                {item.name}
+                            </a>
                         </li>
                     );
                 })}
