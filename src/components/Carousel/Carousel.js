@@ -27,14 +27,12 @@ class Carousel extends Component {
             <section className="carousel">
                 <div className="swiper-container" ref={this.carousel}>
                     <div className="swiper-wrapper">
-                        {this.props.slides.map((slide, i) => {
+                        {this.props.slides.map(slide => {
                             return (
                                 <Slide
+                                    key={slide.heading}
                                     className="swiper-slide"
-                                    description={slide.description}
-                                    heading={slide.heading}
-                                    image={slide.imgSrc}
-                                    key={i}
+                                    slide={slide}
                                 />
                             );
                         })}
