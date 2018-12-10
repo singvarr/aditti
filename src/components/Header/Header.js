@@ -8,7 +8,7 @@ import "./Header.less";
 
 function Header() {
     return (
-        <header className="header">
+        <header className="header wrapper">
             <Link to="/" className="logo-link">
                 <img className="logo" src="img/logo.png" alt="logo" />
             </Link>

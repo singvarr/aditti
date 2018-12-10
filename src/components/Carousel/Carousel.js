@@ -25,7 +25,7 @@ class Carousel extends Component {
     render() {
         return (
             <section className="carousel">
-                <div className="swiper-container" ref={this.carousel}>
+                <div className="swiper-container wrapper" ref={this.carousel}>
                     <div className="swiper-wrapper">
                         {this.props.slides.map(slide => {
                             return (

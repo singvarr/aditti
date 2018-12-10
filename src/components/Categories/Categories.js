@@ -23,7 +23,7 @@ class Categories extends Component {
     render() {
         return (
             <section
-                className="categories swiper-container"
+                className="wrapper swiper-container"
                 ref={this.categories}
             >
                 <div className="swiper-wrapper">

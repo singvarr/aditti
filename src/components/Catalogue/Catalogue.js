@@ -9,9 +9,9 @@ function Catalogue(props) {
     return (
         <section className="catalogue">
             <div className="catalogue__title-wrapper">
-                <h2 className="catalogue__title">featured items</h2>
+                <h2 className="catalogue__title wrapper">featured items</h2>
             </div>
-            <div className="catalogue__products">
+            <div className="catalogue__products wrapper">
                 {props.items.map(item => {
                     return (
                         <Product

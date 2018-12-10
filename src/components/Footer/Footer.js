@@ -8,7 +8,7 @@ function Footer(props) {
             <div className="footer__links-wrapper">
                 {props.linksList.map((linksList, index) => {
                     return (
-                        <div className="footer__links" key={index}>
+                        <div className="footer__links wrapper" key={index}>
                             <div className="footer__links-title">
                                 {linksList.name}
                             </div>

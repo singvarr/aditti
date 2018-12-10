@@ -6,7 +6,7 @@ import "./Menu.less";
 function Menu(props) {
     return (
         <nav className="main-menu">
-            <ul className="main-menu__container">
+            <ul className="main-menu__container wrapper">
                 {props.menu.map(item => {
                     return (
                         <li key={item.name} className="main-menu__item">
