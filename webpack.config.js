@@ -55,7 +55,7 @@ module.exports = {
     },
     devServer: {
         port: 7000,
-        contentBase: path.resolve(__dirname, "public"),
+        contentBase: path.resolve(__dirname, "src", "assets"),
         hot: true,
         proxy: {
             "/api/**": {
