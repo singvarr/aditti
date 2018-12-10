@@ -1,0 +1,30 @@
+@import url("less/index.less");
+
+.autosuggest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__search {
+        width: 430px;
+        height: 35px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        border: solid 1px @gray;
+        border-right: none;
+        font: 20px/35px @main-font;
+        color: darken(@gray, 40%);
+        border-radius: 3px 0 0 3px;
+        outline: none;
+    }
+
+    &__submit {
+        height: 35px;
+        border: solid 1px @gray;
+        border-left: none;
+        color: @gray;
+        background-color: transparent;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+    }
+}

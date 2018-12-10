@@ -16,6 +16,8 @@ module.exports = {
     resolve: {
         extensions: [".jsx", ".js", ".json"],
         alias: {
+            assets: path.join(__dirname, "src", "assets"),
+            vendor: path.join(__dirname, "src", "vendor"),
             store: path.join(__dirname, "src", "store"),
             actions: path.join(__dirname, "src", "store", "actions"),
             constants: path.join(__dirname, "src", "store", "constants"),
@@ -35,9 +37,17 @@ module.exports = {
                 use: ["babel-loader", "eslint-loader"]
             },
             {
-                test: /\.less$/,
+                test: /\.(less|css)$/,
                 use: ExtractTextPlugin.extract({
-                    use: [{ loader: "css-loader" }, { loader: "less-loader" }],
+                    use: [
+                        { loader: "css-loader" },
+                        {
+                            loader: "less-loader",
+                            options: {
+                                paths: [path.join(__dirname, "src")]
+                            }
+                        }
+                    ],
                     fallback: "style-loader"
                 })
             },
@@ -53,7 +63,7 @@ module.exports = {
     },
     devServer: {
         port: 7000,
-        contentBase: path.resolve(__dirname, "public"),
+        contentBase: path.resolve(__dirname, "src", "assets"),
         hot: true,
         proxy: {
             "/api/**": {
