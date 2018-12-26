@@ -1,8 +1,8 @@
 import { RSAA } from "redux-api-middleware";
 import {
-    FETCH_PRODUCTS_LOADING,
-    FETCH_PRODUCTS_SUCCESS,
-    FETCH_PRODUCTS_ERROR
+    GET_PRODUCTS_LOADING,
+    GET_PRODUCTS_SUCCESS,
+    GET_PRODUCTS_ERROR
 } from "constants/products";
 
 export const productsEndpoint = "/api/products";
@@ -15,9 +15,9 @@ function getProducts() {
             headers,
             method: "GET",
             types: [
-                FETCH_PRODUCTS_LOADING,
-                FETCH_PRODUCTS_SUCCESS,
-                FETCH_PRODUCTS_ERROR
+                GET_PRODUCTS_LOADING,
+                GET_PRODUCTS_SUCCESS,
+                GET_PRODUCTS_ERROR
             ],
             fetch
         }
