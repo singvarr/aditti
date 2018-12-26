@@ -1,33 +1,27 @@
 import {
-    FETCH_CATALOGUE_LOADING,
-    FETCH_CATALOGUE_SUCCESS,
-    FETCH_CATALOGUE_ERROR
-} from "constants/catalogue";
+    FETCH_PRODUCTS_LOADING,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_ERROR
+} from "constants/products";
 
 export const defaultState = {
-    data: {
-        catalogue: {
-            items: []
-        },
-        categories: [],
-        slides: []
-    },
+    data: [],
     hasError: false,
     isLoading: false
 };
 
 function reducer(state = defaultState, action) {
     switch (action.type) {
-    case FETCH_CATALOGUE_LOADING:
+    case FETCH_PRODUCTS_LOADING:
         return Object.assign({}, state, { isLoading: true });
 
-    case FETCH_CATALOGUE_SUCCESS:
+    case FETCH_PRODUCTS_SUCCESS:
         return Object.assign({}, state, {
             data: action.payload,
             isLoading: false
         });
 
-    case FETCH_CATALOGUE_ERROR:
+    case FETCH_PRODUCTS_ERROR:
         return Object.assign({}, state, {
             hasError: true,
             isLoading: false

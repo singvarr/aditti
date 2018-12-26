@@ -6,16 +6,8 @@ const catalogue = require("./mockData/catalogue");
 const slides = require("./mockData/slides");
 const categories = require("./mockData/categories");
 
-app.get("/items", (req, res) => res.json(catalogue));
-app.get("/slides", (req, res) => res.json(slides));
+app.get("/products", (req, res) => res.json(catalogue));
+app.get("/carousel", (req, res) => res.json(slides));
 app.get("/categories", (req, res) => res.json(categories));
-
-app.get("/", (req, res) => {
-    res.json({
-        slides,
-        catalogue,
-        categories
-    });
-});
 
 app.listen(4000, () => console.log("server is running on port 4000"));
