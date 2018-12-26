@@ -5,7 +5,7 @@ import {
 } from "constants/categories";
 import reducer, { initialState } from "reducers/categories";
 
-describe("carousel reducer", () => {
+describe("categories reducer", () => {
     it("default: returns initial state", () => {
         expect(reducer(undefined, { type: "" })).toEqual(initialState);
     });

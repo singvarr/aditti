@@ -20,18 +20,22 @@ describe("getProducts: test fetch products", () => {
     });
 
     it(`fires ${GET_PRODUCTS_SUCCESS} on success fetch`, () => {
-        const payload = {
-            categories: [
-                {
-                    name: "tshirts",
-                    src: "./assets/img/categories/t-shirt.png"
-                },
-                {
-                    name: "shoes",
-                    src: "./assets/img/categories/shoes.png"
-                }
-            ]
-        };
+        const payload = [
+            {
+                id: "1",
+                name: "branded shoes",
+                price: 200,
+                category: "shoes",
+                src: "img/catalogue/shoes.png"
+            },
+            {
+                id: "2",
+                name: "levis tshort",
+                price: 300,
+                category: "tshirts",
+                src: "img/catalogue/t-short_levis.png"
+            }
+        ];
 
         fetchMock.getOnce(productsEndpoint, { body: payload, headers });
 

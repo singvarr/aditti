@@ -20,18 +20,18 @@ describe("getCarousel: test fetch carousel", () => {
     });
 
     it(`fires ${GET_CAROUSEL_SUCCESS} on success fetch`, () => {
-        const payload = {
-            categories: [
-                {
-                    name: "tshirts",
-                    src: "./assets/img/categories/t-shirt.png"
-                },
-                {
-                    name: "shoes",
-                    src: "./assets/img/categories/shoes.png"
-                }
-            ]
-        };
+        const payload = [
+            {
+                heading: "Cowhide Standard Crew",
+                description: "White coloured, short-sleeved, printed T-shirt",
+                imgSrc: "img/carousel/t-shirt.png"
+            },
+            {
+                heading: "2",
+                description: "Lorem ipsum dolor sit amet consectetur...",
+                imgSrc: "img/carousel/t-shirt.png"
+            }
+        ];
 
         fetchMock.getOnce(carouselEndpoint, { body: payload, headers });
 

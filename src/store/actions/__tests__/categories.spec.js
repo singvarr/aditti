@@ -20,18 +20,16 @@ describe("getCategories: test fetch categories", () => {
     });
 
     it(`fires ${GET_CATEGORIES_SUCCESS} on success fetch`, () => {
-        const payload = {
-            categories: [
-                {
-                    name: "tshirts",
-                    src: "./assets/img/categories/t-shirt.png"
-                },
-                {
-                    name: "shoes",
-                    src: "./assets/img/categories/shoes.png"
-                }
-            ]
-        };
+        const payload = [
+            {
+                name: "tshirts",
+                src: "assets/img/categories/t-shirt.png"
+            },
+            {
+                name: "shoes",
+                src: "assets/img/categories/shoes.png"
+            }
+        ];
 
         fetchMock.getOnce(categoriesEndpoint, { body: payload, headers });
 
