@@ -1,57 +1,17 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Fragment } from "react";
 
 import Carousel from "components/Carousel";
 import Categories from "components/Categories";
-import ErrorMessage from "components/ErrorMessage";
-import LoadingMessage from "components/LoadingMessage";
-import Catalogue from "components/Catalogue";
+import Products from "components/Products";
 
-import fetchCatalogue from "actions/catalogue";
-
-class CatalogueRoute extends Component {
-    componentDidMount() {
-        this.props.onFetchCatalogue();
-    }
-
-    render() {
-        if (this.props.isLoading) {
-            return <LoadingMessage />;
-        } else if (this.props.hasError) {
-            return <ErrorMessage />;
-        }
-
-        return (
-            <Fragment>
-                <Carousel />
-                <Categories />
-                <Catalogue />
-            </Fragment>
-        );
-    }
+function CatalogueRoute() {
+    return (
+        <Fragment>
+            <Carousel />
+            <Categories />
+            <Products />
+        </Fragment>
+    );
 }
 
-function mapStateToProps(state) {
-    return {
-        isLoading: state.catalogue.isLoading,
-        hasError: state.catalogue.hasError
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        onFetchCatalogue: () => dispatch(fetchCatalogue())
-    };
-}
-
-CatalogueRoute.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    hasError: PropTypes.bool.isRequired,
-    onFetchCatalogue: PropTypes.func.isRequired
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CatalogueRoute);
+export default CatalogueRoute;
