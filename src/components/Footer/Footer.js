@@ -5,10 +5,10 @@ import "./Footer.less";
 function Footer(props) {
     return (
         <footer className="footer">
-            <div className="footer__links-wrapper">
+            <div className="footer__links-wrapper wrapper">
                 {props.linksList.map((linksList, index) => {
                     return (
-                        <div className="footer__links wrapper" key={index}>
+                        <div className="footer__links" key={index}>
                             <div className="footer__links-title">
                                 {linksList.name}
                             </div>
