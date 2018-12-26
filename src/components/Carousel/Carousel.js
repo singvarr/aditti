@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import Slide from "components/Slide";
+import FetchStatus from "components/FetchStatus";
+import getCarousel from "actions/carousel";
 import "./Carousel.less";
 
 class Carousel extends Component {
@@ -15,6 +17,8 @@ class Carousel extends Component {
     }
 
     componentDidMount() {
+        this.props.onGetCarousel();
+
         new Swiper(this.carousel.current, {
             pagination: {
                 el: ".swiper-pagination"
@@ -23,11 +27,17 @@ class Carousel extends Component {
     }
 
     render() {
-        return (
+        const { hasError, isLoading, slides } = this.props;
+
+        if (hasError || isLoading) {
+            return <FetchStatus hasError={hasError} isLoading={isLoading} />;
+        }
+
+        return slides.length ? (
             <section className="carousel">
                 <div className="swiper-container wrapper" ref={this.carousel}>
                     <div className="swiper-wrapper">
-                        {this.props.slides.map(slide => {
+                        {slides.map(slide => {
                             return (
                                 <Slide
                                     key={slide.heading}
@@ -40,17 +50,28 @@ class Carousel extends Component {
                     <div className="swiper-pagination" />
                 </div>
             </section>
-        );
+        ) : null;
     }
 }
 
 function mapStateToProps(state) {
     return {
-        slides: state.catalogue.data.slides
+        hasError: state.carousel.hasError,
+        isLoading: state.carousel.isLoading,
+        slides: state.carousel.data
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onGetCarousel: () => dispatch(getCarousel())
     };
 }
 
 Carousel.propTypes = {
+    hasError: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    onGetCarousel: PropTypes.func.isRequired,
     slides: PropTypes.arrayOf(
         PropTypes.shape({
             heading: PropTypes.string.isRequired,
@@ -60,4 +81,7 @@ Carousel.propTypes = {
     ).isRequired
 };
 
-export default connect(mapStateToProps)(Carousel);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Carousel);

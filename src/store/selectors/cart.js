@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 
-const catalogueSelector = state => state.catalogue;
+const productsSelector = state => state.products;
 const cartSelector = state => state.cart;
 
 export const getCartTotalPrice = createSelector(
-    [catalogueSelector, cartSelector],
-    (catalogue, cart) => {
+    [productsSelector, cartSelector],
+    (products, cart) => {
         return cart.reduce((initialValue, itemQuantity, itemId) => {
-            const item = catalogue.find(item => item.id === itemId);
+            const item = products.data.find(item => item.id === itemId);
 
             return (initialValue += item.price * itemQuantity);
         }, 0);
@@ -21,9 +21,9 @@ export const getCartTotalQuantity = createSelector([cartSelector], cart => {
 });
 
 export const getCartItems = createSelector(
-    [catalogueSelector, cartSelector],
-    (catalogue, cart) => {
-        return catalogue.reduce((initialValue, item) => {
+    [productsSelector, cartSelector],
+    (products, cart) => {
+        return products.data.reduce((initialValue, item) => {
             if (cart.has(item.id)) {
                 const itemQuantity = cart.get(item.id);
                 const itemWithPrice = Object.assign({}, item, {

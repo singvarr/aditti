@@ -1,11 +1,15 @@
 import { combineReducers } from "redux";
 
-import catalogue from "reducers/catalogue";
+import carousel from "reducers/carousel";
 import cart from "reducers/cart";
+import categories from "reducers/categories";
+import products from "reducers/products";
 
 const reducer = combineReducers({
-    catalogue,
-    cart
+    carousel,
+    cart,
+    categories,
+    products
 });
 
 export default reducer;

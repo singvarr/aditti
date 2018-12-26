@@ -1,33 +1,27 @@
 import {
-    FETCH_CATALOGUE_LOADING,
-    FETCH_CATALOGUE_SUCCESS,
-    FETCH_CATALOGUE_ERROR
-} from "constants/catalogue";
+    GET_CAROUSEL_LOADING,
+    GET_CAROUSEL_SUCCESS,
+    GET_CAROUSEL_ERROR
+} from "constants/carousel";
 
-export const defaultState = {
-    data: {
-        catalogue: {
-            items: []
-        },
-        categories: [],
-        slides: []
-    },
+export const initialState = {
+    data: [],
     hasError: false,
     isLoading: false
 };
 
-function reducer(state = defaultState, action) {
+function reducer(state = initialState, action) {
     switch (action.type) {
-    case FETCH_CATALOGUE_LOADING:
+    case GET_CAROUSEL_LOADING:
         return Object.assign({}, state, { isLoading: true });
 
-    case FETCH_CATALOGUE_SUCCESS:
+    case GET_CAROUSEL_SUCCESS:
         return Object.assign({}, state, {
             data: action.payload,
             isLoading: false
         });
 
-    case FETCH_CATALOGUE_ERROR:
+    case GET_CAROUSEL_ERROR:
         return Object.assign({}, state, {
             hasError: true,
             isLoading: false
