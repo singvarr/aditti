@@ -2,24 +2,24 @@ import { apiMiddleware } from "redux-api-middleware";
 import configureMockStore from "redux-mock-store";
 import fetchMock from "fetch-mock";
 
-import getProducts, { productsEndpoint, headers } from "actions/products";
+import getCategories, { categoriesEndpoint, headers } from "actions/categories";
 import {
-    GET_PRODUCTS_LOADING,
-    GET_PRODUCTS_SUCCESS,
-    GET_PRODUCTS_ERROR
-} from "constants/products";
+    GET_CATEGORIES_LOADING,
+    GET_CATEGORIES_SUCCESS,
+    GET_CATEGORIES_ERROR
+} from "constants/categories";
 
 const middlewares = [apiMiddleware];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore();
 
-describe("getProducts: test fetch products", () => {
+describe("getCategories: test fetch categories", () => {
     afterEach(() => {
         fetchMock.reset();
         fetchMock.restore();
     });
 
-    it(`fires ${GET_PRODUCTS_SUCCESS} on success fetch`, () => {
+    it(`fires ${GET_CATEGORIES_SUCCESS} on success fetch`, () => {
         const payload = {
             categories: [
                 {
@@ -33,29 +33,29 @@ describe("getProducts: test fetch products", () => {
             ]
         };
 
-        fetchMock.getOnce(productsEndpoint, { body: payload, headers });
+        fetchMock.getOnce(categoriesEndpoint, { body: payload, headers });
 
         const expectedActions = [
-            { type: GET_PRODUCTS_LOADING },
-            { type: GET_PRODUCTS_SUCCESS, payload }
+            { type: GET_CATEGORIES_LOADING },
+            { type: GET_CATEGORIES_SUCCESS, payload }
         ];
 
-        return store.dispatch(getProducts()).then(() => {
+        return store.dispatch(getCategories()).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
 
-    it(`fires ${GET_PRODUCTS_ERROR} on error`, () => {
+    it(`fires ${GET_CATEGORIES_ERROR} on error`, () => {
         const errorStatus = 404;
 
-        fetchMock.getOnce(productsEndpoint, errorStatus);
+        fetchMock.getOnce(categoriesEndpoint, errorStatus);
 
         const expectedActions = [
-            { type: GET_PRODUCTS_LOADING },
-            { type: GET_PRODUCTS_ERROR }
+            { type: GET_CATEGORIES_LOADING },
+            { type: GET_CATEGORIES_ERROR }
         ];
 
-        return store.dispatch(getProducts()).catch(() => {
+        return store.dispatch(getCategories()).catch(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
