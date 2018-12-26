@@ -2,12 +2,12 @@ import { apiMiddleware } from "redux-api-middleware";
 import configureMockStore from "redux-mock-store";
 import fetchMock from "fetch-mock";
 
-import fetchCatalogue, { catalogueEndpoint, headers } from "actions/catalogue";
+import fetchCatalogue, { productsEndpoint, headers } from "actions/products";
 import {
-    FETCH_CATALOGUE_LOADING,
-    FETCH_CATALOGUE_SUCCESS,
-    FETCH_CATALOGUE_ERROR
-} from "constants/catalogue";
+    GET_PRODUCTS_LOADING,
+    GET_PRODUCTS_SUCCESS,
+    GET_PRODUCTS_ERROR
+} from "constants/products";
 
 const middlewares = [apiMiddleware];
 const mockStore = configureMockStore(middlewares);
@@ -19,7 +19,7 @@ describe("fetchCatalogue: test fetch catalogue", () => {
         fetchMock.restore();
     });
 
-    it(`fires ${FETCH_CATALOGUE_SUCCESS} on success fetch`, () => {
+    it(`fires ${GET_PRODUCTS_SUCCESS} on success fetch`, () => {
         const payload = {
             categories: [
                 {
@@ -33,11 +33,11 @@ describe("fetchCatalogue: test fetch catalogue", () => {
             ]
         };
 
-        fetchMock.getOnce(catalogueEndpoint, { body: payload, headers });
+        fetchMock.getOnce(productsEndpoint, { body: payload, headers });
 
         const expectedActions = [
-            { type: FETCH_CATALOGUE_LOADING },
-            { type: FETCH_CATALOGUE_SUCCESS, payload }
+            { type: GET_PRODUCTS_LOADING },
+            { type: GET_PRODUCTS_SUCCESS, payload }
         ];
 
         return store.dispatch(fetchCatalogue()).then(() => {
@@ -45,14 +45,14 @@ describe("fetchCatalogue: test fetch catalogue", () => {
         });
     });
 
-    it(`fires ${FETCH_CATALOGUE_ERROR} on error`, () => {
+    it(`fires ${GET_PRODUCTS_ERROR} on error`, () => {
         const errorStatus = 404;
 
-        fetchMock.getOnce(catalogueEndpoint, errorStatus);
+        fetchMock.getOnce(productsEndpoint, errorStatus);
 
         const expectedActions = [
-            { type: FETCH_CATALOGUE_LOADING },
-            { type: FETCH_CATALOGUE_ERROR }
+            { type: GET_PRODUCTS_LOADING },
+            { type: GET_PRODUCTS_ERROR }
         ];
 
         return store.dispatch(fetchCatalogue()).catch(() => {
