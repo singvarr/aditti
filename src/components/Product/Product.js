@@ -6,7 +6,7 @@ import classnames from "classnames";
 import { increaseItemQuantity } from "actions/cart";
 import "./Product.less";
 
-function Product(props) {
+export function Product(props) {
     return (
         <div className={classnames("product", props.className)}>
             <div className="product__img-container">
