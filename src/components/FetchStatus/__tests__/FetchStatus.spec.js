@@ -17,7 +17,7 @@ describe("<FetchStatus />", () => {
         expect(component.find("LoadingMessage")).toHaveLength(1);
     });
 
-    it("renders <ErrorMessage /> if has error status", () => {
+    it("renders <ErrorMessage /> if has  status", () => {
         const component = shallow(<FetchStatus hasError isLoading={false} />);
 
         expect(component.find("ErrorMessage")).toHaveLength(1);
@@ -30,4 +30,4 @@ describe("<FetchStatus />", () => {
 
         expect(component.type()).toEqual(null);
     });
-});error
+});
