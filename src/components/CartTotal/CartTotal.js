@@ -7,7 +7,7 @@ import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
 
 import "./CartTotal.less";
 
-function CartTotal(props) {
+export function CartTotal(props) {
     return (
         <Link to="/cart">
             <div className="cart-total">
