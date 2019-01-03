@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./Menu.less";
 
 function Menu(props) {
-    return (
+    return props.menu.length ? (
         <nav className="main-menu">
             <ul className="main-menu__container wrapper">
                 {props.menu.map(item => {
@@ -18,7 +18,7 @@ function Menu(props) {
                 })}
             </ul>
         </nav>
-    );
+    ) : null;
 }
 
 Menu.propTypes = {
@@ -26,7 +26,7 @@ Menu.propTypes = {
         PropTypes.shape({
             name: PropTypes.string.isRequired,
             href: PropTypes.string.isRequired
-        }).isRequired
+        })
     ).isRequired
 };
 
