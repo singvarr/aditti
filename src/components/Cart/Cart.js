@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -10,67 +10,73 @@ import {
 } from "actions/cart";
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-class Cart extends Component {
-    render() {
-        return this.props.totalPrice ? (
-            <div className="dialog">
-                <h2 className="dialog-header">Your bucket</h2>
-                <div className="dialog-main">
-                    {this.props.cartItems.map((item, index) => {
-                        if (item.quantity) {
-                            return (
-                                <div className="item-row" key={index}>
-                                    <div className="item-controls">
-                                        <button
-                                            className="flaticon-cancel"
-                                            onClick={() =>
-                                                this.props.onRemoveItem(item.id)
-                                            }
-                                        />
-                                        <button
-                                            className="flaticon-minus"
-                                            onClick={() =>
-                                                this.props.onDecreaseQuantity(
-                                                    item.id
-                                                )
-                                            }
-                                        />
-                                        <img src={item.src} alt={item.name} />
-                                        <button
-                                            className="flaticon-plus"
-                                            onClick={() =>
-                                                this.props.onIncreaseQuantity(
-                                                    item.id
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="item-name">{item.name}</div>
-                                    <div className="item-total">
-                                        <span>{item.quantity}</span>
-                                        <span>* {item.price}</span>
-                                        <span>
-                                            {` = ${item.quantity * item.price}`}
-                                        </span>
-                                    </div>
-                                </div>
-                            );
-                        }
-                    })}
-                </div>
-                <div className="dialog-footer">
-                    <span>`Your total sum is ${this.props.totalPrice}`</span>
-                    <button onClick={() => this.props.onClearCart()}>
-                        Clear bucket
-                    </button>
-                </div>
+export function Cart(props) {
+    return props.totalPrice ? (
+        <div className="cart">
+            <div className="cart__title">Your bucket</div>
+            <div className="cart__items">
+                {props.cartItems.map(item => {
+                    return (
+                        <div key={item.id}>
+                            <div>
+                                <button
+                                    className="
+                                            cart__item-remove
+                                            flaticon-cancel
+                                        "
+                                    onClick={() => props.onRemoveItem(item.id)}
+                                    type="button"
+                                />
+                                <button
+                                    className="
+                                            cart__item-decrease
+                                            flaticon-minus
+                                        "
+                                    onClick={() =>
+                                        props.onDecreaseQuantity(item.id)
+                                    }
+                                    type="button"
+                                />
+                                <img src={item.src} alt={item.name} />
+                                <button
+                                    className="
+                                            cart__item-increase
+                                            flaticon-plus
+                                        "
+                                    onClick={() =>
+                                        props.onIncreaseQuantity(item.id)
+                                    }
+                                    type="button"
+                                />
+                            </div>
+                            <div>{item.name}</div>
+                            <div>
+                                <span>{item.quantity}</span>
+                                <span>* {item.price}</span>
+                                <span>
+                                    {` = ${item.quantity * item.price}`}
+                                </span>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
-        ) : (
-            <div className="dialog empty-dialog">
-                <h2 className="dialog-header">Your bucket is empty</h2>
+            <div className="cart__footer">
+                <span>`Your total sum is ${props.totalPrice}`</span>
+                <button
+                    className="cart__clear"
+                    onClick={props.onClearCart}
+                    type="button"
+                >
+                    Clear bucket
+                </button>
             </div>
-        );
-    }
+        </div>
+    ) : (
+        <div className="empty-cart">
+            <div className="empty-cart__title">Your bucket is empty</div>
+        </div>
+    );
 }
 
 function mapStateToProps(state) {
