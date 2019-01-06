@@ -7,16 +7,16 @@ function Footer(props) {
         <footer className="footer">
             {props.linksList.length && (
                 <div className="footer__links-wrapper wrapper">
-                    {props.linksList.map((linksList, index) => {
+                    {props.linksList.map(linksList => {
                         return (
-                            <div className="footer__links" key={index}>
+                            <div key={linksList.name} className="footer__links">
                                 <div className="footer__links-title">
                                     {linksList.name}
                                 </div>
                                 <ul className="footer__links-list">
-                                    {linksList.links.map((item, index) => {
+                                    {linksList.links.map(item => {
                                         return (
-                                            <li key={index}>
+                                            <li key={item.href}>
                                                 <a
                                                     className="footer__link"
                                                     href={item.href}
