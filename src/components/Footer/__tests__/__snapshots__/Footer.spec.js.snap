@@ -141,7 +141,7 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "0",
+            "key": "featured sale",
             "nodeType": "host",
             "props": Object {
               "children": Array [
@@ -232,7 +232,7 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "0",
+                    "key": "Alexis Hudson",
                     "nodeType": "host",
                     "props": Object {
                       "children": <a
@@ -260,7 +260,7 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "1",
+                    "key": "American Apparel",
                     "nodeType": "host",
                     "props": Object {
                       "children": <a
@@ -288,7 +288,7 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "2",
+                    "key": "Ben Sherman",
                     "nodeType": "host",
                     "props": Object {
                       "children": <a
@@ -446,7 +446,7 @@ ShallowWrapper {
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "0",
+              "key": "featured sale",
               "nodeType": "host",
               "props": Object {
                 "children": Array [
@@ -537,7 +537,7 @@ ShallowWrapper {
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "0",
+                      "key": "Alexis Hudson",
                       "nodeType": "host",
                       "props": Object {
                         "children": <a
@@ -565,7 +565,7 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "1",
+                      "key": "American Apparel",
                       "nodeType": "host",
                       "props": Object {
                         "children": <a
@@ -593,7 +593,7 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "2",
+                      "key": "Ben Sherman",
                       "nodeType": "host",
                       "props": Object {
                         "children": <a

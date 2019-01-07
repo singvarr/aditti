@@ -16,7 +16,7 @@ function Footer(props) {
                                 <ul className="footer__links-list">
                                     {linksList.links.map(item => {
                                         return (
-                                            <li key={item.href}>
+                                            <li key={item.name}>
                                                 <a
                                                     className="footer__link"
                                                     href={item.href}
