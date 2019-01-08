@@ -13,8 +13,8 @@ describe("<Products />", () => {
     it("renders without crash", () => {
         const tree = shallow(
             <Products
-                isLoading={false}
                 hasError={false}
+                isLoading={false}
                 onFetchProducts={onFetchProducts}
                 products={[]}
             />
@@ -24,16 +24,14 @@ describe("<Products />", () => {
     });
 
     it("inits products fetch in componentDidMount", () => {
-        const component = shallow(
+        shallow(
             <Products
-                isLoading={false}
                 hasError={false}
+                isLoading={false}
                 onFetchProducts={onFetchProducts}
                 products={[]}
             />
         );
-
-        component.instance().componentDidMount;
 
         expect(onFetchProducts).toHaveBeenCalledTimes(1);
     });
@@ -41,8 +39,8 @@ describe("<Products />", () => {
     it("renders FetchStatus during loading", () => {
         const component = shallow(
             <Products
-                isLoading
                 hasError={false}
+                isLoading
                 onFetchProducts={onFetchProducts}
                 products={[]}
             />
@@ -53,8 +51,8 @@ describe("<Products />", () => {
     it("renders FetchStatus if fetch was unsuccessful", () => {
         const component = shallow(
             <Products
-                isLoading={false}
                 hasError
+                isLoading={false}
                 onFetchProducts={onFetchProducts}
                 products={[]}
             />

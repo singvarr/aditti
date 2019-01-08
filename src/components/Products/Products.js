@@ -29,9 +29,9 @@ export class Products extends Component {
                             {products.map(product => {
                                 return (
                                     <Product
-                                        key={product.id}
                                         className="catalogue__product"
                                         data={product}
+                                        key={product.id}
                                     />
                                 );
                             })}
