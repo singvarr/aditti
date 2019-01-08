@@ -37,7 +37,7 @@ export function Cart(props) {
                                     }
                                     type="button"
                                 />
-                                <img src={item.src} alt={item.name} />
+                                <img alt={item.name} src={item.src} />
                                 <button
                                     className="
                                             cart__item-increase
