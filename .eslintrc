@@ -20,7 +20,8 @@
         "semi": "error",
         "react/boolean-prop-naming": "error",
         "react/button-has-type": "error",
-        "react/no-array-index-key": "error"
+        "react/no-array-index-key": "error",
+        "react/jsx-sort-props": "error"
     },
     "env": {
         "es6": true,
