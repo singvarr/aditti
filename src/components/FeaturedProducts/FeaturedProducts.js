@@ -7,7 +7,7 @@ import FeaturedProductsCarousel from "components/FeaturedProductsCarousel";
 import getCarousel from "actions/carousel";
 import "./FeaturedProducts.less";
 
-class Carousel extends Component {
+export class FeaturedProducts extends Component {
     componentDidMount() {
         this.props.onGetCarousel();
     }
@@ -42,7 +42,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-Carousel.propTypes = {
+FeaturedProducts.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
     onGetCarousel: PropTypes.func.isRequired,
@@ -58,4 +58,4 @@ Carousel.propTypes = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Carousel);
+)(FeaturedProducts);
