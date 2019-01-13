@@ -9,7 +9,7 @@ function Menu(props) {
             <ul className="main-menu__container wrapper">
                 {props.menu.map(item => {
                     return (
-                        <li key={item.name} className="main-menu__item">
+                        <li className="main-menu__item" key={item.name}>
                             <a className="main-menu__link" href={item.href}>
                                 {item.name}
                             </a>
