@@ -11,18 +11,20 @@ class FeaturedProductsCarousel extends Component {
         super(props);
 
         this.carousel = React.createRef();
+        this.bullets = React.createRef();
     }
 
     componentDidMount() {
         new Swiper(this.carousel.current, {
             pagination: {
-                el: ".swiper-pagination"
+                clickable: true,
+                el: this.bullets.current
             }
         });
     }
 
     render() {
-        return (
+        return this.props.slides.length ? (
             <div
                 className={classnames("swiper-container", this.props.className)}
                 ref={this.carousel}
@@ -38,9 +40,9 @@ class FeaturedProductsCarousel extends Component {
                         );
                     })}
                 </div>
-                <div className="swiper-pagination" />
+                <div className="swiper-pagination" ref={this.bullets} />
             </div>
-        );
+        ) : null;
     }
 }
 
