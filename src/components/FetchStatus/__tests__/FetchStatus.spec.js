@@ -5,7 +5,7 @@ import FetchStatus from "../FetchStatus";
 describe("<FetchStatus />", () => {
     it("renders without crash", () => {
         const tree = shallow(
-            <FetchStatus isLoading={false} hasError={false} />
+            <FetchStatus hasError={false} isLoading={false} />
         );
 
         expect(tree).toMatchSnapshot();
