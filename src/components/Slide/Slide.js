@@ -8,9 +8,9 @@ function Slide(props) {
         <div className={classnames("slide", props.className)}>
             <div className="slide__img-container">
                 <img
+                    alt={props.slide.heading}
                     className="slide__img"
                     src={props.slide.imgSrc}
-                    alt={props.slide.heading}
                 />
             </div>
             <div className="slide__info">
@@ -18,11 +18,7 @@ function Slide(props) {
                 <div className="slide__description">
                     {props.slide.description}
                 </div>
-                <button
-                    className="slide__btn"
-                    name="shop-now"
-                    type="button"
-                >
+                <button className="slide__btn" name="shop-now" type="button">
                     shop now
                 </button>
             </div>
