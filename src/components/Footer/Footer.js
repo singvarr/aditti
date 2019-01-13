@@ -5,31 +5,33 @@ import "./Footer.less";
 function Footer(props) {
     return (
         <footer className="footer">
-            <div className="footer__links-wrapper wrapper">
-                {props.linksList.map((linksList, index) => {
-                    return (
-                        <div className="footer__links" key={index}>
-                            <div className="footer__links-title">
-                                {linksList.name}
+            {props.linksList.length && (
+                <div className="footer__links-wrapper wrapper">
+                    {props.linksList.map(linksList => {
+                        return (
+                            <div className="footer__links" key={linksList.name}>
+                                <div className="footer__links-title">
+                                    {linksList.name}
+                                </div>
+                                <ul className="footer__links-list">
+                                    {linksList.links.map(item => {
+                                        return (
+                                            <li key={item.name}>
+                                                <a
+                                                    className="footer__link"
+                                                    href={item.href}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
                             </div>
-                            <ul className="footer__links-list">
-                                {linksList.links.map((item, index) => {
-                                    return (
-                                        <li key={index}>
-                                            <a
-                                                className="footer__link"
-                                                href={item.href}
-                                            >
-                                                {item.name}
-                                            </a>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-                    );
-                })}
-            </div>
+                        );
+                    })}
+                </div>
+            )}
             <div className="footer__copyright">Copyright 2013 CSS Author</div>
         </footer>
     );

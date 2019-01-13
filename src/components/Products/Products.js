@@ -7,7 +7,7 @@ import FetchStatus from "components/FetchStatus";
 import getProducts from "actions/products";
 import "./Products.less";
 
-class Products extends Component {
+export class Products extends Component {
     componentDidMount() {
         this.props.onFetchProducts();
     }
@@ -18,27 +18,25 @@ class Products extends Component {
             return <FetchStatus hasError={hasError} isLoading={isLoading} />;
         }
 
-        return (
+        return products.length ? (
             <section className="catalogue">
                 <div className="catalogue__title-wrapper">
                     <h2 className="catalogue__title wrapper">featured items</h2>
                 </div>
                 <div className="catalogue__products wrapper">
-                    {products.length ? (
-                        products.map(product => {
-                            return (
-                                <Product
-                                    key={product.id}
-                                    className="catalogue__product"
-                                    data={product}
-                                />
-                            );
-                        })
-                    ) : (
-                        <div>There are not products</div>
-                    )}
+                    {products.map(product => {
+                        return (
+                            <Product
+                                className="catalogue__product"
+                                data={product}
+                                key={product.id}
+                            />
+                        );
+                    })}
                 </div>
             </section>
+        ) : (
+            <div className="catalogue__empty">There are not products</div>
         );
     }
 }

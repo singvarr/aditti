@@ -6,14 +6,14 @@ import classnames from "classnames";
 import { increaseItemQuantity } from "actions/cart";
 import "./Product.less";
 
-function Product(props) {
+export function Product(props) {
     return (
         <div className={classnames("product", props.className)}>
             <div className="product__img-container">
                 <img
+                    alt={props.data.name}
                     className="product__img"
                     src={props.data.src}
-                    alt={props.data.name}
                 />
             </div>
             <div className="product__data">
@@ -22,8 +22,8 @@ function Product(props) {
                     <div className="product__price">$ {props.data.price}</div>
                     <button
                         className="product__buy-btn"
-                        type="button"
                         onClick={() => props.onAdd(props.data.id)}
+                        type="button"
                     >
                         Buy
                     </button>

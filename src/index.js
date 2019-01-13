@@ -26,8 +26,8 @@ render(
                 <Menu menu={links.mainMenu} />
                 <main>
                     <Switch>
-                        <Route exact path="/" component={CatalogueRoute} />
-                        <Route path="/cart" component={CartRoute} />
+                        <Route component={CatalogueRoute} exact path="/" />
+                        <Route component={CartRoute} path="/cart" />
                     </Switch>
                 </main>
                 <Footer linksList={links.footerLinks} />

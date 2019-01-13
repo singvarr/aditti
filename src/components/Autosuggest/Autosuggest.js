@@ -12,8 +12,8 @@ class Autosuggest extends Component {
                     name="autosuggest-search"
                 />
                 <button
-                    type="button"
                     className="autosuggest__submit flaticon-search"
+                    type="button"
                 />
             </form>
         );

@@ -9,8 +9,8 @@ import "./Header.less";
 function Header() {
     return (
         <header className="header wrapper">
-            <Link to="/" className="logo-link">
-                <img className="logo" src="img/logo.png" alt="logo" />
+            <Link className="logo-link" to="/">
+                <img alt="logo" className="logo" src="img/logo.png" />
             </Link>
             <Autosuggest />
             <CartTotal />
