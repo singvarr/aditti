@@ -1,13 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 const proxyUrl = "http://localhost:4000/";
 const developmentMode = "development";
 
 module.exports = {
-    devtool: process.env.NODE_ENV === developmentMode ? "source-map" : "",
+    mode: process.env.NODE_ENV,
+    devtool: process.env.NODE_ENV === developmentMode ? "source-map" : false,
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
@@ -38,18 +39,16 @@ module.exports = {
             },
             {
                 test: /\.(less|css)$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        { loader: "css-loader" },
-                        {
-                            loader: "less-loader",
-                            options: {
-                                paths: [path.join(__dirname, "src")]
-                            }
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: "less-loader",
+                        options: {
+                            paths: [path.join(__dirname, "src")]
                         }
-                    ],
-                    fallback: "style-loader"
-                })
+                    }
+                ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -83,7 +82,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "public", "index.html")
         }),
-        new ExtractTextPlugin("style.css"),
+        new MiniCssExtractPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
