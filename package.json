@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run start:frontend & npm run start:server",
-    "start:frontend": "NODE_ENV=development webpack-dev-server --hot",
+    "start:frontend": "NODE_ENV=development webpack",
     "start:server": "NODE_ENV=development nodemon server/index.js",
     "test": "jest"
   },
@@ -17,7 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "mongoose": "^5.4.4",
     "node-fetch": "^2.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.6.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -57,7 +60,8 @@
     "redux-mock-store": "^1.5.3",
     "style-loader": "^0.18.2",
     "url-loader": "^0.6.2",
-    "webpack": "^3.5.6",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^2.8.0"
   }
 }
