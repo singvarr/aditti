@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 import "./Menu.less";
 
@@ -16,6 +17,15 @@ function Menu(props) {
                         </li>
                     );
                 })}
+                <li className="main-menu__item">
+                    <NavLink
+                        activeClassName="main-menu__link_active"
+                        className="main-menu__link"
+                        to="/signup"
+                    >
+                        Sign up
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     ) : null;
