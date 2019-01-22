@@ -17,6 +17,7 @@ import "vendor/reset.css";
 import "less/index.less";
 
 import links from "store/links";
+import SignUpRoute from "./routes/SignUpRoute";
 
 render(
     <Provider store={store}>
@@ -28,6 +29,7 @@ render(
                     <Switch>
                         <Route component={CatalogueRoute} exact path="/" />
                         <Route component={CartRoute} path="/cart" />
+                        <Route component={SignUpRoute} path="/signup" />
                     </Switch>
                 </main>
                 <Footer linksList={links.footerLinks} />
