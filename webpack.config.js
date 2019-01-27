@@ -19,6 +19,7 @@ module.exports = {
         alias: {
             assets: path.join(__dirname, "src", "assets"),
             vendor: path.join(__dirname, "src", "vendor"),
+            fixtures: path.join(__dirname, "src", "fixtures"),
             store: path.join(__dirname, "src", "store"),
             actions: path.join(__dirname, "src", "store", "actions"),
             constants: path.join(__dirname, "src", "store", "constants"),
@@ -80,7 +81,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "public", "index.html")
+            template: path.resolve(__dirname, "src", "index.html")
         }),
         new MiniCssExtractPlugin(),
         new webpack.NamedModulesPlugin(),
