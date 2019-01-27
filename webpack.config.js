@@ -9,7 +9,7 @@ const developmentMode = "development";
 module.exports = {
     mode: process.env.NODE_ENV,
     devtool: process.env.NODE_ENV === developmentMode ? "source-map" : false,
-    entry: path.resolve(__dirname, "src", "index.js"),
+    entry: path.resolve(__dirname, "frontend", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "bundle.js"
@@ -17,23 +17,24 @@ module.exports = {
     resolve: {
         extensions: [".jsx", ".js", ".json"],
         alias: {
-            assets: path.join(__dirname, "src", "assets"),
-            vendor: path.join(__dirname, "src", "vendor"),
-            store: path.join(__dirname, "src", "store"),
-            actions: path.join(__dirname, "src", "store", "actions"),
-            constants: path.join(__dirname, "src", "store", "constants"),
-            reducers: path.join(__dirname, "src", "store", "reducers"),
-            selectors: path.join(__dirname, "src", "store", "selectors"),
-            routes: path.join(__dirname, "src", "routes"),
-            components: path.join(__dirname, "src", "components"),
-            less: path.join(__dirname, "src", "less")
+            assets: path.join(__dirname, "frontend", "assets"),
+            vendor: path.join(__dirname, "frontend", "vendor"),
+            fixtures: path.join(__dirname, "frontend", "fixtures"),
+            store: path.join(__dirname, "frontend", "store"),
+            actions: path.join(__dirname, "frontend", "store", "actions"),
+            constants: path.join(__dirname, "frontend", "store", "constants"),
+            reducers: path.join(__dirname, "frontend", "store", "reducers"),
+            selectors: path.join(__dirname, "frontend", "store", "selectors"),
+            routes: path.join(__dirname, "frontend", "routes"),
+            components: path.join(__dirname, "frontend", "components"),
+            less: path.join(__dirname, "frontend", "less")
         }
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: path.resolve(__dirname, "src"),
+                include: path.resolve(__dirname, "frontend"),
                 exclude: /node_modules/,
                 use: ["babel-loader", "eslint-loader"]
             },
@@ -45,7 +46,7 @@ module.exports = {
                     {
                         loader: "less-loader",
                         options: {
-                            paths: [path.join(__dirname, "src")]
+                            paths: [path.join(__dirname, "frontend")]
                         }
                     }
                 ]
@@ -62,7 +63,7 @@ module.exports = {
     },
     devServer: {
         port: 7000,
-        contentBase: path.resolve(__dirname, "src", "assets"),
+        contentBase: path.resolve(__dirname, "frontend", "assets"),
         hot: true,
         proxy: {
             "/api/**": {
@@ -80,7 +81,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "public", "index.html")
+            template: path.resolve(__dirname, "frontend", "index.html")
         }),
         new MiniCssExtractPlugin(),
         new webpack.NamedModulesPlugin(),

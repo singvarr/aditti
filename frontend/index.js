@@ -16,21 +16,22 @@ import "assets/icons/flaticon.css";
 import "vendor/reset.css";
 import "less/index.less";
 
-import links from "store/links";
+import menu from "fixtures/menu";
+import footerLinks from "fixtures/footerLinks";
 
 render(
     <Provider store={store}>
         <BrowserRouter>
             <Fragment>
                 <Header />
-                <Menu menu={links.mainMenu} />
+                <Menu menu={menu} />
                 <main>
                     <Switch>
                         <Route component={CatalogueRoute} exact path="/" />
                         <Route component={CartRoute} path="/cart" />
                     </Switch>
                 </main>
-                <Footer linksList={links.footerLinks} />
+                <Footer linksList={footerLinks} />
             </Fragment>
         </BrowserRouter>
     </Provider>,
