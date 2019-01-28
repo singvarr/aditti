@@ -7,7 +7,7 @@ const User = require("../models/User");
 router.post("/signup", (req, res) => {
     const { username, password } = req.body;
 
-    User.findOne({ username }, (error, user) => {
+    User.findOne({ login: username }, (error, user) => {
         if (error) {
             res.sendStatus(500);
         } else if (user) {
@@ -26,8 +26,8 @@ router.post("/signup", (req, res) => {
                         res.sendStatus(500);
                     }
 
-                    User({
-                        username,
+                    new User({
+                        login: username,
                         password: hash
                     })
                         .save()
