@@ -7,6 +7,7 @@
     "start": "npm run start:frontend & npm run start:server",
     "start:frontend": "NODE_ENV=development webpack-dev-server",
     "start:server": "NODE_ENV=development nodemon server/index.js",
+    "debug:server": "NODE_ENV=development nodemon --inspect server/index.js",
     "test": "jest"
   },
   "keywords": [
