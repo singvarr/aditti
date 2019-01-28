@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import classnames from "classnames";
 import "./SignUpForm.less";
 
-class Signup extends Component {
+class SignUpForm extends Component {
     constructor(props) {
         super(props);
 
@@ -19,7 +20,8 @@ class Signup extends Component {
             repeatPassword: {
                 value: "",
                 error: ""
-            }
+            },
+            isRegistrationCompleted: false
         };
     }
 
@@ -34,74 +36,132 @@ class Signup extends Component {
         });
     }
 
+    resetFormState() {
+        this.setState(prevState => {
+            return {
+                isRegistrationCompleted: false,
+                username: {
+                    ...prevState.username,
+                    error: ""
+                },
+                password: {
+                    ...prevState.password,
+                    error: ""
+                },
+                repeatPassword: {
+                    ...prevState.repeatPassword,
+                    error: ""
+                }
+            };
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
-        const reqBody = JSON.stringify({
+        if (this.state.isRegistrationCompleted) {
+            this.resetFormState();
+        }
+
+        const requestBody = JSON.stringify({
             username: this.state.username.value,
             password: this.state.password.value
         });
 
         fetch("/api/auth/signup", {
             method: "post",
-            body: reqBody,
+            body: requestBody,
             headers: {
                 "Content-Type": "application/json"
             }
-        });
+        })
+            .then(response => response.json())
+            .then(payload => {
+                payload.error
+                    ? this.setState(prevState => ({
+                        username: {
+                            ...prevState.username,
+                            error: payload.data.username
+                        }
+                    }))
+                    : this.setState({ isRegistrationCompleted: true });
+            });
     }
 
     render() {
         return (
-            <form className={classnames("signup", this.props.className)}>
-                <label className="signup__label" htmlFor="username">
-                    Enter your username
-                </label>
-                <input
-                    className="signup__input"
-                    id="username"
-                    name="username"
-                    onChange={e => this.handleInputChange(e)}
-                    type="text"
-                />
-                <label className="signup__label" htmlFor="password">
-                    Enter your password
-                </label>
-                <input
-                    className="signup__input"
-                    id="password"
-                    name="password"
-                    onChange={e => this.handleInputChange(e)}
-                    type="password"
-                />
-                <label className="signup__label" htmlFor="retypePassword">
-                    Type your password again
-                </label>
-                <input
-                    className="signup__input"
-                    id="retypePassword"
-                    name="repeatPassword"
-                    onChange={e => this.handleInputChange(e)}
-                    type="password"
-                />
-                <button
-                    className="signup__submit"
-                    onClick={e => this.handleSubmit(e)}
-                    type="submit"
+            <div className="signup">
+                <form
+                    className={classnames("signup__form", this.props.className)}
                 >
-                    Submit
-                </button>
-            </form>
+                    <div className="signup__title">
+                        Complete form to start shopping
+                    </div>
+                    <label className="signup__label" htmlFor="username">
+                        Enter your username
+                    </label>
+                    <input
+                        className={classnames("signup__input", {
+                            ["signup__input_error"]: this.state.username.error
+                        })}
+                        id="username"
+                        name="username"
+                        onChange={e => this.handleInputChange(e)}
+                        type="text"
+                    />
+                    <label className="signup__label" htmlFor="password">
+                        Enter your password
+                    </label>
+                    <input
+                        className={classnames("signup__input", {
+                            ["signup__input_error"]: this.state.password.error
+                        })}
+                        id="password"
+                        name="password"
+                        onChange={e => this.handleInputChange(e)}
+                        type="password"
+                    />
+                    <label className="signup__label" htmlFor="retypePassword">
+                        Type your password again
+                    </label>
+                    <input
+                        className={classnames("signup__input", {
+                            ["signup__input_error"]: this.state.repeatPassword
+                                .error
+                        })}
+                        id="retypePassword"
+                        name="repeatPassword"
+                        onChange={e => this.handleInputChange(e)}
+                        type="password"
+                    />
+                    <button
+                        className="signup__submit"
+                        onClick={e => this.handleSubmit(e)}
+                        type="submit"
+                    >
+                        Submit
+                    </button>
+                </form>
+                {this.state.isRegistrationCompleted && (
+                    <div className="signup__redirect">
+                        {"Now you are registered. Please, "}
+                        <Link className="signup__redirect-link" to="/login">
+                            login
+                        </Link>
+                        , to enter your account
+                    </div>
+                )}
+            </div>
         );
     }
 }
 
-Signup.propTypes = {
+SignUpForm.propTypes = {
     className: PropTypes.string
 };
 
-Signup.defaultProps = {
+SignUpForm.defaultProps = {
     className: ""
 };
 
-export default Signup;
+export default SignUpForm;
