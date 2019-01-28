@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run start:frontend & npm run start:server",
-    "start:frontend": "NODE_ENV=development webpack-dev-server --hot",
+    "start:frontend": "NODE_ENV=development webpack-dev-server",
     "start:server": "NODE_ENV=development nodemon server/index.js",
+    "debug:server": "NODE_ENV=development nodemon --inspect server/index.js",
     "test": "jest"
   },
   "keywords": [
@@ -16,7 +17,10 @@
   "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "mongoose": "^5.4.4",
     "node-fetch": "^2.3.0",
     "react": "^16.6.1",
     "react-dom": "^16.0.0",
@@ -32,6 +36,8 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.6",
@@ -40,7 +46,6 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.8.0",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "fetch-mock": "^7.2.5",
     "file-loader": "^1.1.5",
