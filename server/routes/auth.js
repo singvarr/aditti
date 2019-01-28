@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+
 const router = express.Router();
 
 const User = require("../models/User");
@@ -11,9 +12,11 @@ router.post("/signup", (req, res) => {
         if (error) {
             res.sendStatus(500);
         } else if (user) {
-            res.send({
+            res.json({
                 error: true,
-                data: "User has already registered with this nickname"
+                data: {
+                    username: "This nickname is already registered"
+                }
             });
         } else {
             bcrypt.genSalt(10, (error, salt) => {
@@ -31,7 +34,7 @@ router.post("/signup", (req, res) => {
                         password: hash
                     })
                         .save()
-                        .then(() => res.send({ error: false, data: "ok" }));
+                        .then(() => res.json({ error: false, data: "ok" }));
                 });
             });
         }
