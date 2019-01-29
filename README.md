@@ -8,6 +8,7 @@ Simple clothes online-shop.
 -   `npm run start:frontend` - run frontend application, using `webpack-dev-server` on port `7000`.
 -   `npm run start:server` - run `express` server on port `3000`.
 -   `npm test` - run `jest` tests.
+-   `npm run server:debug` - run node inspector in watch mode. 
 
 ## Code style
 
