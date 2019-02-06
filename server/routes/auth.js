@@ -1,9 +1,19 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 const router = express.Router();
 
 const User = require("../models/User");
+
+router.post("/signin", passport.authenticate("local"), (req, res) => {
+    res.json({ error: false, data: "ok!" });
+});
+
+router.post("/signout", (req, res) => {
+    req.logout();
+    res.json({ error: false, data: "ok!" });
+});
 
 router.post("/signup", (req, res) => {
     const { username, password } = req.body;
