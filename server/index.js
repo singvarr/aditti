@@ -35,14 +35,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(LocalStrategy);
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser((id, done) =>
+    User.findById(id, (err, user) => done(err, user))
+);
 
 const authRoute = require("./routes/auth");
 const catalogue = require("./mockData/catalogue");
