@@ -9,6 +9,7 @@ import Footer from "components/Footer";
 import CatalogueRoute from "routes/CatalogueRoute";
 import CartRoute from "routes/CartRoute";
 import SignUpRoute from "routes/SignUpRoute";
+import SignInRoute from "routes/SignInRoute";
 
 import store from "store";
 
@@ -29,8 +30,9 @@ render(
                 <main>
                     <Switch>
                         <Route component={CatalogueRoute} exact path="/" />
-                        <Route component={CartRoute} path="/cart" />
-                        <Route component={SignUpRoute} path="/signup" />
+                        <Route component={CartRoute} exact path="/cart" />
+                        <Route component={SignUpRoute} exact path="/signup" />
+                        <Route component={SignInRoute} exact path="/signin" />
                     </Switch>
                 </main>
                 <Footer linksList={footerLinks} />
