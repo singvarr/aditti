@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
+import { postSignUp } from "actions/auth";
 import "./SignUpForm.less";
 
 class SignUpForm extends Component {
@@ -36,31 +38,11 @@ class SignUpForm extends Component {
         });
     }
 
-    resetFormState() {
-        this.setState(prevState => {
-            return {
-                isRegistrationCompleted: false,
-                username: {
-                    ...prevState.username,
-                    error: ""
-                },
-                password: {
-                    ...prevState.password,
-                    error: ""
-                },
-                repeatPassword: {
-                    ...prevState.repeatPassword,
-                    error: ""
-                }
-            };
-        });
-    }
-
     handleSubmit(e) {
         e.preventDefault();
 
         if (this.state.isRegistrationCompleted) {
-            this.resetFormState();
+            this.setState({ isRegistrationCompleted: false });
         }
 
         const requestBody = JSON.stringify({
@@ -68,24 +50,11 @@ class SignUpForm extends Component {
             password: this.state.password.value
         });
 
-        fetch("/api/auth/signup", {
-            method: "post",
-            body: requestBody,
-            headers: {
-                "Content-Type": "application/json"
+        this.props.onSignUp(requestBody).then(response => {
+            if (!response.payload.error) {
+                this.setState({ isRegistrationCompleted: true });
             }
-        })
-            .then(response => response.json())
-            .then(payload => {
-                payload.error
-                    ? this.setState(prevState => ({
-                        username: {
-                            ...prevState.username,
-                            error: payload.data.username
-                        }
-                    }))
-                    : this.setState({ isRegistrationCompleted: true });
-            });
+        });
     }
 
     render() {
@@ -102,7 +71,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            ["signup__input_error"]: this.state.username.error
+                            "signup__input_error": this.state.username.error
                         })}
                         id="username"
                         name="username"
@@ -114,7 +83,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            ["signup__input_error"]: this.state.password.error
+                            "signup__input_error": this.state.password.error
                         })}
                         id="password"
                         name="password"
@@ -126,7 +95,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            ["signup__input_error"]: this.state.repeatPassword
+                            "signup__input_error": this.state.repeatPassword
                                 .error
                         })}
                         id="retypePassword"
@@ -145,8 +114,8 @@ class SignUpForm extends Component {
                 {this.state.isRegistrationCompleted && (
                     <div className="signup__redirect">
                         {"Now you are registered. Please, "}
-                        <Link className="signup__redirect-link" to="/login">
-                            login
+                        <Link className="signup__redirect-link" to="/signin">
+                            sign in
                         </Link>
                         , to enter your account
                     </div>
@@ -157,11 +126,25 @@ class SignUpForm extends Component {
 }
 
 SignUpForm.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    onSignUp: PropTypes.func.isRequired
 };
 
 SignUpForm.defaultProps = {
     className: ""
 };
 
-export default SignUpForm;
+function mapDispatchToProps(dispatch) {
+    return {
+        onSignUp: body => dispatch(postSignUp(body))
+    };
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(SignUpForm);
+
+//TODO:
+// 1. Add form validation
+// 2. Handle server errors
