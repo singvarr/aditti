@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postSignOut } from "actions/auth";
 import "./Menu.less";
 
@@ -12,13 +12,12 @@ function Menu(props) {
                 {props.menu.map(item => {
                     return (
                         <li className="main-menu__item" key={item.name}>
-                            <NavLink
-                                activeClassName="main-menu__link_active"
+                            <Link
                                 className="main-menu__link"
                                 to={item.href}
                             >
                                 {item.name}
-                            </NavLink>
+                            </Link>
                         </li>
                     );
                 })}
@@ -35,22 +34,20 @@ function Menu(props) {
                 ) : (
                     <Fragment>
                         <li className="main-menu__item">
-                            <NavLink
-                                activeClassName="main-menu__link_active"
+                            <Link
                                 className="main-menu__link"
                                 to="/signup"
                             >
                                 Sign up
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="main-menu__item">
-                            <NavLink
-                                activeClassName="main-menu__link_active"
+                            <Link
                                 className="main-menu__link"
                                 to="/signin"
                             >
                                 Sign in
-                            </NavLink>
+                            </Link>
                         </li>
                     </Fragment>
                 )}
