@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -6,7 +6,20 @@ import classnames from "classnames";
 import { increaseItemQuantity } from "actions/cart";
 import "./Product.less";
 
-export function Product(props) {
+export type Product = {
+    name: string;
+    price: number;
+    id: string;
+    category: string;
+};
+
+type ProductComponent = {
+    className?: string;
+    data: Product & { src: string };
+    onAdd: (id: string) => void;
+};
+
+export function Product(props: ProductComponent) {
     return (
         <div className={classnames("product", props.className)}>
             <div className="product__img-container">

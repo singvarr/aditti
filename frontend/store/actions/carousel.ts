@@ -3,10 +3,11 @@ import {
     GET_CAROUSEL_LOADING,
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
-} from "constants/carousel";
+} from "../constants/carousel";
 
 export const carouselEndpoint = "/api/carousel";
 export const headers = { "Content-Type": "application/json" };
+
 
 function getCarousel() {
     return {
@@ -18,8 +19,7 @@ function getCarousel() {
                 GET_CAROUSEL_LOADING,
                 GET_CAROUSEL_SUCCESS,
                 GET_CAROUSEL_ERROR
-            ],
-            fetch
+            ]
         }
     };
 }
