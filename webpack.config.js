@@ -4,12 +4,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const proxyUrl = "http://localhost:4000/";
-const developmentMode = "development";
+const { DEV_SERVER_PORT, NODE_ENV, PORT } = process.env;
+
+const PROXY_URL = `http://localhost:${PORT}/`;
+const DEVELOPMENT_MODE = "development";
 
 module.exports = {
-    mode: process.env.NODE_ENV,
-    devtool: process.env.NODE_ENV === developmentMode ? "source-map" : false,
+    mode: NODE_ENV,
+    devtool: NODE_ENV === DEVELOPMENT_MODE ? "source-map" : false,
     entry: path.resolve(__dirname, "frontend", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
@@ -68,12 +70,12 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 7000,
+        port: DEV_SERVER_PORT,
         contentBase: path.resolve(__dirname, "frontend", "assets"),
         hot: true,
         proxy: {
             "/api/**": {
-                target: proxyUrl,
+                target: PROXY_URL,
                 secure: false,
                 logLevel: "debug",
                 changeOrigin: true,
@@ -93,7 +95,7 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+            "process.env.NODE_ENV": JSON.stringify(NODE_ENV)
         })
     ]
 };

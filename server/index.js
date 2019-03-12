@@ -1,16 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
+
 const passport = require("passport");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 
+const { DB_USER, DB_PASSWORD, PORT } = process.env;
+
 const User = require("./models/User");
 const LocalStrategy = require("./config/authStrategy");
-const { login, password } = require("./config/db");
 
 const app = express();
 
-const mongoDB = `mongodb://${login}:${password}@ds213615.mlab.com:13615/aditti`;
+const mongoDB =
+    `mongodb://${DB_USER}:${DB_PASSWORD}@ds213615.mlab.com:13615/aditti`;
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
@@ -50,4 +54,4 @@ app.get("/products", (req, res) => res.json(catalogue));
 app.get("/carousel", (req, res) => res.json(slides));
 app.get("/categories", (req, res) => res.json(categories));
 
-app.listen(4000);
+app.listen(PORT);
