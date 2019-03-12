@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
-import auth, { AuthState } from "reducers/auth";
-import carousel, { CarouselState } from "reducers/carousel";
-import cart, { CartState } from "reducers/cart";
-import categories, { CategoriesState } from "reducers/categories";
-import products, { ProductsState } from "reducers/products";
+import auth from "reducers/auth";
+import carousel from "reducers/carousel";
+import cart from "reducers/cart";
+import categories from "reducers/categories";
+import products from "reducers/products";
 
 const reducer = combineReducers({
     auth,
@@ -13,13 +13,5 @@ const reducer = combineReducers({
     categories,
     products
 });
-
-export type State = {
-    auth: AuthState;
-    carousel: CarouselState;
-    cart: CartState;
-    categories: CategoriesState;
-    products: ProductsState;
-};
 
 export default reducer;

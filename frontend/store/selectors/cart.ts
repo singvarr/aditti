@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { State } from "reducers/index"
+import { State } from "types/index";
 
 const productsSelector = (state: State) => state.products;
 const cartSelector = (state: State) => state.cart;

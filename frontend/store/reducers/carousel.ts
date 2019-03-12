@@ -3,19 +3,7 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { CarouselAction } from "actions/carousel";
-
-export type FeaturedProduct = {
-    description: string;
-    heading: string;
-    imgSrc: string;
-};
-
-export type CarouselState = {
-    hasError: boolean;
-    isLoading: boolean;
-    data: Array<FeaturedProduct>;
-};
+import { CarouselAction, CarouselState } from "types/carousel";
 
 export const initialState: CarouselState = {
     data: [],

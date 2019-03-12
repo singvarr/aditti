@@ -3,18 +3,7 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import { CategoriesAction } from "actions/categories";
-
-export type CategoryType = {
-    name: string;
-    src: string;
-};
-
-export type CategoriesState = {
-    data: Array<CategoryType>;
-    hasError: boolean;
-    isLoading: boolean;
-};
+import { CategoriesAction, CategoriesState } from "types/categories";
 
 export const initialState: CategoriesState = {
     data: [],

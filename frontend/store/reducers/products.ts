@@ -3,21 +3,7 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
-import { ProductsAction } from "actions/products";
-
-export type ProductType = {
-    category: string;
-    id: string;
-    name: string;
-    price: number;
-    src?: string;
-};
-
-export type ProductsState = {
-    readonly data: Array<ProductType>;
-    readonly hasError: boolean;
-    readonly isLoading: boolean;
-};
+import { ProductsAction, ProductsState } from "types/products";
 
 export const defaultState: ProductsState = {
     data: [],

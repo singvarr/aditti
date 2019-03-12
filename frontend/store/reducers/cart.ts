@@ -1,15 +1,11 @@
 import { Map } from "immutable";
-import { ActionType } from "typesafe-actions";
 import {
     REMOVE_ITEM,
     INCREASE_ITEM_QUANTITY,
     DECREASE_ITEM_QUANTITY,
     CLEAR_CART
 } from "constants/cart";
-import * as cart from "actions/cart";
-
-export type CartAction = ActionType<typeof cart>;
-export type CartState = Map<string, number>;
+import { CartAction, CartState } from "types/cart";
 
 export const defaultState: CartState = Map();
 

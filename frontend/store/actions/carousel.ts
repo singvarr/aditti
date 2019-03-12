@@ -1,19 +1,15 @@
-import { RSAA, RSAAction } from "redux-api-middleware";
+import { RSAA } from "redux-api-middleware";
 import {
     GET_CAROUSEL_LOADING,
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { FeaturedProduct } from "reducers/carousel";
+import { CarouselGetAction } from "types/carousel";
 
 export const carouselEndpoint = "/api/carousel";
 export const headers = { "Content-Type": "application/json" };
 
-function getCarousel(): RSAAction<
-    typeof GET_CAROUSEL_LOADING,
-    typeof GET_CAROUSEL_SUCCESS,
-    typeof GET_CAROUSEL_ERROR
-> {
+function getCarousel(): CarouselGetAction {
     return {
         [RSAA]: {
             endpoint: carouselEndpoint,
@@ -27,21 +23,5 @@ function getCarousel(): RSAAction<
         }
     };
 }
-
-export type CarouselRequestAction = {
-    readonly type: typeof GET_CAROUSEL_LOADING;
-};
-export type CarouselErrorAction = {
-    readonly type: typeof GET_CAROUSEL_ERROR;
-};
-export type CarouselSuccessAction = {
-    readonly type: typeof GET_CAROUSEL_SUCCESS;
-    readonly payload: Array<FeaturedProduct>;
-};
-
-export type CarouselAction =
-    | CarouselErrorAction
-    | CarouselRequestAction
-    | CarouselSuccessAction;
 
 export default getCarousel;

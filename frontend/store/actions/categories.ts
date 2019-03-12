@@ -1,19 +1,15 @@
-import { RSAA, RSAAction } from "redux-api-middleware";
+import { RSAA } from "redux-api-middleware";
 import {
     GET_CATEGORIES_LOADING,
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import { CategoryType } from "reducers/categories";
+import { CategoriesGetAction } from "types/categories";
 
 export const categoriesEndpoint = "/api/categories";
 export const headers = { "Content-Type": "application/json" };
 
-function getCategories(): RSAAction<
-    typeof GET_CATEGORIES_LOADING,
-    typeof GET_CATEGORIES_SUCCESS,
-    typeof GET_CATEGORIES_ERROR
-> {
+function getCategories(): CategoriesGetAction {
     return {
         [RSAA]: {
             endpoint: categoriesEndpoint,
@@ -27,21 +23,5 @@ function getCategories(): RSAAction<
         }
     };
 }
-
-export type CategoriesLoadingAction = {
-    readonly type: typeof GET_CATEGORIES_LOADING;
-};
-export type CategoriesErrorAction = {
-    readonly type: typeof GET_CATEGORIES_ERROR;
-};
-export type CategoriesSuccessAction = {
-    readonly type: typeof GET_CATEGORIES_SUCCESS;
-    readonly payload: Array<CategoryType>;
-};
-
-export type CategoriesAction =
-    | CategoriesSuccessAction
-    | CategoriesLoadingAction
-    | CategoriesErrorAction;
 
 export default getCategories;
