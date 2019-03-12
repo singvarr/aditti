@@ -8,6 +8,6 @@ export type State = {
     auth: AuthState;
     carousel: CarouselState;
     cart: CartState;
-    categoties: CategoriesState;
+    categories: CategoriesState;
     products: ProductsState;
 };
