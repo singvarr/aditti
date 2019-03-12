@@ -4,7 +4,7 @@ import {
     INCREASE_ITEM_QUANTITY,
     DECREASE_ITEM_QUANTITY,
     CLEAR_CART
-} from "../constants/cart";
+} from "constants/cart";
 
 export const removeItem = (id: string) => action(REMOVE_ITEM, { id });
 export const increaseItemQuantity = (id: string) => {
@@ -14,6 +14,3 @@ export const decreaseItemQuantity = (id: string) => {
     return action(DECREASE_ITEM_QUANTITY, { id });
 };
 export const clearCart = () => action(CLEAR_CART);
-
-
-

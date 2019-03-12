@@ -5,14 +5,15 @@ import {
     INCREASE_ITEM_QUANTITY,
     DECREASE_ITEM_QUANTITY,
     CLEAR_CART
-} from "../constants/cart";
-import * as cart from "../actions/cart";
+} from "constants/cart";
+import * as cart from "actions/cart";
 
 export type CartAction = ActionType<typeof cart>;
+export type CartState = Map<string, number>
 
-export const defaultState = Map();
+export const defaultState: CartState = Map();
 
-function reducer(state = defaultState, action: CartAction) {
+function reducer(state: CartState = defaultState, action: CartAction) {
     switch (action.type) {
         case REMOVE_ITEM:
             return state.delete(action.payload.id);
@@ -21,7 +22,10 @@ function reducer(state = defaultState, action: CartAction) {
             const isItemInCart = state.has(action.payload.id);
 
             return isItemInCart
-                ? state.update(action.payload.id, quantity => (quantity += 1))
+                ? state.update(
+                      action.payload.id,
+                      (quantity: number) => (quantity += 1)
+                  )
                 : state.set(action.payload.id, 1);
         }
 
@@ -29,7 +33,10 @@ function reducer(state = defaultState, action: CartAction) {
             const itemQuantity = state.get(action.payload.id);
 
             return itemQuantity > 1
-                ? state.update(action.payload.id, quantity => (quantity -= 1))
+                ? state.update(
+                      action.payload.id,
+                      (quantity: number) => (quantity -= 1)
+                  )
                 : state.delete(action.payload.id);
         }
 
