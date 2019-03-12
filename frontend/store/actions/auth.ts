@@ -1,4 +1,4 @@
-import { RSAA } from "redux-api-middleware";
+import { RSAA, RSAAction } from "redux-api-middleware";
 import {
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
@@ -17,7 +17,13 @@ const signOutEndpoint = "/api/auth/signout";
 
 export const headers = { "Content-Type": "application/json" };
 
-export const postSignIn = body => {
+export const postSignIn = (
+    body: string
+): RSAAction<
+    typeof USER_SIGNIN_REQUEST,
+    typeof USER_SIGNIN_SUCCESS,
+    typeof USER_SIGNIN_ERROR
+> => {
     return {
         [RSAA]: {
             headers,
@@ -28,13 +34,18 @@ export const postSignIn = body => {
                 USER_SIGNIN_SUCCESS,
                 USER_SIGNIN_ERROR
             ],
-            body,
-            fetch
+            body
         }
     };
 };
 
-export const postSignUp = body => {
+export const postSignUp = (
+    body: string
+): RSAAction<
+    typeof USER_SIGNUP_REQUEST,
+    typeof USER_SIGNUP_SUCCESS,
+    typeof USER_SIGNUP_ERROR
+> => {
     return {
         [RSAA]: {
             headers,
@@ -45,13 +56,16 @@ export const postSignUp = body => {
                 USER_SIGNUP_SUCCESS,
                 USER_SIGNUP_ERROR
             ],
-            body,
-            fetch
+            body
         }
     };
 };
 
-export const postSignOut = () => {
+export const postSignOut = (): RSAAction<
+    typeof USER_SIGNOUT_REQUEST,
+    typeof USER_SIGNOUT_SUCCESS,
+    typeof USER_SIGNOUT_ERROR
+> => {
     return {
         [RSAA]: {
             headers,
@@ -61,8 +75,20 @@ export const postSignOut = () => {
                 USER_SIGNOUT_REQUEST,
                 USER_SIGNOUT_SUCCESS,
                 USER_SIGNOUT_ERROR
-            ],
-            fetch
+            ]
         }
     };
+};
+
+export type AuthAction= {
+    readonly type:
+        | typeof USER_SIGNIN_REQUEST
+        | typeof USER_SIGNIN_SUCCESS
+        | typeof USER_SIGNIN_ERROR
+        | typeof USER_SIGNUP_REQUEST
+        | typeof USER_SIGNUP_SUCCESS
+        | typeof USER_SIGNUP_ERROR
+        | typeof USER_SIGNOUT_REQUEST
+        | typeof USER_SIGNOUT_SUCCESS
+        | typeof USER_SIGNOUT_ERROR;
 };
