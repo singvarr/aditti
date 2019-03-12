@@ -3,25 +3,32 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
+import { ProductsAction } from "actions/products";
 
-export type Product = {
+export type ProductType = {
+    category: string;
+    id: string;
     name: string;
     price: number;
+    src?: string;
 };
 
-export type productsState = {
-    readonly data: Array<Product>;
+export type ProductsState = {
+    readonly data: Array<ProductType>;
     readonly hasError: boolean;
     readonly isLoading: boolean;
 };
 
-export const defaultState: productsState = {
+export const defaultState: ProductsState = {
     data: [],
     hasError: false,
     isLoading: false
 };
 
-function reducer(state: productsState = defaultState, action): productsState {
+function reducer(
+    state: ProductsState = defaultState,
+    action: ProductsAction
+): ProductsState {
     switch (action.type) {
         case GET_PRODUCTS_LOADING:
             return Object.assign({}, state, { isLoading: true });
