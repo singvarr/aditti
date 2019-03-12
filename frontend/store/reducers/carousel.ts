@@ -5,7 +5,7 @@ import {
 } from "constants/carousel";
 import { CarouselAction } from "actions/carousel";
 
-export type Slide = {
+export type FeaturedProduct = {
     description: string;
     heading: string;
     imgSrc: string;
@@ -14,7 +14,7 @@ export type Slide = {
 export type CarouselState = {
     hasError: boolean;
     isLoading: boolean;
-    data: Array<Slide>;
+    data: Array<FeaturedProduct>;
 };
 
 export const initialState: CarouselState = {

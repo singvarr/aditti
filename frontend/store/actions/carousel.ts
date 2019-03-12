@@ -4,7 +4,7 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { Slide } from "reducers/carousel";
+import { FeaturedProduct } from "reducers/carousel";
 
 export const carouselEndpoint = "/api/carousel";
 export const headers = { "Content-Type": "application/json" };
@@ -36,7 +36,7 @@ export type CarouselErrorAction = {
 };
 export type CarouselSuccessAction = {
     readonly type: typeof GET_CAROUSEL_SUCCESS;
-    readonly payload: Array<Slide>;
+    readonly payload: Array<FeaturedProduct>;
 };
 
 export type CarouselAction =

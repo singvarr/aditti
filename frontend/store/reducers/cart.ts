@@ -9,7 +9,7 @@ import {
 import * as cart from "actions/cart";
 
 export type CartAction = ActionType<typeof cart>;
-export type CartState = Map<string, number>
+export type CartState = Map<string, number>;
 
 export const defaultState: CartState = Map();
 
