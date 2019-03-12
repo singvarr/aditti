@@ -1,3 +1,5 @@
+// Source - https://github.com/agraboso/redux-api-middleware/issues/184#issue-324583681
+
 declare module "redux-api-middleware" {
     import { Middleware } from "redux";
 
