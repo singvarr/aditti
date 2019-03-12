@@ -1,25 +1,16 @@
-import * as React from "react";
+import React from "react";
 import { connect } from "react-redux";
-import * as PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import {
-    clearCart,
     decreaseItemQuantity,
     increaseItemQuantity,
+    clearCart,
     removeItem
 } from "actions/cart";
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-type Cart = {
-    totalPrice: number;
-    cartItems: Array<any>;
-    onRemoveItem: (id: string) => void;
-    onDecreaseQuantity: (id: string) => void;
-    onIncreaseQuantity: (id: string) => void;
-    onClearCart: () => void;
-};
-
-export function Cart(props: Cart) {
+export function Cart(props) {
     return props.totalPrice ? (
         <div className="cart">
             <div className="cart__title">Your bucket</div>
