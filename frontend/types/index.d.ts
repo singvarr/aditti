@@ -4,8 +4,10 @@ import { CartState } from "./cart";
 import { CategoriesState } from "./categories";
 import { ProductsState } from "./products";
 
-export type State = AuthState &
-    CarouselState &
-    CartState &
-    CategoriesState &
-    ProductsState;
+export type State = {
+    auth: AuthState;
+    carousel: CarouselState;
+    cart: CartState;
+    categoties: CategoriesState;
+    products: ProductsState;
+};
