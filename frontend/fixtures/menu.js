@@ -1,5 +1,5 @@
 const menu = [
-    { name: "home", href: "#" },
+    { name: "home", href: "/" },
     { name: "sale", href: "#" },
     { name: "handbags", href: "#" },
     { name: "wallets", href: "#" },

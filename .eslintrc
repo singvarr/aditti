@@ -20,7 +20,8 @@
         "react/boolean-prop-naming": "error",
         "react/button-has-type": "error",
         "react/no-array-index-key": "error",
-        "react/jsx-sort-props": "error"
+        "react/jsx-sort-props": "error",
+        "no-useless-computed-key": "error"
     },
     "env": {
         "es6": true,

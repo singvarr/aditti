@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run start:frontend & npm run start:server",
-    "start:frontend": "NODE_ENV=development webpack-dev-server",
-    "start:server": "NODE_ENV=development nodemon server/index.js",
-    "debug:server": "NODE_ENV=development nodemon --inspect server/index.js",
+    "start:frontend": "webpack-dev-server",
+    "start:server": "nodemon server/index.js",
+    "debug:server": "nodemon --inspect server/index.js",
     "test": "jest"
   },
   "keywords": [
@@ -19,13 +19,19 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "mongoose": "^5.4.4",
     "node-fetch": "^2.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.6.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.3.1",
+    "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-api-middleware": "^3.0.0",
     "reselect": "^4.0.0",
