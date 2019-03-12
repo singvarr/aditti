@@ -1,7 +1,8 @@
+const webpack = require("webpack");
+require("dotenv").config();
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require("webpack");
 
 const proxyUrl = "http://localhost:4000/";
 const developmentMode = "development";
