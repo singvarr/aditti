@@ -1,20 +1,19 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
         "jsx": "react",
-        "lib": ["es2015"],
         "noImplicitAny": true,
+        "outDir": "./dist/",
         "module": "es2015",
         "moduleResolution": "node",
-        "outDir": "./dist/",
         "paths": {
-            "actions": ["./frontend/store/actions/*"],
-            "components": ["frontend/components"],
-            "constants": ["frontend/store/constants"],
-            "reducers": ["frontend/store/reducers"],
-            "selectors": ["frontend/store/selectors"],
-            "*": ["node_modules/*"]
+            "actions/*": ["frontend/store/actions/*"],
+            "constants/*": ["frontend/store/constants/*"],
+            "components/*": ["frontend/components/*"],
+            "reducers/*": ["frontend/store/reducers/*"],
+            "selectors/*": ["frontend/store/selectors/*"]
         },
         "removeComments": true,
         "target": "es5",
