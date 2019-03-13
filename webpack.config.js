@@ -18,7 +18,7 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        extensions: [".jsx", ".js", ".ts", ".tsx", ".json"],
+        extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
         alias: {
             assets: path.join(__dirname, "frontend", "assets"),
             vendor: path.join(__dirname, "frontend", "vendor"),
