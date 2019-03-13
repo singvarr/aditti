@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import LoadingMessage from "components/LoadingMessage";
 import ErrorMessage from "components/ErrorMessage";
+import { FetchStatusType } from "frontend/types";
 
-function FetchStatus(props) {
+function FetchStatus(props: FetchStatusType) {
     if (props.isLoading) {
         return <LoadingMessage />;
     } else if (props.hasError) {
@@ -13,10 +12,5 @@ function FetchStatus(props) {
 
     return null;
 }
-
-FetchStatus.propTypes = {
-    hasError: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired
-};
 
 export default FetchStatus;
