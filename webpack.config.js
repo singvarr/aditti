@@ -18,7 +18,7 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        extensions: [".jsx", ".js", ".json"],
+        extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
         alias: {
             assets: path.join(__dirname, "frontend", "assets"),
             vendor: path.join(__dirname, "frontend", "vendor"),
@@ -35,6 +35,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                include: path.resolve(__dirname, "frontend"),
+                use: "awesome-typescript-loader"
+            },
             {
                 test: /\.(js|jsx)$/,
                 include: path.resolve(__dirname, "frontend"),

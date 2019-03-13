@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "jsx": "react",
+        "noImplicitAny": true,
+        "outDir": "./dist/",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "paths": {
+            "actions/*": ["frontend/store/actions/*"],
+            "constants/*": ["frontend/store/constants/*"],
+            "components/*": ["frontend/components/*"],
+            "reducers/*": ["frontend/store/reducers/*"],
+            "selectors/*": ["frontend/store/selectors/*"]
+        },
+        "removeComments": true,
+        "target": "es5",
+        "sourceMap": true
+    }
+}
