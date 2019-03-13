@@ -1,13 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
+import { State } from "frontend/types";
 
 import "./CartTotal.less";
 
-export function CartTotal(props) {
+type Props = {
+    totalPrice: number;
+    totalQuantity: number;
+};
+
+export function CartTotal(props: Props) {
     return (
         <Link to="/cart">
             <div className="cart-total">
@@ -22,16 +27,11 @@ export function CartTotal(props) {
     );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
     return {
         totalPrice: getCartTotalPrice(state),
         totalQuantity: getCartTotalQuantity(state)
     };
 }
-
-CartTotal.propTypes = {
-    totalPrice: PropTypes.number.isRequired,
-    totalQuantity: PropTypes.number.isRequired
-};
 
 export default connect(mapStateToProps)(CartTotal);
