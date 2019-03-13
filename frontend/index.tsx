@@ -6,12 +6,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "components/Header";
 import Menu from "components/Menu";
 import Footer from "components/Footer";
+
 import CatalogueRoute from "routes/CatalogueRoute";
 import CartRoute from "routes/CartRoute";
 import SignUpRoute from "routes/SignUpRoute";
 import SignInRoute from "routes/SignInRoute";
 
-import store from "store";
+import store from "frontend/store";
 
 import "assets/fonts/index.css";
 import "assets/icons/flaticon.css";

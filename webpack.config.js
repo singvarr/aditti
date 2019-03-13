@@ -12,7 +12,7 @@ const DEVELOPMENT_MODE = "development";
 module.exports = {
     mode: NODE_ENV,
     devtool: NODE_ENV === DEVELOPMENT_MODE ? "source-map" : false,
-    entry: path.resolve(__dirname, "frontend", "index.js"),
+    entry: path.resolve(__dirname, "frontend", "index.tsx"),
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "bundle.js"
