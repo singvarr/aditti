@@ -13,7 +13,9 @@
             "constants/*": ["frontend/store/constants/*"],
             "components/*": ["frontend/components/*"],
             "reducers/*": ["frontend/store/reducers/*"],
-            "selectors/*": ["frontend/store/selectors/*"]
+            "selectors/*": ["frontend/store/selectors/*"],
+            "store/*": ["frontend/store/*"],
+            "types/*": ["frontend/types/*"]
         },
         "removeComments": true,
         "target": "es5",

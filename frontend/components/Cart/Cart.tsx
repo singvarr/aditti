@@ -3,8 +3,8 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 
 import {
-    decreaseItemQuantity,
     increaseItemQuantity,
+    decreaseItemQuantity,
     clearCart,
     removeItem
 } from "actions/cart";

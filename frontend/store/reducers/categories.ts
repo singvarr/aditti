@@ -7,7 +7,7 @@ import { CategoriesAction, CategoriesState } from "types/categories";
 
 export const initialState: CategoriesState = {
     data: [],
-    hasError: false,
+    isError: false,
     isLoading: false
 };
 
@@ -17,19 +17,21 @@ function reducer(
 ) {
     switch (action.type) {
         case GET_CATEGORIES_LOADING:
-            return Object.assign({}, state, { isLoading: true });
+            return { ...state, isLoading: true };
 
         case GET_CATEGORIES_SUCCESS:
-            return Object.assign({}, state, {
-                data: action.payload,
+            return {
+                ...state,
+                data: action.payload.products,
                 isLoading: false
-            });
+            };
 
         case GET_CATEGORIES_ERROR:
-            return Object.assign({}, state, {
-                hasError: true,
+            return {
+                ...state,
+                isError: true,
                 isLoading: false
-            });
+            };
 
         default:
             return state;

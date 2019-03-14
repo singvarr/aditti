@@ -7,7 +7,7 @@ import { ProductsAction, ProductsState } from "types/products";
 
 export const defaultState: ProductsState = {
     data: [],
-    hasError: false,
+    isError: false,
     isLoading: false
 };
 
@@ -17,19 +17,21 @@ function reducer(
 ): ProductsState {
     switch (action.type) {
         case GET_PRODUCTS_LOADING:
-            return Object.assign({}, state, { isLoading: true });
+            return { ...state, isLoading: true };
 
         case GET_PRODUCTS_SUCCESS:
-            return Object.assign({}, state, {
-                data: action.payload,
+            return {
+                ...state,
+                data: action.payload.data,
                 isLoading: false
-            });
+            };
 
         case GET_PRODUCTS_ERROR:
-            return Object.assign({}, state, {
-                hasError: true,
+            return {
+                ...state,
+                isError: true,
                 isLoading: false
-            });
+            };
 
         default:
             return state;

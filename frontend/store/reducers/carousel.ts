@@ -3,30 +3,35 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { CarouselAction, CarouselState } from "types/carousel";
+import { FeaturedProductsAction, FeaturedProductsState } from "types/carousel";
 
-export const initialState: CarouselState = {
+export const initialState: FeaturedProductsState = {
     data: [],
-    hasError: false,
+    isError: false,
     isLoading: false
 };
 
-function reducer(state: CarouselState = initialState, action: CarouselAction) {
+function reducer(
+    state: FeaturedProductsState = initialState,
+    action: FeaturedProductsAction
+) {
     switch (action.type) {
         case GET_CAROUSEL_LOADING:
-            return Object.assign({}, state, { isLoading: true });
+            return { ...state, isLoading: true };
 
         case GET_CAROUSEL_SUCCESS:
-            return Object.assign({}, state, {
-                data: action.payload,
+            return {
+                ...state,
+                data: action.payload.products,
                 isLoading: false
-            });
+            };
 
         case GET_CAROUSEL_ERROR:
-            return Object.assign({}, state, {
-                hasError: true,
+            return {
+                ...state,
+                isError: true,
                 isLoading: false
-            });
+            };
 
         default:
             return state;

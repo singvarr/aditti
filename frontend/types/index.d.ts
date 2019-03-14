@@ -1,13 +1,9 @@
-import { AuthState } from "./auth";
-import { CarouselState } from "./carousel";
-import { CartState } from "./cart";
-import { CategoriesState } from "./categories";
-import { ProductsState } from "./products";
+import { StateType } from "typesafe-actions";
+import reducer from "reducers/.";
 
-export type State = {
-    auth: AuthState;
-    carousel: CarouselState;
-    cart: CartState;
-    categories: CategoriesState;
-    products: ProductsState;
+export type FetchState = {
+    readonly isError: boolean;
+    readonly isLoading: boolean;
 };
+
+export type State = StateType<typeof reducer>;
