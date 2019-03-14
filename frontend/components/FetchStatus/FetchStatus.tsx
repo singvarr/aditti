@@ -1,12 +1,12 @@
 import React from "react";
 import LoadingMessage from "components/LoadingMessage";
 import ErrorMessage from "components/ErrorMessage";
-import { FetchStatusType } from "frontend/types";
+import { FetchState } from "frontend/types";
 
-function FetchStatus(props: FetchStatusType) {
+function FetchStatus(props: FetchState) {
     if (props.isLoading) {
         return <LoadingMessage />;
-    } else if (props.hasError) {
+    } else if (props.isError) {
         return <ErrorMessage />;
     }
 
