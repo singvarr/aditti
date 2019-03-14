@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import {
-    decreaseItemQuantity,
     increaseItemQuantity,
+    decreaseItemQuantity,
     clearCart,
     removeItem
 } from "actions/cart";
