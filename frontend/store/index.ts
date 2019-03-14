@@ -1,13 +1,13 @@
-import { createStore, applyMiddleware, Middleware } from "redux";
-import { apiMiddleware } from "redux-api-middleware";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import reducer from "reducers/index";
+import reducer from "reducers/.";
 
 const developmentMode = "development";
 const env = process.env.NODE_ENV || developmentMode;
 
-const middlewares: Array<Middleware> = [apiMiddleware];
+const middlewares = [thunk];
 const enhancer =
     env === developmentMode
         ? composeWithDevTools(applyMiddleware(...middlewares))
