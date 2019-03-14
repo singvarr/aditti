@@ -2,7 +2,7 @@
   "name": "aditti",
   "version": "1.0.0",
   "description": "Simple clothes online-shop",
-  "main": "src/index.js",
+  "main": "frontend/index.jsx",
   "scripts": {
     "start": "npm run start:frontend & npm run start:server",
     "start:frontend": "webpack-dev-server",
