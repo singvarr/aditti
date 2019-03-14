@@ -1,7 +1,7 @@
 import React from "react";
 import LoadingMessage from "components/LoadingMessage";
 import ErrorMessage from "components/ErrorMessage";
-import { FetchState } from "frontend/types";
+import { FetchState } from "types/.";
 
 function FetchStatus(props: FetchState) {
     if (props.isLoading) {

@@ -10,7 +10,7 @@ import {
 } from "actions/cart";
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-import { State } from "frontend/types";
+import { State } from "types/.";
 import { ProductType } from "types/products";
 
 type Props = {

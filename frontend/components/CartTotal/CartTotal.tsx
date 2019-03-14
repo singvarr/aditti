@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
-import { State } from "frontend/types";
+import { State } from "types/.";
 
 import "./CartTotal.less";
 

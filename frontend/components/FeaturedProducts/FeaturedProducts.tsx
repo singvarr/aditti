@@ -6,7 +6,7 @@ import { Action } from "redux";
 import FetchStatus from "components/FetchStatus";
 import FeaturedProductsCarousel from "components/FeaturedProductsCarousel";
 import getCarousel from "actions/carousel";
-import { State } from "frontend/types";
+import { State } from "types/.";
 import { FeaturedProductsState } from "types/carousel";
 import "./FeaturedProducts.less";
 

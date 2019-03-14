@@ -3,12 +3,12 @@ import classnames from "classnames";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import Slide from "components/Slide";
-import { FeaturedProduct } from "types/carousel";
+import { FeaturedProductType } from "types/carousel";
 import "./FeaturedProductsCarousel.less";
 
 type Props = {
     className?: string;
-    slides: Array<FeaturedProduct>;
+    slides: Array<FeaturedProductType>;
 };
 
 class FeaturedProductsCarousel extends Component<Props> {

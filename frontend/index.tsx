@@ -12,7 +12,7 @@ import CartRoute from "routes/CartRoute";
 import SignUpRoute from "routes/SignUpRoute";
 import SignInRoute from "routes/SignInRoute";
 
-import store from "frontend/store";
+import store from "store/.";
 
 import "assets/fonts/index.css";
 import "assets/icons/flaticon.css";
