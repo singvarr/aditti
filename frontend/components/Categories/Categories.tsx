@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { ThunkDispatch } from "redux-thunk";
 import { connect } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
 
 import FetchStatus from "components/FetchStatus";
 import CategoriesCarousel from "components/CategoriesCarousel";
@@ -8,7 +9,6 @@ import getCategories from "actions/categories";
 
 import { State } from "types/.";
 import { CategoriesState } from "types/categories";
-import { Action } from "redux";
 
 type Props = {
     onGetCategories: () => void;
