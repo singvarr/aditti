@@ -1,14 +1,40 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import classnames from "classnames";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { History } from "history";
 import { postSignIn } from "actions/auth";
+import { State as AppState } from "types/.";
 import "./SignInForm.less";
 
-class SignInForm extends Component {
-    constructor(props) {
+type Props = {
+    className?: string;
+    history: History;
+    onSignIn: (
+        body: string
+    ) => Promise<{
+        payload: {
+            error: boolean;
+        };
+    }>;
+};
+
+type State = {
+    username: {
+        value: string;
+        isError: boolean;
+    };
+    password: {
+        value: string;
+        isError: boolean;
+    };
+};
+
+class SignInForm extends Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             username: {
@@ -22,33 +48,32 @@ class SignInForm extends Component {
         };
     }
 
-    handleInputChange(event) {
-        const { name, value } = event.target;
+    handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.currentTarget;
 
-        this.setState({
-            [name]: {
+        this.setState(prevState => ({
+            ...prevState,
+            [name as keyof State]: {
                 value,
-                error: ""
+                isError: false
             }
-        });
+        }));
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(event: React.FormEvent) {
+        event.preventDefault();
 
-        if (!(this.state.username.error || this.state.password.error)) {
+        if (!(this.state.username.isError || this.state.password.isError)) {
             const requestBody = JSON.stringify({
                 username: this.state.username.value,
                 password: this.state.password.value
             });
 
-            this.props
-                .onSignIn(requestBody)
-                .then(response => {
-                    if (!response.payload.error) {
-                        this.props.history.push("/");
-                    }
-                });
+            this.props.onSignIn(requestBody).then(response => {
+                if (!response.payload.error) {
+                    this.props.history.push("/");
+                }
+            });
         }
     }
 
@@ -66,7 +91,7 @@ class SignInForm extends Component {
                     </label>
                     <input
                         className={classnames("signin__input", {
-                            "signin__input_error": this.state.username.error
+                            signin__input_error: this.state.username.isError
                         })}
                         id="username"
                         name="username"
@@ -78,7 +103,7 @@ class SignInForm extends Component {
                     </label>
                     <input
                         className={classnames("signin__input", {
-                            "signin__input_error": this.state.password.error
+                            signin__input_error: this.state.password.isError
                         })}
                         id="password"
                         name="password"
@@ -98,21 +123,11 @@ class SignInForm extends Component {
     }
 }
 
-SignInForm.propTypes = {
-    className: PropTypes.string,
-    history: PropTypes.shape({
-        push: PropTypes.func.isRequired
-    }).isRequired,
-    onSignIn: PropTypes.func.isRequired
-};
-
-SignInForm.defaultProps = {
-    className: ""
-};
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(
+    dispatch: ThunkDispatch<AppState, null, Action<string>>
+) {
     return {
-        onSignIn: body => dispatch(postSignIn(body))
+        onSignIn: (body: string) => dispatch(postSignIn(body))
     };
 }
 
