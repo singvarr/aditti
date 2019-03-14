@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
+import { State } from "types/index";
 
-const productsSelector = state => state.products;
-const cartSelector = state => state.cart;
+const productsSelector = (state: State) => state.products;
+const cartSelector = (state: State) => state.cart;
 
 export const getCartTotalPrice = createSelector(
     [productsSelector, cartSelector],
