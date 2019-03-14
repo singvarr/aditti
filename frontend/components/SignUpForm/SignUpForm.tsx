@@ -1,4 +1,4 @@
-import React, { Component, FormEventHandler } from "react";
+import React, { Component } from "react";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
 import { connect } from "react-redux";
