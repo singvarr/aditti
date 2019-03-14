@@ -1,9 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
+import { FeaturedProductType } from "types/carousel";
 import "./Slide.less";
 
-function Slide(props) {
+type Props = {
+    className?: string;
+    slide: FeaturedProductType;
+};
+
+function Slide(props: Props) {
     return (
         <div className={classnames("slide", props.className)}>
             <div className="slide__img-container">
@@ -25,18 +30,5 @@ function Slide(props) {
         </div>
     );
 }
-
-Slide.propTypes = {
-    className: PropTypes.string,
-    slide: PropTypes.shape({
-        description: PropTypes.string.isRequired,
-        heading: PropTypes.string.isRequired,
-        imgSrc: PropTypes.string.isRequired
-    }).isRequired
-};
-
-Slide.defaultProps = {
-    className: null
-};
 
 export default Slide;

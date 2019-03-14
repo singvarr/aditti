@@ -1,12 +1,19 @@
 import React from "react";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import classnames from "classnames";
 import { increaseItemQuantity } from "actions/cart";
+import { ProductType } from "types/products";
 import "./Product.less";
 
-export function Product(props) {
+type Props = {
+    className?: string;
+    data: ProductType;
+    onAdd: (id: string) => void;
+};
+
+export function Product(props: Props) {
     return (
         <div className={classnames("product", props.className)}>
             <div className="product__img-container">
@@ -33,25 +40,9 @@ export function Product(props) {
     );
 }
 
-Product.propTypes = {
-    className: PropTypes.string,
-    data: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        category: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired
-    }).isRequired,
-    onAdd: PropTypes.func.isRequired
-};
-
-Product.defaultProps = {
-    className: null
-};
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        onAdd: id => dispatch(increaseItemQuantity(id))
+        onAdd: (id: string) => dispatch(increaseItemQuantity(id))
     };
 }
 

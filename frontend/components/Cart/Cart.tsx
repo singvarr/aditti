@@ -1,6 +1,6 @@
 import React from "react";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import {
     increaseItemQuantity,
@@ -10,7 +10,19 @@ import {
 } from "actions/cart";
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-export function Cart(props) {
+import { State } from "types/.";
+import { ProductType } from "types/products";
+
+type Props = {
+    cartItems: Array<ProductType & { quantity: number }>;
+    onClearCart: () => void;
+    onDecreaseQuantity: (id: string) => void;
+    onIncreaseQuantity: (id: string) => void;
+    onRemoveItem: (id: string) => void;
+    totalPrice: number;
+};
+
+export function Cart(props: Props) {
     return props.totalPrice ? (
         <div className="cart">
             <div className="cart__title">Your bucket</div>
@@ -62,7 +74,7 @@ export function Cart(props) {
                 })}
             </div>
             <div className="cart__footer">
-                <span>`Your total sum is ${props.totalPrice}`</span>
+                <span>{`Your total sum is ${props.totalPrice}`}</span>
                 <button
                     className="cart__clear"
                     onClick={props.onClearCart}
@@ -79,38 +91,21 @@ export function Cart(props) {
     );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
     return {
         totalPrice: getCartTotalPrice(state),
         cartItems: getCartItems(state)
     };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        onIncreaseQuantity: id => dispatch(increaseItemQuantity(id)),
-        onDecreaseQuantity: id => dispatch(decreaseItemQuantity(id)),
-        onRemoveItem: id => dispatch(removeItem(id)),
+        onIncreaseQuantity: (id: string) => dispatch(increaseItemQuantity(id)),
+        onDecreaseQuantity: (id: string) => dispatch(decreaseItemQuantity(id)),
+        onRemoveItem: (id: string) => dispatch(removeItem(id)),
         onClearCart: () => dispatch(clearCart())
     };
 }
-
-Cart.propTypes = {
-    cartItems: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            category: PropTypes.string.isRequired,
-            src: PropTypes.string.isRequired
-        })
-    ).isRequired,
-    onClearCart: PropTypes.func.isRequired,
-    onDecreaseQuantity: PropTypes.func.isRequired,
-    onIncreaseQuantity: PropTypes.func.isRequired,
-    onRemoveItem: PropTypes.func.isRequired,
-    totalPrice: PropTypes.number.isRequired
-};
 
 export default connect(
     mapStateToProps,

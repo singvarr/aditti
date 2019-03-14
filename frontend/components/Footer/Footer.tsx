@@ -1,8 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./Footer.less";
 
-function Footer(props) {
+type Props = {
+    linksList: Array<{
+        name: string;
+        links: Array<{
+            name: string;
+            href: string;
+        }>;
+    }>;
+};
+
+function Footer(props: Props) {
     return (
         <footer className="footer">
             {props.linksList.length && (
@@ -36,19 +45,5 @@ function Footer(props) {
         </footer>
     );
 }
-
-Footer.propTypes = {
-    linksList: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            links: PropTypes.arrayOf(
-                PropTypes.shape({
-                    name: PropTypes.string.isRequired,
-                    href: PropTypes.string.isRequired
-                }).isRequired
-            ).isRequired
-        }).isRequired
-    )
-};
 
 export default Footer;

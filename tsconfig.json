@@ -12,7 +12,9 @@
             "actions/*": ["frontend/store/actions/*"],
             "constants/*": ["frontend/store/constants/*"],
             "components/*": ["frontend/components/*"],
+            "fixtures/*": ["frontend/fixtures/*"],
             "reducers/*": ["frontend/store/reducers/*"],
+            "routes/*": ["frontend/routes/*"],
             "selectors/*": ["frontend/store/selectors/*"],
             "store/*": ["frontend/store/*"],
             "types/*": ["frontend/types/*"]

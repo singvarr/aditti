@@ -1,30 +1,39 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
 import Product from "components/Product";
 import FetchStatus from "components/FetchStatus";
 import getProducts from "actions/products";
+
+import { State } from "types/.";
+import { ProductsState } from "types/products";
+
 import "./Products.less";
 
-export class Products extends Component {
+type Props = {
+    onFetchProducts: () => void;
+} & ProductsState;
+
+export class Products extends Component<Props> {
     componentDidMount() {
         this.props.onFetchProducts();
     }
 
     render() {
-        const { hasError, isLoading, products } = this.props;
-        if (isLoading || hasError) {
-            return <FetchStatus hasError={hasError} isLoading={isLoading} />;
+        const { isError, isLoading, data } = this.props;
+        if (isLoading || isError) {
+            return <FetchStatus isError={isError} isLoading={isLoading} />;
         }
 
-        return products.length ? (
+        return data.length ? (
             <section className="catalogue">
                 <div className="catalogue__title-wrapper">
                     <h2 className="catalogue__title wrapper">featured items</h2>
                 </div>
                 <div className="catalogue__products wrapper">
-                    {products.map(product => {
+                    {data.map(product => {
                         return (
                             <Product
                                 className="catalogue__product"
@@ -41,36 +50,23 @@ export class Products extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { data: products, hasError, isLoading } = state.products;
+function mapStateToProps(state: State) {
+    const { data, isError, isLoading } = state.products;
 
     return {
-        products,
-        hasError,
+        data,
+        isError,
         isLoading
     };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(
+    dispatch: ThunkDispatch<State, null, Action<string>>
+) {
     return {
         onFetchProducts: () => dispatch(getProducts())
     };
 }
-
-Products.propTypes = {
-    hasError: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    products: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            category: PropTypes.string.isRequired,
-            src: PropTypes.string.isRequired
-        })
-    ).isRequired,
-    onFetchProducts: PropTypes.func.isRequired
-};
 
 export default connect(
     mapStateToProps,

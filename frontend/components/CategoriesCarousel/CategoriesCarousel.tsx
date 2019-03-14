@@ -1,11 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component, RefObject } from "react";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
+import { CategoryType } from "types/categories";
 import "./CategoriesCarousel.less";
 
-class CategoriesCarousel extends Component {
-    constructor(props) {
+type Props = {
+    categories: Array<CategoryType>
+}
+
+class CategoriesCarousel extends Component<Props> {
+    private categories: RefObject<HTMLDivElement>;
+    private slidesPerView: number;
+
+    private constructor(props: Props) {
         super(props);
 
         this.categories = React.createRef();
@@ -55,14 +62,5 @@ class CategoriesCarousel extends Component {
         ) : null;
     }
 }
-
-CategoriesCarousel.propTypes = {
-    categories: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            src: PropTypes.string.isRequired
-        })
-    ).isRequired
-};
 
 export default CategoriesCarousel;

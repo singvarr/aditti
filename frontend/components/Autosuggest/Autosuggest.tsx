@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import "./Autosuggest.less";
 
-class Autosuggest extends Component {
+type Props = {
+    className?: string;
+};
+
+class Autosuggest extends Component<Props> {
     render() {
         return (
             <form className={classnames("autosuggest", this.props.className)}>
@@ -19,13 +22,5 @@ class Autosuggest extends Component {
         );
     }
 }
-
-Autosuggest.propTypes = {
-    className: PropTypes.string
-};
-
-Autosuggest.defaultProps = {
-    className: null
-};
 
 export default Autosuggest;

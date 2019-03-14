@@ -1,13 +1,42 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { postSignUp } from "actions/auth";
+import { State as AppState } from "types/.";
 import "./SignUpForm.less";
 
-class SignUpForm extends Component {
-    constructor(props) {
+type Props = {
+    className?: string;
+    onSignUp: (
+        body: string
+    ) => Promise<{
+        payload: {
+            error: boolean;
+        };
+    }>;
+};
+
+type State = {
+    username: {
+        value: string;
+        error: string;
+    };
+    password: {
+        value: string;
+        error: string;
+    };
+    repeatPassword: {
+        value: string;
+        error: string;
+    };
+    isRegistrationCompleted: boolean;
+};
+
+class SignUpForm extends Component<Props, State> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -27,19 +56,20 @@ class SignUpForm extends Component {
         };
     }
 
-    handleInputChange(event) {
-        const { name, value } = event.target;
+    handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.currentTarget;
 
-        this.setState({
-            [name]: {
+        this.setState(prevState => ({
+            ...prevState,
+            [name as keyof State]: {
                 value,
-                error: ""
+                isError: false
             }
-        });
+        }));
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(event: React.FormEvent) {
+        event.preventDefault();
 
         if (this.state.isRegistrationCompleted) {
             this.setState({ isRegistrationCompleted: false });
@@ -71,7 +101,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            "signup__input_error": this.state.username.error
+                            signup__input_error: this.state.username.error
                         })}
                         id="username"
                         name="username"
@@ -83,7 +113,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            "signup__input_error": this.state.password.error
+                            signup__input_error: this.state.password.error
                         })}
                         id="password"
                         name="password"
@@ -95,8 +125,7 @@ class SignUpForm extends Component {
                     </label>
                     <input
                         className={classnames("signup__input", {
-                            "signup__input_error": this.state.repeatPassword
-                                .error
+                            signup__input_error: this.state.repeatPassword.error
                         })}
                         id="retypePassword"
                         name="repeatPassword"
@@ -125,18 +154,11 @@ class SignUpForm extends Component {
     }
 }
 
-SignUpForm.propTypes = {
-    className: PropTypes.string,
-    onSignUp: PropTypes.func.isRequired
-};
-
-SignUpForm.defaultProps = {
-    className: ""
-};
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(
+    dispatch: ThunkDispatch<AppState, null, Action<string>>
+) {
     return {
-        onSignUp: body => dispatch(postSignUp(body))
+        onSignUp: (body: string) => dispatch(postSignUp(body))
     };
 }
 

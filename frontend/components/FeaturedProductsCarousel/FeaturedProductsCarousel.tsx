@@ -1,13 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component, RefObject } from "react";
+import classnames from "classnames";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import Slide from "components/Slide";
-import classnames from "classnames";
+import { FeaturedProductType } from "types/carousel";
 import "./FeaturedProductsCarousel.less";
 
-class FeaturedProductsCarousel extends Component {
-    constructor(props) {
+type Props = {
+    className?: string;
+    slides: Array<FeaturedProductType>;
+};
+
+class FeaturedProductsCarousel extends Component<Props> {
+    private carousel: RefObject<HTMLDivElement>;
+    private bullets: RefObject<HTMLDivElement>;
+
+    private constructor(props: Props) {
         super(props);
 
         this.carousel = React.createRef();
@@ -45,20 +53,5 @@ class FeaturedProductsCarousel extends Component {
         ) : null;
     }
 }
-
-FeaturedProductsCarousel.propTypes = {
-    className: PropTypes.string,
-    slides: PropTypes.arrayOf(
-        PropTypes.shape({
-            heading: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            imgSrc: PropTypes.string.isRequired
-        })
-    ).isRequired
-};
-
-FeaturedProductsCarousel.defaultProps = {
-    className: null
-};
 
 export default FeaturedProductsCarousel;
