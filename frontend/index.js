@@ -21,23 +21,39 @@ import "less/index.less";
 import menu from "fixtures/menu";
 import footerLinks from "fixtures/footerLinks";
 
-render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <Fragment>
-                <Header />
-                <Menu menu={menu} />
-                <main>
-                    <Switch>
-                        <Route component={CatalogueRoute} exact path="/" />
-                        <Route component={CartRoute} exact path="/cart" />
-                        <Route component={SignUpRoute} exact path="/signup" />
-                        <Route component={SignInRoute} exact path="/signin" />
-                    </Switch>
-                </main>
-                <Footer linksList={footerLinks} />
-            </Fragment>
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById("root")
-);
+function renderApp() {
+    render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <Fragment>
+                    <Header />
+                    <Menu menu={menu} />
+                    <main>
+                        <Switch>
+                            <Route component={CatalogueRoute} exact path="/" />
+                            <Route component={CartRoute} exact path="/cart" />
+                            <Route
+                                component={SignUpRoute}
+                                exact
+                                path="/signup"
+                            />
+                            <Route
+                                component={SignInRoute}
+                                exact
+                                path="/signin"
+                            />
+                        </Switch>
+                    </main>
+                    <Footer linksList={footerLinks} />
+                </Fragment>
+            </BrowserRouter>
+        </Provider>,
+        document.getElementById("root")
+    );
+}
+
+renderApp();
+
+if (module.hot) {
+    module.hot.accept(() => renderApp());
+}
