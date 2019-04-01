@@ -1,9 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
-require("dotenv").config();
-const { PROJECT_ROOT } = require("./constants");
-const { NODE_ENV } = process.env;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+require("dotenv").config();
+const PROJECT_ROOT = require("./root");
+
+const { NODE_ENV } = process.env;
 
 module.exports = {
     entry: path.resolve(PROJECT_ROOT, "frontend", "index.js"),

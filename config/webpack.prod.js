@@ -2,10 +2,10 @@ const path = require("path");
 const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 const baseConfig = require("./webpack.base");
-const { PROJECT_ROOT } = require("./constants");
+const PROJECT_ROOT = require("./root");
 
 module.exports = merge(baseConfig, {
     mode: "production",
@@ -14,20 +14,22 @@ module.exports = merge(baseConfig, {
         filename: "index.js"
     },
     module: {
-        rules: [{
-            test: /\.(less|css)$/,
-            use: [
-                MiniCssExtractPlugin.loader,
+        rules: [
+            {
+                test: /\.(less|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
 
-                "css-loader",
-                {
-                    loader: "less-loader",
-                    options: {
-                        paths: [path.join(PROJECT_ROOT, "frontend")]
+                    "css-loader",
+                    {
+                        loader: "less-loader",
+                        options: {
+                            paths: [path.join(PROJECT_ROOT, "frontend")]
+                        }
                     }
-                }
-            ]
-        }]
+                ]
+            }
+        ]
     },
     plugins: [
         new MiniCssExtractPlugin({

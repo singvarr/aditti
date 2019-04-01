@@ -1,9 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
-const WebpackShellPlugin = require('webpack-shell-plugin');
+const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
 
-const { PROJECT_ROOT } = require("./constants");
+const PROJECT_ROOT = require("./root");
 require("dotenv").config();
 
 const { NODE_ENV, DB_USER, DB_PASSWORD } = process.env;
@@ -37,7 +37,7 @@ module.exports = {
             config: path.join(PROJECT_ROOT, "server", "config"),
             fixtures: path.join(PROJECT_ROOT, "server", "fixtures"),
             models: path.join(PROJECT_ROOT, "server", "models"),
-            routes: path.join(PROJECT_ROOT, "server", "routes"),
+            routes: path.join(PROJECT_ROOT, "server", "routes")
         }
     },
     module: {
@@ -57,7 +57,13 @@ module.exports = {
             }
         ]
     },
-    plugins: NODE_ENV == "production"
-        ? basePlugins
-        : [...basePlugins, new WebpackShellPlugin({ onBuildEnd: "nodemon dist/dev/server/index" })]
+    plugins:
+        NODE_ENV !== DEVELOPMENT_MODE
+            ? basePlugins
+            : [
+                ...basePlugins,
+                new WebpackShellPlugin({
+                    onBuildEnd: "nodemon dist/dev/server/index"
+                })
+            ]
 };
