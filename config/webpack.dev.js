@@ -8,7 +8,8 @@ const { PROJECT_ROOT } = require("./constants");
 const { DEV_SERVER_PORT, PORT } = process.env;
 
 const PROXY_URL = `http://localhost:${PORT}/`;
-module.exports = merge([
+
+module.exports = merge(
     baseConfig,
     {
         mode: "development",
@@ -53,4 +54,4 @@ module.exports = merge([
         },
         plugins: [new webpack.HotModuleReplacementPlugin()]
     }
-]);
+);

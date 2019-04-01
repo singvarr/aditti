@@ -37,12 +37,13 @@ module.exports = {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
                 include: path.resolve(PROJECT_ROOT, "server"),
                 use: "awesome-typescript-loader"
             },
             {
                 test: /\.(js|jsx)$/,
-                exclude: /(node_modules|config)/,
+                exclude: /node_modules/,
                 include: path.resolve(PROJECT_ROOT, "frontend"),
                 use: "babel-loader"
             },
