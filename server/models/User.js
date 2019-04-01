@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const UserSchema = new Schema({
     login: String,
@@ -7,4 +7,4 @@ const UserSchema = new Schema({
 
 const User = model("users", UserSchema);
 
-module.exports = User;
+export default User;

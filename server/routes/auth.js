@@ -1,10 +1,10 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const passport = require("passport");
+import { Router } from "express";
+import bcrypt from "bcryptjs";
+import passport from "passport";
 
-const router = express.Router();
+const router = Router();
 
-const User = require("../models/User");
+import User from "../models/User";
 
 router.post("/signin", passport.authenticate("local"), (req, res) => {
     res.json({ error: false, data: "ok!" });
@@ -51,4 +51,4 @@ router.post("/signup", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;
