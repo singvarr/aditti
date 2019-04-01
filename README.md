@@ -3,12 +3,14 @@
 Simple clothes online-shop.
 
 ## Running of application
-
--   `npm start` - launch client and server part of app in one terminal (now only in dev mode).
--   `npm run start:frontend` - run frontend application, using `webpack-dev-server` on port `7000`.
--   `npm run start:server` - run `express` server on port `3000`.
--   `npm test` - run `jest` tests.
--   `npm run server:debug` - run node inspector in watch mode. 
+1. Create setting in `.env` file.
+2. Start project and launch one of the scripts:
+    -   `npm build` - build production bundles. 
+    -   `npm start` - launch client and server part of app in one terminal in dev mode.
+    -   `npm run start:frontend` - run frontend application, using `webpack-dev-server`.
+    -   `npm run start:server` - run `express` server.
+    -   `npm test` - run `jest` tests.
+    -   `npm run server:debug` - run node inspector in watch mode. 
 
 ## Code style
 
