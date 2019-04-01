@@ -1,26 +1,24 @@
-const express = require("express");
-const mongoose = require("mongoose");
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
 
-const passport = require("passport");
-const session = require("express-session");
-const bodyParser = require("body-parser");
+import session from "express-session";
+import bodyParser from "body-parser";
+import passport from "passport";
+
+import User from "models/User";
+import LocalStrategy from "config/authStrategy";
+
+require("dotenv").config();
 
 const { DB_USER, DB_PASSWORD, PORT } = process.env;
 
-const User = require("./models/User");
-const LocalStrategy = require("./config/authStrategy");
-
 const app = express();
 
-const mongoDB =
-    `mongodb://${DB_USER}:${DB_PASSWORD}@ds213615.mlab.com:13615/aditti`;
+const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@ds213615.mlab.com:13615/aditti`;
 mongoose.Promise = global.Promise;
 
-mongoose.connect(
-    mongoDB,
-    { useNewUrlParser: true },
-    () => console.log("connected to MongoDB")
+mongoose.connect(mongoDB, { useNewUrlParser: true }, () =>
+    console.log("connected to MongoDB")
 );
 
 const db = mongoose.connection;
@@ -44,10 +42,10 @@ passport.deserializeUser((id, done) =>
     User.findById(id, (err, user) => done(err, user))
 );
 
-const authRoute = require("./routes/auth");
-const catalogue = require("./mockData/catalogue");
-const slides = require("./mockData/slides");
-const categories = require("./mockData/categories");
+import authRoute from "routes/auth";
+import catalogue from "fixtures/catalogue";
+import slides from "fixtures/slides";
+import categories from "fixtures/categories";
 
 app.use("/auth", authRoute);
 app.get("/products", (req, res) => res.json(catalogue));
