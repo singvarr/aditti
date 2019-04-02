@@ -13,7 +13,6 @@ const DEVELOPMENT_MODE = "development";
 const OUTPUT_DIR = NODE_ENV === DEVELOPMENT_MODE ? "dev" : "prod";
 
 const basePlugins = [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
         "process.env.DB_USER": JSON.stringify(DB_USER),
@@ -26,13 +25,13 @@ module.exports = {
     target: "node",
     externals: [nodeExternals()],
     devtool: NODE_ENV === DEVELOPMENT_MODE ? "source-map" : false,
-    entry: path.resolve(PROJECT_ROOT, "server", "index.js"),
+    entry: path.resolve(PROJECT_ROOT, "server", "index.ts"),
     output: {
         path: path.resolve(PROJECT_ROOT, "dist", OUTPUT_DIR, "server"),
         filename: "index.js"
     },
     resolve: {
-        extensions: [".js", ".json", ".ts", ".tsx"],
+        extensions: [".js", ".ts", ".tsx"],
         alias: {
             config: path.join(PROJECT_ROOT, "server", "config"),
             fixtures: path.join(PROJECT_ROOT, "server", "fixtures"),
@@ -44,6 +43,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
+                exclude: /node_modules/,
                 include: path.resolve(PROJECT_ROOT, "server"),
                 use: "awesome-typescript-loader"
             },
