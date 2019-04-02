@@ -1,4 +1,4 @@
-[
+const catalogue = [
     {
         "id": "1",
         "name": "branded shoes",
@@ -35,3 +35,5 @@
         "src": "img/catalogue/woman_bag.png"
     }
 ]
+
+export default catalogue;
