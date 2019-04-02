@@ -42,7 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(LocalStrategy);
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser((user: { id: string }, done) => done(null, user.id));
 passport.deserializeUser((id, done) =>
     User.findById(id, (err, user) => done(err, user))
 );

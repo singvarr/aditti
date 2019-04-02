@@ -7,8 +7,8 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
-import { ProductType } from "types/products";
-import { State } from "frontend/types";
+import ProductType from "types/products";
+import State from "types/state";
 
 export const getProductsLoading = () => action(GET_PRODUCTS_LOADING);
 export const getProductsSuccess = (data: Array<ProductType>) => {
