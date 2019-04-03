@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import classnames from "classnames";
 import { increaseItemQuantity } from "actions/cart";
-import { ProductType } from "types/products";
+import ProductType from "types/products";
 import "./Product.less";
 
 type Props = {

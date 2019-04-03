@@ -10,8 +10,8 @@ import {
 } from "actions/cart";
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
-import { State } from "types/.";
-import { ProductType } from "types/products";
+import State from "types/state";
+import ProductType from "types/products";
 
 type Props = {
     cartItems: Array<ProductType & { quantity: number }>;

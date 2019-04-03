@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { postSignUp } from "actions/auth";
-import { State as AppState } from "types/.";
+import { default as AppState } from "types/state";
 import "./SignUpForm.less";
 
 type Props = {
