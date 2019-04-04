@@ -9,7 +9,7 @@ const PROJECT_ROOT = require("./root");
 const { NODE_ENV } = process.env;
 
 module.exports = {
-    entry: path.resolve(PROJECT_ROOT, "frontend", "index.js"),
+    entry: path.resolve(PROJECT_ROOT, "frontend", "index.tsx"),
     resolve: {
         extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
         alias: {
