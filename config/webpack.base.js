@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 require("dotenv").config();
 const PROJECT_ROOT = require("./root");
@@ -65,7 +66,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(PROJECT_ROOT, "frontend", "index.html")
-        })
+        }),
+        new CleanWebpackPlugin()
     ],
     optimization: {
         namedModules: true

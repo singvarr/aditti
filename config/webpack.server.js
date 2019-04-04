@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin"); 
 const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
 
@@ -17,7 +18,8 @@ const basePlugins = [
         "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
         "process.env.DB_USER": JSON.stringify(DB_USER),
         "process.env.DB_PASSWORD": JSON.stringify(DB_PASSWORD)
-    })
+    }),
+    new CleanWebpackPlugin()
 ];
 
 module.exports = {
