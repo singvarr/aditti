@@ -1,4 +1,4 @@
-import { CategoryType } from "types/categories";
+import CategoryType from "types/categories";
 
 const categories: Array<CategoryType> = [
     { "name": "tshirts", "src": "img/categories/t-shirt.png" },

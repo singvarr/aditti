@@ -1,4 +1,4 @@
-import { FeaturedProductType } from "types/carousel";
+import FeaturedProductType from "types/carousel";
 
 const slides: Array<FeaturedProductType> = [
     {
