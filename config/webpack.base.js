@@ -41,7 +41,7 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                include: path.resolve(PROJECT_ROOT, "server"),
+                include: path.resolve(PROJECT_ROOT, "frontend"),
                 use: "awesome-typescript-loader"
             },
             {
