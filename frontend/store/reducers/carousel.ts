@@ -3,7 +3,7 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { FeaturedProductsAction, FeaturedProductsState } from "types/carousel";
+import { FeaturedProductsAction, FeaturedProductsState } from "types/state";
 
 export const initialState: FeaturedProductsState = {
     data: [],

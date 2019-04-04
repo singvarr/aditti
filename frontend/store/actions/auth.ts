@@ -13,7 +13,7 @@ import {
     USER_SIGNOUT_SUCCESS,
     USER_SIGNOUT_ERROR
 } from "constants/auth";
-import { State } from "types/.";
+import State from "types/state";
 
 const signInEndpoint = "/api/auth/signin";
 const signUpEndpoint = "/api/auth/signup";

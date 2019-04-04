@@ -9,7 +9,7 @@ import {
     USER_SIGNOUT_SUCCESS,
     USER_SIGNOUT_ERROR
 } from "constants/auth";
-import { AuthAction, AuthState } from "types/auth";
+import { AuthAction, AuthState } from "types/state";
 
 const initialState: AuthState = {
     isError: false,

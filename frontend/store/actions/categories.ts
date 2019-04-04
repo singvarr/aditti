@@ -7,8 +7,8 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import { State } from "types/.";
-import { CategoryType } from "types/categories";
+import State from "types/state";
+import CategoryType from "types/categories";
 
 const getCategoriesLoading = () => action(GET_CATEGORIES_LOADING);
 const getCategoriesSuccess = (products: Array<CategoryType>) => {

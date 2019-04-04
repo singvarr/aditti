@@ -6,8 +6,7 @@ import { Action } from "redux";
 import FetchStatus from "components/FetchStatus";
 import FeaturedProductsCarousel from "components/FeaturedProductsCarousel";
 import getCarousel from "actions/carousel";
-import { State } from "types/.";
-import { FeaturedProductsState } from "types/carousel";
+import State, { FeaturedProductsState } from "types/state";
 import "./FeaturedProducts.less";
 
 type Props = {

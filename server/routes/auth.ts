@@ -1,10 +1,9 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import passport from "passport";
+import User from "models/User";
 
 const router = Router();
-
-import User from "../models/User";
 
 router.post("/signin", passport.authenticate("local"), (req, res) => {
     res.json({ error: false, data: "ok!" });

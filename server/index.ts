@@ -1,14 +1,19 @@
 import express from "express";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
-
+import passport from "passport";
 import session from "express-session";
 import bodyParser from "body-parser";
-import passport from "passport";
 
 import User from "models/User";
 import LocalStrategy from "config/authStrategy";
 
-require("dotenv").config();
+import authRoute from "routes/auth";
+import catalogue from "fixtures/catalogue";
+import slides from "fixtures/slides";
+import categories from "fixtures/categories";
+
+dotenv.config();
 
 const { DB_USER, DB_PASSWORD, PORT } = process.env;
 
@@ -37,15 +42,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(LocalStrategy);
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser((user: { id: string }, done) => done(null, user.id));
 passport.deserializeUser((id, done) =>
     User.findById(id, (err, user) => done(err, user))
 );
-
-import authRoute from "routes/auth";
-import catalogue from "fixtures/catalogue";
-import slides from "fixtures/slides";
-import categories from "fixtures/categories";
 
 app.use("/auth", authRoute);
 app.get("/products", (req, res) => res.json(catalogue));

@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { FeaturedProductType } from "types/carousel";
+import FeaturedProductType from "types/carousel";
 import "./Slide.less";
 
 type Props = {

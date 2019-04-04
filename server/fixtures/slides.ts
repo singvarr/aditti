@@ -1,4 +1,6 @@
-[
+import FeaturedProductType from "types/carousel";
+
+const slides: Array<FeaturedProductType> = [
     {
         "heading": "Cowhide Standard Crew",
         "description": "White coloured, short-sleeved, printed T-shirt for men by Levi's. This crew-neck T-shirt is made of organic cotton and comes in a regular fit.",
@@ -20,3 +22,5 @@
         "imgSrc": "img/carousel/t-shirt.png"
     }
 ]
+
+export default slides;

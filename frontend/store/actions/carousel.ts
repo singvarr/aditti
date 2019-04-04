@@ -7,8 +7,8 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { State } from "types/.";
-import { FeaturedProductType } from "types/carousel";
+import State from "types/state";
+import FeaturedProductType from "types/carousel";
 
 const getCarouselLoading = () => action(GET_CAROUSEL_LOADING);
 const getCarouselSuccess = (products: Array<FeaturedProductType>) => {

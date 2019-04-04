@@ -3,7 +3,7 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
-import { ProductsAction, ProductsState } from "types/products";
+import { ProductsAction, ProductsState } from "types/state";
 
 export const defaultState: ProductsState = {
     data: [],
