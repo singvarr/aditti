@@ -3,7 +3,7 @@
 Simple clothes online-shop.
 
 ## Running of application
-1. Create setting in `.env` file.
+1. Create settings in `.env` file.
 2. Start project and launch one of the scripts:
     -   `npm build` - build production bundles.
     -   `npm start` - launch client and server part of app in one terminal in dev mode.
