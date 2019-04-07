@@ -8,9 +8,8 @@ Simple clothes online-shop.
     -   `npm build` - build production bundles.
     -   `npm start` - launch client and server part of app in one terminal in dev mode.
     -   `npm run start:frontend` - run frontend application, using `webpack-dev-server`.
-    -   `npm run start:server` - run `express` server.
+    -   `npm run start:server` - run `express` server in watch mode.
     -   `npm test` - run `jest` tests.
-    -   `npm run server:debug` - run node inspector in watch mode.
 
 ## Code style
 

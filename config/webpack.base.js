@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 require("dotenv").config();
 const PROJECT_ROOT = require("./root");
@@ -8,7 +9,7 @@ const PROJECT_ROOT = require("./root");
 const { NODE_ENV } = process.env;
 
 module.exports = {
-    entry: path.resolve(PROJECT_ROOT, "frontend", "index.js"),
+    entry: path.resolve(PROJECT_ROOT, "frontend", "index.tsx"),
     resolve: {
         extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
         alias: {
@@ -40,7 +41,7 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                include: path.resolve(PROJECT_ROOT, "server"),
+                include: path.resolve(PROJECT_ROOT, "frontend"),
                 use: "awesome-typescript-loader"
             },
             {
@@ -65,7 +66,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(PROJECT_ROOT, "frontend", "index.html")
-        })
+        }),
+        new CleanWebpackPlugin()
     ],
     optimization: {
         namedModules: true
