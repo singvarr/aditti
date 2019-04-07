@@ -4,9 +4,12 @@ import {
     getCartTotalQuantity,
     getCartItems
 } from "selectors/cart";
+import State, { CartState } from "types/state";
+import { CartProductType } from "types/cart";
+import ProductType from "types/products";
 
 describe("cart selectors", () => {
-    const products = [
+    const products: Array<ProductType> = [
         {
             id: "1",
             name: "branded shoes",
@@ -36,13 +39,16 @@ describe("cart selectors", () => {
             src: "./assets/img/items/purse.png"
         }
     ];
-    const cart = Map({ 1: 1, 2: 5, 3: 10 });
-    const state = {
+    const cart: CartState = Map({ 1: 1, 2: 5, 3: 10 });
+    const state: State = {
+        auth: { status: true, isLoading: false, isError: false },
+        carousel: { data: [], isLoading: false, isError: false },
         cart,
+        categories: { data: [], isLoading: false, isError: false },
         products: {
             data: products,
             isLoading: false,
-            hasError: false
+            isError: false
         }
     };
 
@@ -52,16 +58,14 @@ describe("cart selectors", () => {
         expect(getCartTotalPrice(state)).toEqual(expectedResult);
     });
 
-    it("getCartTotalQuantity: should calculate total quantity of cart items",
-        () => {
-            const expectedResult = 1 + 5 + 10;
+    it("getCartTotalQuantity: should calculate total quantity of cart items", () => {
+        const expectedResult = 1 + 5 + 10;
 
-            expect(getCartTotalQuantity(state)).toEqual(expectedResult);
-        }
-    );
+        expect(getCartTotalQuantity(state)).toEqual(expectedResult);
+    });
 
     it("getCartItems: should prepare data about items in cart", () => {
-        const expectedResult = [
+        const expectedResult: Array<CartProductType> = [
             {
                 id: "1",
                 name: "branded shoes",
