@@ -1,9 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Footer from "components/Footer";
+import Footer from "../Footer";
+import FooterLinksType from "types/footer";
 
 describe("<Footer />", () => {
-    const linksList = [
+    const linksList: FooterLinksType = [
         {
             name: "featured sale",
             links: [
@@ -29,7 +30,7 @@ describe("<Footer />", () => {
     });
 
     it("doesn't render footer links if linksList is empty", () => {
-        const emptyLinksList = [];
+        const emptyLinksList: FooterLinksType = [];
         const linksClass = "footer__links-wrapper";
         const component = shallow(<Footer linksList={emptyLinksList} />);
 

@@ -12,10 +12,10 @@ describe("<FeaturedProducts />", () => {
     it("renders without crash", () => {
         const tree = shallow(
             <FeaturedProducts
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onGetCarousel={onGetCarousel}
-                slides={[]}
+                data={[]}
             />
         );
 
@@ -25,10 +25,10 @@ describe("<FeaturedProducts />", () => {
     it("starts fetch of slides in componentDidMount", () => {
         shallow(
             <FeaturedProducts
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onGetCarousel={onGetCarousel}
-                slides={[]}
+                data={[]}
             />
         );
 
@@ -38,10 +38,10 @@ describe("<FeaturedProducts />", () => {
     it("renders FetchLoading during loading", () => {
         const component = shallow(
             <FeaturedProducts
-                hasError={false}
+                isError={false}
                 isLoading
                 onGetCarousel={onGetCarousel}
-                slides={[]}
+                data={[]}
             />
         );
 
@@ -51,10 +51,10 @@ describe("<FeaturedProducts />", () => {
     it("renders FetchLoading if fetch ended with error", () => {
         const component = shallow(
             <FeaturedProducts
-                hasError
+                isError
                 isLoading={false}
                 onGetCarousel={onGetCarousel}
-                slides={[]}
+                data={[]}
             />
         );
 
@@ -72,10 +72,10 @@ describe("<FeaturedProducts />", () => {
 
         const component = shallow(
             <FeaturedProducts
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onGetCarousel={onGetCarousel}
-                slides={slides}
+                data={slides}
             />
         );
 

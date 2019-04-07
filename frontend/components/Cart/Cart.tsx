@@ -11,10 +11,10 @@ import {
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
 import State from "types/state";
-import ProductType from "types/products";
+import { CartProductType } from "types/cart";
 
 type Props = {
-    cartItems: Array<ProductType & { quantity: number }>;
+    cartItems: Array<CartProductType>;
     onClearCart: () => void;
     onDecreaseQuantity: (id: string) => void;
     onIncreaseQuantity: (id: string) => void;
