@@ -8,8 +8,8 @@ import { GetCategoriesType } from "types/state";
 import CategoryType from "types/categories";
 
 export const getCategoriesLoading = () => action(GET_CATEGORIES_LOADING);
-export const getCategoriesSuccess = (products: Array<CategoryType>) => {
-    return action(GET_CATEGORIES_SUCCESS, { products });
+export const getCategoriesSuccess = (categories: Array<CategoryType>) => {
+    return action(GET_CATEGORIES_SUCCESS, { categories });
 };
 export const getCategoriesError = () => action(GET_CATEGORIES_ERROR);
 

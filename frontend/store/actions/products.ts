@@ -8,8 +8,8 @@ import ProductType from "types/products";
 import { GetProductsType } from "types/state";
 
 export const getProductsLoading = () => action(GET_PRODUCTS_LOADING);
-export const getProductsSuccess = (data: Array<ProductType>) => {
-    return action(GET_PRODUCTS_SUCCESS, { data });
+export const getProductsSuccess = (products: Array<ProductType>) => {
+    return action(GET_PRODUCTS_SUCCESS, { products });
 };
 export const getProductsError = () => action(GET_PRODUCTS_ERROR);
 

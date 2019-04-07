@@ -1,4 +1,4 @@
-import { action, getType } from "typesafe-actions";
+import { action } from "typesafe-actions";
 import {
     GET_CAROUSEL_LOADING,
     GET_CAROUSEL_SUCCESS,
