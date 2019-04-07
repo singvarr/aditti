@@ -44,7 +44,7 @@ describe("cart reducer", () => {
         expect(reducer(state, action)).toEqual(expectedState);
     });
 
-    it(" should add item of new type to cart", () => {
+    it("should add item of new type to cart", () => {
         const itemId = "item4";
         const action: ActionType<typeof cartActions.increaseItemQuantity> = {
             type: INCREASE_ITEM_QUANTITY,
@@ -71,7 +71,7 @@ describe("cart reducer", () => {
         expect(reducer(state, action)).toEqual(expectedState);
     });
 
-    it(`${DECREASE_ITEM_QUANTITY}: should delete single item from cart`, () => {
+    it("should delete single item from cart", () => {
         const itemId = "item1";
         const action: ActionType<typeof cartActions.decreaseItemQuantity> = {
             type: DECREASE_ITEM_QUANTITY,
@@ -82,7 +82,7 @@ describe("cart reducer", () => {
         expect(reducer(state, action)).toEqual(expectedState);
     });
 
-    it(`${CLEAR_CART}: should clear all items from cart`, () => {
+    it("should clear all items from cart", () => {
         const action: ActionType<typeof cartActions.clearCart> = {
             type: CLEAR_CART
         };

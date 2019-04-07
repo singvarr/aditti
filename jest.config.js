@@ -6,7 +6,7 @@ module.exports = {
         "\\.(css|less)$": "<rootDir>/config/__mocks__/styleMock.js"
     },
     modulePaths: ["<rootDir>/frontend/", "<rootDir>/frontend/store"],
-    setupFilesAfterEnv: ["<rootDir>/config/setupTests.js"],
+    setupFilesAfterEnv: ["<rootDir>/config/setupTests.ts"],
     testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$",
     testEnvironment: "node",
     verbose: true

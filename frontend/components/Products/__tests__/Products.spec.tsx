@@ -13,10 +13,10 @@ describe("<Products />", () => {
     it("renders without crash", () => {
         const tree = shallow(
             <Products
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onFetchProducts={onFetchProducts}
-                products={[]}
+                data={[]}
             />
         );
 
@@ -26,10 +26,10 @@ describe("<Products />", () => {
     it("inits products fetch in componentDidMount", () => {
         shallow(
             <Products
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onFetchProducts={onFetchProducts}
-                products={[]}
+                data={[]}
             />
         );
 
@@ -39,10 +39,10 @@ describe("<Products />", () => {
     it("renders FetchStatus during loading", () => {
         const component = shallow(
             <Products
-                hasError={false}
+                isError={false}
                 isLoading
                 onFetchProducts={onFetchProducts}
-                products={[]}
+                data={[]}
             />
         );
         expect(component.type()).toEqual(FetchStatus);
@@ -51,10 +51,10 @@ describe("<Products />", () => {
     it("renders FetchStatus if fetch was unsuccessful", () => {
         const component = shallow(
             <Products
-                hasError
+                isError
                 isLoading={false}
                 onFetchProducts={onFetchProducts}
-                products={[]}
+                data={[]}
             />
         );
         expect(component.type()).toEqual(FetchStatus);
@@ -73,10 +73,10 @@ describe("<Products />", () => {
 
         const component = shallow(
             <Products
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onFetchProducts={onFetchProducts}
-                products={products}
+                data={products}
             />
         );
 
@@ -87,10 +87,10 @@ describe("<Products />", () => {
     it("renders empty block if there aren't products", () => {
         const component = shallow(
             <Products
-                hasError={false}
+                isError={false}
                 isLoading={false}
                 onFetchProducts={onFetchProducts}
-                products={[]}
+                data={[]}
             />
         );
 

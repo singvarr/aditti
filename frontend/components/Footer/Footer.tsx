@@ -1,14 +1,9 @@
 import React from "react";
+import FooterLinksType from "types/footer";
 import "./Footer.less";
 
-type Props = {
-    linksList: Array<{
-        name: string;
-        links: Array<{
-            name: string;
-            href: string;
-        }>;
-    }>;
+export type Props = {
+    linksList: FooterLinksType;
 };
 
 function Footer(props: Props) {

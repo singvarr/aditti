@@ -17,7 +17,7 @@ type Props = {
     onSignOut: () => void;
 };
 
-function Menu(props: Props) {
+export function Menu(props: Props) {
     return props.menu.length ? (
         <nav className="main-menu">
             <ul className="main-menu__container wrapper">

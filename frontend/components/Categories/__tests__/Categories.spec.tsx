@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import { Categories } from "../Categories";
 import FetchStatus from "components/FetchStatus";
 import CategoriesCarousel from "components/CategoriesCarousel";
+import CategoryType from "types/categories";
 
 describe("<Categories />", () => {
     const onGetCategories = jest.fn();
@@ -12,8 +13,8 @@ describe("<Categories />", () => {
     it("renders without crash", () => {
         const tree = shallow(
             <Categories
-                categories={[]}
-                hasError={false}
+                data={[]}
+                isError={false}
                 isLoading={false}
                 onGetCategories={onGetCategories}
             />
@@ -25,8 +26,8 @@ describe("<Categories />", () => {
     it("starts fetch of categories in componentDidMount", () => {
         shallow(
             <Categories
-                categories={[]}
-                hasError={false}
+                data={[]}
+                isError={false}
                 isLoading={false}
                 onGetCategories={onGetCategories}
             />
@@ -38,8 +39,8 @@ describe("<Categories />", () => {
     it("renders FetchLoading during categories loading", () => {
         const component = shallow(
             <Categories
-                categories={[]}
-                hasError={false}
+                data={[]}
+                isError={false}
                 isLoading
                 onGetCategories={onGetCategories}
             />
@@ -51,8 +52,8 @@ describe("<Categories />", () => {
     it("renders FetchLoading if fetch was unsuccessful", () => {
         const component = shallow(
             <Categories
-                categories={[]}
-                hasError
+                data={[]}
+                isError
                 isLoading={false}
                 onGetCategories={onGetCategories}
             />
@@ -61,25 +62,22 @@ describe("<Categories />", () => {
         expect(component.type()).toEqual(FetchStatus);
     });
 
-    it(
-        "renders CategoriesCarousel with categories list if fetch was finished",
-        () => {
-            const categories = [];
-            const component = shallow(
-                <Categories
-                    categories={categories}
-                    hasError={false}
-                    isLoading={false}
-                    onGetCategories={onGetCategories}
-                />
-            );
+    it("renders CategoriesCarousel when fetch was finished", () => {
+        const categories: Array<CategoryType> = [];
+        const component = shallow(
+            <Categories
+                data={categories}
+                isError={false}
+                isLoading={false}
+                onGetCategories={onGetCategories}
+            />
+        );
 
-            expect(component.find("section.categories").exists()).toBeTruthy();
-            expect(
-                component
-                    .find("section.categories")
-                    .contains(<CategoriesCarousel categories={categories} />)
-            ).toBeTruthy();
-        }
-    );
+        expect(component.find("section.categories").exists()).toBeTruthy();
+        expect(
+            component
+                .find("section.categories")
+                .contains(<CategoriesCarousel categories={categories} />)
+        ).toBeTruthy();
+    });
 });
