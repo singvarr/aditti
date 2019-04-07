@@ -1,4 +1,4 @@
-import { action } from "typesafe-actions";
+import { action, getType } from "typesafe-actions";
 import {
     GET_CAROUSEL_LOADING,
     GET_CAROUSEL_SUCCESS,
@@ -7,7 +7,7 @@ import {
 import { GetFeaturedProductsType } from "types/state";
 import FeaturedProductType from "types/carousel";
 
-const getCarouselLoading = () => action(GET_CAROUSEL_LOADING);
+export const getCarouselLoading = () => action(GET_CAROUSEL_LOADING);
 export const getCarouselSuccess = (products: Array<FeaturedProductType>) => {
     return action(GET_CAROUSEL_SUCCESS, { products });
 };
@@ -24,7 +24,7 @@ export const headers = { "Content-Type": "application/json" };
 
 function getCarousel(): GetFeaturedProductsType {
     return dispatch => {
-        dispatch(getCarouselLoading);
+        dispatch(getCarouselLoading());
 
         return fetch(carouselEndpoint, {
             headers,
