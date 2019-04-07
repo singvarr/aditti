@@ -22,7 +22,7 @@ function reducer(
         case GET_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                data: action.payload.data,
+                data: action.payload.products,
                 isLoading: false
             };
 

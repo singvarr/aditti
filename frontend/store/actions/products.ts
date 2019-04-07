@@ -1,18 +1,15 @@
-import { Action } from "redux";
-import { ThunkAction } from "redux-thunk";
 import { action } from "typesafe-actions";
-
 import {
     GET_PRODUCTS_LOADING,
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
 import ProductType from "types/products";
-import State from "types/state";
+import { GetProductsType } from "types/state";
 
 export const getProductsLoading = () => action(GET_PRODUCTS_LOADING);
-export const getProductsSuccess = (data: Array<ProductType>) => {
-    return action(GET_PRODUCTS_SUCCESS, { data });
+export const getProductsSuccess = (products: Array<ProductType>) => {
+    return action(GET_PRODUCTS_SUCCESS, { products });
 };
 export const getProductsError = () => action(GET_PRODUCTS_ERROR);
 
@@ -25,9 +22,9 @@ export const getProductsActions = {
 export const productsEndpoint = "/api/products";
 export const headers = { "Content-Type": "application/json" };
 
-function getProducts(): ThunkAction<void, State, null, Action<string>> {
+function getProducts(): GetProductsType {
     return dispatch => {
-        dispatch(getProductsLoading);
+        dispatch(getProductsLoading());
 
         return fetch(productsEndpoint, {
             headers,

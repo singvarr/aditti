@@ -1,26 +1,27 @@
-import { apiMiddleware } from "redux-api-middleware";
-import configureMockStore from "redux-mock-store";
+import thunk, { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+import configureMockStore, { MockStoreCreator } from "redux-mock-store";
 import fetchMock from "fetch-mock";
 
-import getCarousel, { carouselEndpoint, headers } from "actions/carousel";
-import {
-    GET_CAROUSEL_LOADING,
-    GET_CAROUSEL_SUCCESS,
-    GET_CAROUSEL_ERROR
-} from "constants/carousel";
+import getCarousel, {
+    carouselEndpoint,
+    headers,
+    getCarouselLoading,
+    getCarouselSuccess,
+    getCarouselError
+} from "actions/carousel";
+import { MockStoreCreatorType } from "types/state";
+import FeaturedProductType from "types/carousel";
 
-const middlewares = [apiMiddleware];
-const mockStore = configureMockStore(middlewares);
+const middlewares = [thunk];
+const mockStore: MockStoreCreatorType = configureMockStore(middlewares);
 const store = mockStore();
 
 describe("getCarousel: test fetch carousel", () => {
-    afterEach(() => {
-        fetchMock.reset();
-        fetchMock.restore();
-    });
+    afterEach(() => fetchMock.restore());
 
-    it(`fires ${GET_CAROUSEL_SUCCESS} on success fetch`, () => {
-        const payload = [
+    it("passes data on success fetch", () => {
+        const payload: Array<FeaturedProductType> = [
             {
                 heading: "Cowhide Standard Crew",
                 description: "White coloured, short-sleeved, printed T-shirt",
@@ -36,8 +37,8 @@ describe("getCarousel: test fetch carousel", () => {
         fetchMock.getOnce(carouselEndpoint, { body: payload, headers });
 
         const expectedActions = [
-            { type: GET_CAROUSEL_LOADING },
-            { type: GET_CAROUSEL_SUCCESS, payload }
+            getCarouselLoading(),
+            getCarouselSuccess(payload)
         ];
 
         return store.dispatch(getCarousel()).then(() => {
@@ -45,15 +46,12 @@ describe("getCarousel: test fetch carousel", () => {
         });
     });
 
-    it(`fires ${GET_CAROUSEL_ERROR} on error`, () => {
+    it("passes error on failed fetch", () => {
         const errorStatus = 404;
 
         fetchMock.getOnce(carouselEndpoint, errorStatus);
 
-        const expectedActions = [
-            { type: GET_CAROUSEL_LOADING },
-            { type: GET_CAROUSEL_ERROR }
-        ];
+        const expectedActions = [getCarouselLoading(), getCarouselError()];
 
         return store.dispatch(getCarousel()).catch(() => {
             expect(store.getActions()).toEqual(expectedActions);

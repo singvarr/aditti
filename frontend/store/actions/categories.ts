@@ -1,20 +1,17 @@
-import { ThunkAction } from "redux-thunk";
-import { Action } from "redux";
 import { action } from "typesafe-actions";
-
 import {
     GET_CATEGORIES_LOADING,
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import State from "types/state";
+import { GetCategoriesType } from "types/state";
 import CategoryType from "types/categories";
 
-const getCategoriesLoading = () => action(GET_CATEGORIES_LOADING);
-const getCategoriesSuccess = (products: Array<CategoryType>) => {
-    return action(GET_CATEGORIES_SUCCESS, { products });
+export const getCategoriesLoading = () => action(GET_CATEGORIES_LOADING);
+export const getCategoriesSuccess = (categories: Array<CategoryType>) => {
+    return action(GET_CATEGORIES_SUCCESS, { categories });
 };
-const getCategoriesError = () => action(GET_CATEGORIES_ERROR);
+export const getCategoriesError = () => action(GET_CATEGORIES_ERROR);
 
 export const getCategoriesActions = {
     getCategoriesLoading,
@@ -25,7 +22,7 @@ export const getCategoriesActions = {
 export const categoriesEndpoint = "/api/categories";
 export const headers = { "Content-Type": "application/json" };
 
-function getCategories(): ThunkAction<void, State, null, Action<string>> {
+function getCategories(): GetCategoriesType {
     return dispatch => {
         dispatch(getCategoriesLoading());
 
