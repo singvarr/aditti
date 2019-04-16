@@ -65,6 +65,8 @@
     "@types/swiper": "^4.4.2",
     "@types/webpack": "^4.4.27",
     "@types/webpack-env": "^1.13.9",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "autoprefixer-loader": "^3.2.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.1",
