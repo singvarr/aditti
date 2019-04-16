@@ -1,10 +1,11 @@
-{
+module.exports = {
+    "parser": "@typescript-eslint/parser",
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
-    "parser": "babel-eslint",
-    "plugins": ["react"],
+    "plugins": ["react", "@typescript-eslint"],
     "rules": {
         "camelcase": "error",
         "max-len": "error",
