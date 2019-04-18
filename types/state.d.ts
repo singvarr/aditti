@@ -22,7 +22,6 @@ import {
 import CategoryType from "types/categories";
 import FeaturedProductType from "types/carousel";
 import ProductType from "types/products";
-import { FeaturedProducts } from "components/FeaturedProducts/FeaturedProducts";
 
 type State = StateType<typeof reducer>;
 
