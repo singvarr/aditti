@@ -13,12 +13,6 @@ export const getCategoriesSuccess = (categories: Array<CategoryType>) => {
 };
 export const getCategoriesError = () => action(GET_CATEGORIES_ERROR);
 
-export const getCategoriesActions = {
-    getCategoriesLoading,
-    getCategoriesSuccess,
-    getCategoriesError
-};
-
 export const categoriesEndpoint = "/api/categories";
 export const headers = { "Content-Type": "application/json" };
 

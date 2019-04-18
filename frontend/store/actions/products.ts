@@ -13,12 +13,6 @@ export const getProductsSuccess = (products: Array<ProductType>) => {
 };
 export const getProductsError = () => action(GET_PRODUCTS_ERROR);
 
-export const getProductsActions = {
-    getProductsLoading,
-    getProductsSuccess,
-    getProductsError
-};
-
 export const productsEndpoint = "/api/products";
 export const headers = { "Content-Type": "application/json" };
 

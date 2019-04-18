@@ -5,16 +5,19 @@ import { Map } from "immutable";
 import { MockStoreCreator } from "redux-mock-store";
 
 import reducer from "reducers/.";
-import * as getCategoriesConstants from "constants/categories";
-import * as getCarouselConstants from "constants/carousel";
-import * as getCartConstants from "constants/cart";
-import * as getProductsConstants from "constants/products";
-
 import { postAuthActions } from "actions/auth";
-import { getCarouselActions } from "actions/carousel";
+import {
+    getCarouselSuccess,
+    getCarouselError,
+    getCarouselLoading
+} from "actions/carousel";
 import * as cart from "actions/cart";
-import { getCategoriesActions } from "actions/categories";
-import { getProductsActions } from "actions/products";
+import { getCategoriesSuccess, getCategoriesError } from "actions/categories";
+import {
+    getProductsSuccess,
+    getProductsError,
+    getProductsLoading
+} from "actions/products";
 
 import CategoryType from "types/categories";
 import FeaturedProductType from "types/carousel";
@@ -22,6 +25,13 @@ import ProductType from "types/products";
 import { FeaturedProducts } from "components/FeaturedProducts/FeaturedProducts";
 
 type State = StateType<typeof reducer>;
+
+type GetAction<Success, Error> = ThunkAction<
+    Promise<ActionType<Success> | ActionType<Error>>,
+    State,
+    null,
+    Action<string>
+>;
 
 export type FetchState = {
     readonly isError: boolean;
@@ -36,63 +46,48 @@ export type AuthState = {
 export type CartAction = ActionType<typeof cart>;
 export type CartState = Map<string, number>;
 
-export type CategoriesAction = ActionType<typeof getCategoriesActions>;
+export type CategoriesAction = ActionType<
+    | typeof getCategoriesError
+    | typeof getCarouselSuccess
+    | typeof getCarouselLoading
+>;
+export type GetCategoriesType = GetAction<
+    typeof getCategoriesSuccess,
+    typeof getCategoriesError
+>;
 export type CategoriesState = {
     readonly data: Array<CategoryType>;
 } & FetchState;
-export type GetCategoriesActionTypes =
-    | typeof getCategoriesConstants.GET_CATEGORIES_ERROR
-    | typeof getCategoriesConstants.GET_CATEGORIES_SUCCESS
-    | typeof getCategoriesConstants.GET_CATEGORIES_LOADING;
-export type GetCategoriesType = ThunkAction<
-    Promise<
-        | ActionType<typeof getCategoriesActions.getCategoriesSuccess>
-        | ActionType<typeof getCategoriesActions.getCategoriesError>
-    >,
-    State,
-    null,
-    Action<GetCategoriesActionTypes>
->;
 
-export type FeaturedProductsAction = ActionType<typeof getCarouselActions>;
+export type FeaturedProductsAction = ActionType<
+    | typeof getCarouselSuccess
+    | typeof getCarouselError
+    | typeof getCarouselLoading
+>;
+export type GetFeaturedProductsType = GetAction<
+    typeof getCarouselSuccess,
+    typeof getCarouselError
+>;
 export type FeaturedProductsState = {
     readonly data: Array<FeaturedProductType>;
 } & FetchState;
-export type GetFeaturedProductsActionTypes =
-    | typeof getCarouselConstants.GET_CAROUSEL_ERROR
-    | typeof getCarouselConstants.GET_CAROUSEL_SUCCESS
-    | typeof getCarouselConstants.GET_CAROUSEL_LOADING;
-export type GetFeaturedProductsType = ThunkAction<
-    Promise<
-        | ActionType<typeof getCarouselActions.getCarouselSuccess>
-        | ActionType<typeof getCarouselActions.getCarouselError>
-    >,
-    State,
-    null,
-    Action<GetFeaturedProductsActionTypes>
->;
 
-export type ProductsAction = ActionType<typeof getProductsActions>;
+export type ProductsAction = ActionType<
+    | typeof getProductsSuccess
+    | typeof getProductsError
+    | typeof getProductsLoading
+>;
+export type GetProductsType = GetAction<
+    typeof getProductsSuccess,
+    typeof getProductsError
+>;
 export type ProductsState = {
     readonly data: Array<ProductType>;
 } & FetchState;
-export type GetProductsActionTypes =
-    | typeof getProductsConstants.GET_PRODUCTS_ERROR
-    | typeof getProductsConstants.GET_PRODUCTS_SUCCESS
-    | typeof getProductsConstants.GET_PRODUCTS_LOADING;
-export type GetProductsType = ThunkAction<
-    Promise<
-        | ActionType<typeof getProductsActions.getProductsSuccess>
-        | ActionType<typeof getProductsActions.getProductsError>
-    >,
-    State,
-    null,
-    Action<GetProductsActionTypes>
->;
 
 export type MockStoreCreatorType = MockStoreCreator<
     State,
-    ThunkDispatch<State, null, Action<any>>
+    ThunkDispatch<State, null, Action<string>>
 >;
 
 export default State;

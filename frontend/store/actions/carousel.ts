@@ -13,12 +13,6 @@ export const getCarouselSuccess = (products: Array<FeaturedProductType>) => {
 };
 export const getCarouselError = () => action(GET_CAROUSEL_ERROR);
 
-export const getCarouselActions = {
-    getCarouselLoading,
-    getCarouselSuccess,
-    getCarouselError
-};
-
 export const carouselEndpoint = "/api/carousel";
 export const headers = { "Content-Type": "application/json" };
 
