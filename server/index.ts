@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import passport from "passport";
 import session from "express-session";
 import bodyParser from "body-parser";
+import morgan from "morgan";
 
 import User from "models/User";
 import LocalStrategy from "config/authStrategy";
@@ -15,7 +16,7 @@ import categories from "fixtures/categories";
 
 dotenv.config();
 
-const { DB_USER, DB_PASSWORD, PORT } = process.env;
+const { DB_USER, DB_PASSWORD, NODE_ENV, PORT } = process.env;
 
 const app = express();
 
@@ -40,6 +41,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+if (NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
 
 passport.use(LocalStrategy);
 passport.serializeUser((user: { id: string }, done) => done(null, user.id));
