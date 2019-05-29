@@ -1,16 +1,13 @@
 const path = require("path");
 const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin"); 
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
-
-const PROJECT_ROOT = require("./root");
 require("dotenv").config();
 
 const { NODE_ENV, DB_USER, DB_PASSWORD } = process.env;
 
 const DEVELOPMENT_MODE = "development";
-
 const OUTPUT_DIR = NODE_ENV === DEVELOPMENT_MODE ? "dev" : "prod";
 
 const basePlugins = [
@@ -27,18 +24,19 @@ module.exports = {
     target: "node",
     externals: [nodeExternals()],
     devtool: NODE_ENV === DEVELOPMENT_MODE ? "source-map" : false,
-    entry: path.resolve(PROJECT_ROOT, "server", "index.ts"),
+    entry: path.resolve(__dirname, "index.ts"),
     output: {
-        path: path.resolve(PROJECT_ROOT, "dist", OUTPUT_DIR, "server"),
+        path: path.resolve(__dirname, "dist", OUTPUT_DIR),
         filename: "index.js"
     },
     resolve: {
-        extensions: [".js", ".ts", ".tsx"],
+        extensions: [".js", ".ts"],
         alias: {
-            config: path.join(PROJECT_ROOT, "server", "config"),
-            fixtures: path.join(PROJECT_ROOT, "server", "fixtures"),
-            models: path.join(PROJECT_ROOT, "server", "models"),
-            routes: path.join(PROJECT_ROOT, "server", "routes")
+            config: path.join(__dirname, "config"),
+            fixtures: path.join(__dirname, "fixtures"),
+            models: path.join(__dirname, "models"),
+            routes: path.join(__dirname, "routes"),
+            types: path.join(__dirname, "../..", "types")
         }
     },
     module: {
@@ -46,7 +44,6 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
-                include: path.resolve(PROJECT_ROOT, "server"),
                 use: "awesome-typescript-loader"
             },
             {
@@ -65,7 +62,7 @@ module.exports = {
             : [
                 ...basePlugins,
                 new WebpackShellPlugin({
-                    onBuildEnd: "nodemon dist/dev/server/index"
+                    onBuildEnd: "nodemon ./dist/dev"
                 })
             ]
 };
