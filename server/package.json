@@ -4,6 +4,7 @@
   "description": "API for aditti project",
   "main": "index.ts",
   "scripts": {
+    "build": "webpack",
     "start": "webpack -w"
   },
   "keywords": [
