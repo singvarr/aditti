@@ -37,7 +37,8 @@ module.exports = {
             fixtures: path.join(__dirname, "fixtures"),
             models: path.join(__dirname, "models"),
             routes: path.join(__dirname, "routes"),
-            types: path.join(__dirname, "../..", "types")
+            types: path.join(__dirname, "../..", "types"),
+            utils: path.join(__dirname, "utils")
         }
     },
     module: {
@@ -61,9 +62,9 @@ module.exports = {
         NODE_ENV !== DEVELOPMENT_MODE
             ? basePlugins
             : [
-                  ...basePlugins,
-                  new WebpackShellPlugin({
-                      onBuildEnd: "nodemon ./dist/dev"
-                  })
-              ]
+                ...basePlugins,
+                new WebpackShellPlugin({
+                    onBuildEnd: "nodemon ./dist/dev"
+                })
+            ]
 };

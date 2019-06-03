@@ -19,7 +19,8 @@
             "store/*": ["frontend/store/*"],
             "types/*": ["types/*"],
             "models/*": ["server/models/*"],
-            "config/*": ["server/config/*"]
+            "config/*": ["server/config/*"],
+            "utils/*": ["server/utils/*"]
         },
         "removeComments": true,
         "target": "es5",
