@@ -16,11 +16,11 @@ import categories from "fixtures/categories";
 
 dotenv.config();
 
-const { DB_USER, DB_PASSWORD, NODE_ENV, PORT } = process.env;
+const { DB_URL, DB_PASSWORD, DB_USER, NODE_ENV, PORT } = process.env;
 
 const app = express();
 
-const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@ds213615.mlab.com:13615/aditti`;
+const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_URL}`;
 mongoose.Promise = global.Promise;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true }, () =>

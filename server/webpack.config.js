@@ -5,7 +5,7 @@ const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
 require("dotenv").config();
 
-const { NODE_ENV, DB_USER, DB_PASSWORD } = process.env;
+const { NODE_ENV, DB_USER, DB_PASSWORD, DB_URL } = process.env;
 
 const DEVELOPMENT_MODE = "development";
 const OUTPUT_DIR = NODE_ENV === DEVELOPMENT_MODE ? "dev" : "prod";
@@ -14,7 +14,8 @@ const basePlugins = [
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
         "process.env.DB_USER": JSON.stringify(DB_USER),
-        "process.env.DB_PASSWORD": JSON.stringify(DB_PASSWORD)
+        "process.env.DB_PASSWORD": JSON.stringify(DB_PASSWORD),
+        "process.env.DB_URL": JSON.stringify(DB_URL)
     }),
     new CleanWebpackPlugin()
 ];
@@ -60,9 +61,9 @@ module.exports = {
         NODE_ENV !== DEVELOPMENT_MODE
             ? basePlugins
             : [
-                ...basePlugins,
-                new WebpackShellPlugin({
-                    onBuildEnd: "nodemon ./dist/dev"
-                })
-            ]
+                  ...basePlugins,
+                  new WebpackShellPlugin({
+                      onBuildEnd: "nodemon ./dist/dev"
+                  })
+              ]
 };
