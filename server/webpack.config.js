@@ -1,24 +1,15 @@
 const path = require("path");
-const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
 require("dotenv").config();
 
-const { NODE_ENV, DB_USER, DB_PASSWORD, DB_URL } = process.env;
+const { NODE_ENV } = process.env;
 
 const DEVELOPMENT_MODE = "development";
 const OUTPUT_DIR = NODE_ENV === DEVELOPMENT_MODE ? "dev" : "prod";
 
-const basePlugins = [
-    new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
-        "process.env.DB_USER": JSON.stringify(DB_USER),
-        "process.env.DB_PASSWORD": JSON.stringify(DB_PASSWORD),
-        "process.env.DB_URL": JSON.stringify(DB_URL)
-    }),
-    new CleanWebpackPlugin()
-];
+const basePlugins = [new CleanWebpackPlugin()];
 
 module.exports = {
     mode: NODE_ENV,
@@ -45,8 +36,13 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                exclude: /node_modules/,
-                use: "awesome-typescript-loader"
+                exclude: [/node_modules/, path.join(__dirname, "tests")],
+                use: {
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        errorsAsWarnings: true
+                    }
+                }
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,

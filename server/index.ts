@@ -6,32 +6,26 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 
-import User from "models/User";
-import LocalStrategy from "config/authStrategy";
-
 import authRoute from "routes/auth";
 import productRoute from "routes/product";
+
+import User from "models/User";
+import LocalStrategy from "config/authStrategy";
+import connectToDB from "utils/connectToDB";
+
 import catalogue from "fixtures/catalogue";
 import slides from "fixtures/slides";
 import categories from "fixtures/categories";
 
 dotenv.config();
-
 const { DB_URL, DB_PASSWORD, DB_USER, NODE_ENV, PORT } = process.env;
 
 const app = express();
 
-const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_URL}`;
-mongoose.Promise = global.Promise;
-
 if (NODE_ENV === "development") app.use(morgan("dev"));
 
-mongoose.connect(mongoDB, { useNewUrlParser: true }, () =>
-    console.log("connected to MongoDB")
-);
-
-const db = mongoose.connection;
-db.on("error", error => console.error("MongoDB connection error", error));
+mongoose.Promise = global.Promise;
+connectToDB(DB_URL, DB_USER, DB_PASSWORD);
 
 app.use(
     session({
@@ -44,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(LocalStrategy);
 passport.serializeUser((user: { id: string }, done) => done(null, user.id));
 passport.deserializeUser((id, done) =>
