@@ -4,12 +4,15 @@ function generateProducts(limit: number = 100) {
     let products = [];
 
     for (let i = 0; i < limit; i++) {
+        const productName = faker.commerce.productName();
+
         products.push({
             id: faker.random.uuid(),
+            image: faker.image.fashion(),
             isAvailable: faker.random.boolean(),
-            name: faker.commerce.productName(),
+            name: productName,
             price: faker.commerce.price(),
-            image: faker.image.fashion()
+            slug: faker.helpers.slugify(productName)
         });
     }
 
