@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist",
+        "paths": {
+            "fixtures/*": ["fixtures/*"],
+            "routes/*": ["routes/*"],
+            "models/*": ["models/*"],
+            "config/*": ["config/*"],
+            "types/*": ["../types/*"],
+            "utils/*": ["utils/*"]
+        }
+    }
+}

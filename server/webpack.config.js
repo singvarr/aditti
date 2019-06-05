@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const WebpackShellPlugin = require("webpack-shell-plugin");
 const nodeExternals = require("webpack-node-externals");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+
 require("dotenv").config();
 
 const { NODE_ENV, DB_USER, DB_PASSWORD, DB_URL } = process.env;
@@ -32,14 +34,7 @@ module.exports = {
     },
     resolve: {
         extensions: [".js", ".ts"],
-        alias: {
-            config: path.join(__dirname, "config"),
-            fixtures: path.join(__dirname, "fixtures"),
-            models: path.join(__dirname, "models"),
-            routes: path.join(__dirname, "routes"),
-            types: path.join(__dirname, "../..", "types"),
-            utils: path.join(__dirname, "utils")
-        }
+        plugins: [new TsconfigPathsPlugin()]
     },
     module: {
         rules: [
