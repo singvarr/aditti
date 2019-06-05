@@ -12,15 +12,12 @@
             "actions/*": ["frontend/store/actions/*"],
             "constants/*": ["frontend/store/constants/*"],
             "components/*": ["frontend/components/*"],
-            "fixtures/*": ["frontend/fixtures/*", "server/fixtures/*"],
+            "fixtures/*": ["frontend/fixtures/*"],
             "reducers/*": ["frontend/store/reducers/*"],
-            "routes/*": ["frontend/routes/*", "server/routes/*"],
+            "routes/*": ["frontend/routes/*"],
             "selectors/*": ["frontend/store/selectors/*"],
             "store/*": ["frontend/store/*"],
-            "types/*": ["types/*"],
-            "models/*": ["server/models/*"],
-            "config/*": ["server/config/*"],
-            "utils/*": ["server/utils/*"]
+            "types/*": ["types/*"]
         },
         "removeComments": true,
         "target": "es5",
