@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Response } from "express";
 import mongoose from "mongoose";
 import ProductModel from "models/Product";
 import generateRandomProducts from "utils/generateRandomProducts";
@@ -86,6 +86,88 @@ router.delete(
                 }
 
                 res.status(200).send("Successfully deleted");
+            }
+        );
+    }
+);
+
+router.get(
+    "/:slug",
+    (req, res): void => {
+        const { slug } = req.params;
+
+        ProductModel.findOne(
+            { slug },
+            (error, product): Response => {
+                if (error) {
+                    return res
+                        .status(500)
+                        .send("Cannot retrieve product from DB");
+                }
+
+                if (!product) return res.sendStatus(404);
+
+                res.json(product);
+            }
+        );
+    }
+);
+
+router.patch(
+    "/:slug",
+    (req, res): Response => {
+        if (!req.body) {
+            return res
+                .status(400)
+                .send("Please, provide correct params to update product");
+        }
+
+        const { slug } = req.params;
+
+        ProductModel.findOne(
+            { slug },
+            (error, product): Response => {
+                if (error) {
+                    return res
+                        .status(500)
+                        .send("Cannot find product with this slug");
+                }
+
+                product = { ...product, ...req.body };
+
+                product.save(
+                    (error): Response => {
+                        if (error) {
+                            return res.sendStatus(500);
+                        }
+
+                        res.send("Product updated");
+                    }
+                );
+            }
+        );
+    }
+);
+
+router.delete(
+    "/:slug",
+    (req, res): void => {
+        const { slug } = req.params;
+
+        ProductModel.findOneAndRemove(
+            { slug },
+            (error, product): Response => {
+                if (error) {
+                    return res
+                        .status(500)
+                        .send("Cannot delete product from DB");
+                }
+
+                if (!product) {
+                    return res.status(404).send("Cannot find product");
+                }
+
+                res.send("Product was deleted successfully");
             }
         );
     }
