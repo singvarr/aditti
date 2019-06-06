@@ -10,4 +10,4 @@ Simple API for Aditti online-shop.
 ## Databases
 I used MongoDB in this project. For different environment used different databases. Here is list of databases URL:
 - Development DB - ds231537.mlab.com:31537/aditti_development.
-- Test DB - ds231517.mlab.com:31517/aditti_test.
+- Production DB - ds213615.mlab.com:13615/aditti
