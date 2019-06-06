@@ -24,7 +24,7 @@ module.exports = merge(baseConfig, {
                     {
                         loader: "less-loader",
                         options: {
-                            paths: [path.join(PROJECT_ROOT, "frontend")]
+                            paths: [path.join(PROJECT_ROOT)]
                         }
                     }
                 ]
