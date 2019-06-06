@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "jsx": "react",
+        "outDir": "./dist",
+        "paths": {
+            "actions/*": ["store/actions/*"],
+            "constants/*": ["store/constants/*"],
+            "components/*": ["components/*"],
+            "fixtures/*": ["fixtures/*"],
+            "reducers/*": ["store/reducers/*"],
+            "routes/*": ["routes/*"],
+            "selectors/*": ["store/selectors/*"],
+            "store/*": ["store/*"],
+            "types/*": ["../types/*"]
+        }
+    }
+}

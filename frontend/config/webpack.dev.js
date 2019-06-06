@@ -1,12 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-require("dotenv").config();
 const baseConfig = require("./webpack.base");
-const PROJECT_ROOT = require("./root");
 
+require("dotenv").config();
 const { DEV_SERVER_PORT, PORT } = process.env;
 
+const PROJECT_ROOT = require("./root");
 const PROXY_URL = `http://localhost:${PORT}/`;
 
 module.exports = merge(baseConfig, {
@@ -25,7 +25,7 @@ module.exports = merge(baseConfig, {
                     {
                         loader: "less-loader",
                         options: {
-                            paths: [path.join(PROJECT_ROOT, "frontend")]
+                            paths: [path.join(PROJECT_ROOT)]
                         }
                     }
                 ]
@@ -34,7 +34,7 @@ module.exports = merge(baseConfig, {
     },
     devServer: {
         port: DEV_SERVER_PORT,
-        contentBase: path.resolve(PROJECT_ROOT, "frontend", "assets"),
+        contentBase: path.resolve(PROJECT_ROOT, "assets"),
         hot: true,
         proxy: {
             "/api/**": {
