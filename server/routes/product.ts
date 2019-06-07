@@ -19,41 +19,38 @@ router.get(
             res.status(400).send("provide correct limit of products");
         }
 
-        ProductModel.estimatedDocumentCount()
-            .then(
-                (total): void => {
-                    const offset = limit * (page - 1);
-                    ProductModel.find(
-                        {},
-                        null,
-                        {
-                            limit,
-                            skip: offset
-                        },
-                        (error, products): void => {
-                            if (error) {
-                                res.status(500).send(
-                                    "Failed to load data from DB"
-                                );
-                            }
+        ProductModel.estimatedDocumentCount(
+            (error, total): void => {
+                if (error) {
+                    res.status(500).send("Failed to calculate document count");
+                }
 
-                            res.json({
-                                data: products,
-                                meta: {
-                                    offset,
-                                    pages: Math.ceil(total / limit),
-                                    total
-                                }
-                            });
+                const offset = limit * (page - 1);
+
+                ProductModel.find(
+                    {},
+                    null,
+                    {
+                        limit,
+                        skip: offset
+                    },
+                    (error, products): void => {
+                        if (error) {
+                            res.status(500).send("Failed to load data from DB");
                         }
-                    );
-                }
-            )
-            .catch(
-                (): void => {
-                    res.status(500).send("Cannot get data about product");
-                }
-            );
+
+                        res.json({
+                            data: products,
+                            meta: {
+                                offset,
+                                pages: Math.ceil(total / limit),
+                                total
+                            }
+                        });
+                    }
+                );
+            }
+        );
     }
 );
 

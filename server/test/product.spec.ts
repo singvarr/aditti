@@ -1,26 +1,66 @@
-import { connection } from "mongoose";
-import connectToDB from "utils/connectToDB";
+import "mocha";
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import chai, { expect } from "chai";
+import chaiHttp from "chai-http";
+
+import app from "..";
 import Product from "models/Product";
 import generateProducts from "utils/generateRandomProducts";
 
-describe("/products", function(): void {
-    before(function(): void {
-        const { TEST_DB_URL, TEST_DB_USER, TEST_DB_PASSWORD } = process.env;
+chai.use(chaiHttp);
 
-        connectToDB(TEST_DB_URL, TEST_DB_USER, TEST_DB_PASSWORD);
-    });
+let mongoServer: MongoMemoryServer;
 
-    afterEach(function(): void {
-        connection.db.dropCollection("products");
-    });
+before(
+    (done): void => {
+        mongoServer = new MongoMemoryServer();
+        mongoServer
+            .getConnectionString()
+            .then(
+                (mongoUri): Promise<typeof mongoose> => {
+                    return mongoose.connect(
+                        mongoUri,
+                        (err): void => {
+                            if (err) done(err);
+                        }
+                    );
+                }
+            )
+            .then((): void => done());
+    }
+);
 
-    after(function(): void {
-        connection.close();
-    });
+afterEach(
+    (): void => {
+        mongoose.connection.dropDatabase();
+    }
+);
 
-    it("GET products", function(): void {
-        const products = generateProducts(100);
-        Product.insertMany(products)
-            .then(() => "ololo");
+after(
+    (): void => {
+        mongoose.disconnect();
+        mongoServer.stop();
+    }
+);
+
+describe("/product", (): void => {
+    it("GET: /", (done): void => {
+        const productsCount = 150;
+        const products = generateProducts(productsCount);
+
+        Product.insertMany(products).then(
+            (): void => {
+                chai.request(app)
+                    .get("/product")
+                    .end(
+                        (err, res): void => {
+                            expect(err).to.be.null;
+                            expect(res).to.have.status(200);
+                            done();
+                        }
+                    );
+            }
+        );
     });
 });

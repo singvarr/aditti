@@ -8,7 +8,7 @@
             "routes/*": ["routes/*"],
             "models/*": ["models/*"],
             "config/*": ["config/*"],
-            "types/*":["../types/*"],
+            "types/*": ["../types/*"],
             "utils/*": ["utils/*"]
         }
     }

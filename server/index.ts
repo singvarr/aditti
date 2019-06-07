@@ -52,3 +52,5 @@ app.get("/carousel", (req, res) => res.json(slides));
 app.get("/categories", (req, res) => res.json(categories));
 
 app.listen(PORT);
+
+export default app;
