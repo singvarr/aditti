@@ -1,5 +1,5 @@
 {
-    "name": "AdittiAPI",
+    "name": "@aditti/api",
     "version": "1.0.0",
     "description": "API for aditti project",
     "main": "index.ts",
@@ -47,7 +47,6 @@
         "clean-webpack-plugin": "^2.0.2",
         "faker": "^4.1.0",
         "mocha": "^6.1.4",
-        "mongodb-memory-server": "^5.1.3",
         "morgan": "^1.9.1",
         "nodemon": "^1.19.1",
         "terser-webpack-plugin": "^1.3.0",

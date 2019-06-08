@@ -11,8 +11,6 @@ import productRoute from "routes/product";
 
 import User from "models/User";
 import LocalStrategy from "config/authStrategy";
-import connectToDB from "utils/connectToDB";
-
 import catalogue from "fixtures/catalogue";
 import slides from "fixtures/slides";
 import categories from "fixtures/categories";
@@ -25,7 +23,13 @@ const app = express();
 if (NODE_ENV === "development") app.use(morgan("dev"));
 
 mongoose.Promise = global.Promise;
-connectToDB(DB_URL, DB_USER, DB_PASSWORD);
+
+if (!(DB_URL && DB_USER && DB_PASSWORD)) {
+    throw new Error("Please, enter credentials");
+}
+
+const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_URL}`;
+mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 app.use(
     session({

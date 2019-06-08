@@ -7,7 +7,7 @@ const PROJECT_ROOT = require("./root");
 
 module.exports = merge(baseConfig, {
     mode: "development",
-    entry: path.join(PROJECT_ROOT, "test", "index.spec.ts"),
+    entry: path.join(PROJECT_ROOT, "test", "index.ts"),
     output: {
         path: path.resolve(PROJECT_ROOT, "dist", "test"),
         filename: "index.spec.js"

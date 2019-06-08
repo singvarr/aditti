@@ -1,49 +1,24 @@
-import mongoose from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 
 import app from "../";
-import Product from "../models/Product";
-import generateProducts from "../utils/generateRandomProducts";
+import Product from "models/Product";
+import generateProducts from "utils/generateRandomProducts";
 
 chai.use(chaiHttp);
 
-let mongoServer: MongoMemoryServer;
-
-before(function(done): void {
-    this.timeout(6000);
-    mongoServer = new MongoMemoryServer();
-    mongoServer
-        .getConnectionString()
-        .then(
-            (mongoUri): Promise<typeof mongoose> => {
-                return mongoose.connect(
-                    mongoUri,
-                    { useNewUrlParser: true },
-                    (err): void => {
-                        if (err) done(err);
-                    }
-                );
-            }
-        )
-        .then((): void => done());
-});
-
-afterEach(
-    (): void => {
-        mongoose.connection.dropDatabase();
-    }
-);
-
-after(
-    (): void => {
-        mongoose.disconnect();
-        if (mongoServer) mongoServer.stop();
-    }
-);
-
 describe("/product", (): void => {
+    beforeEach(
+        (done): void => {
+            Product.remove(
+                {},
+                (err): void => {
+                    err ? done(err) : done();
+                }
+            );
+        }
+    );
+
     it("GET: /", (done): void => {
         const productsCount = 150;
         const products = generateProducts(productsCount);
