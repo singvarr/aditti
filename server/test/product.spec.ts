@@ -1,35 +1,34 @@
-import "mocha";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 
-import app from "..";
-import Product from "models/Product";
-import generateProducts from "utils/generateRandomProducts";
+import app from "../";
+import Product from "../models/Product";
+import generateProducts from "../utils/generateRandomProducts";
 
 chai.use(chaiHttp);
 
 let mongoServer: MongoMemoryServer;
 
-before(
-    (done): void => {
-        mongoServer = new MongoMemoryServer();
-        mongoServer
-            .getConnectionString()
-            .then(
-                (mongoUri): Promise<typeof mongoose> => {
-                    return mongoose.connect(
-                        mongoUri,
-                        (err): void => {
-                            if (err) done(err);
-                        }
-                    );
-                }
-            )
-            .then((): void => done());
-    }
-);
+before(function(done): void {
+    this.timeout(6000);
+    mongoServer = new MongoMemoryServer();
+    mongoServer
+        .getConnectionString()
+        .then(
+            (mongoUri): Promise<typeof mongoose> => {
+                return mongoose.connect(
+                    mongoUri,
+                    { useNewUrlParser: true },
+                    (err): void => {
+                        if (err) done(err);
+                    }
+                );
+            }
+        )
+        .then((): void => done());
+});
 
 afterEach(
     (): void => {
@@ -40,7 +39,7 @@ afterEach(
 after(
     (): void => {
         mongoose.disconnect();
-        mongoServer.stop();
+        if (mongoServer) mongoServer.stop();
     }
 );
 
