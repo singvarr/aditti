@@ -29,7 +29,7 @@ if (!(DB_URL && DB_USER && DB_PASSWORD)) {
 }
 
 const mongoDB = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_URL}`;
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useFindAndModify: false, useNewUrlParser: true });
 
 app.use(
     session({

@@ -1,45 +1,52 @@
 import { Router, Response } from "express";
 import mongoose from "mongoose";
-import ProductModel from "models/Product";
-import generateRandomProducts from "utils/generateRandomProducts";
+import Product from "models/Product";
+import { MongoError } from "mongodb";
 
 const router = Router();
 
+const DEFAULT_PAGE = 1;
+export const DEFAULT_OFFSET = 10;
+
 router.get(
     "/",
-    (req, res): void => {
-        const DEFAULT_PAGE = 1;
-        const DEFAULT_OFFSET = 10;
-
+    (req, res): Response => {
         let { page = DEFAULT_PAGE, limit = DEFAULT_OFFSET } = req.query;
 
+        page = parseInt(page);
+        limit = parseInt(limit);
+
         if (page <= 0 || !Number.isInteger(page)) {
-            res.status(400).send("provide correct page number");
+            return res.status(400).send("Provide correct page number");
         } else if (limit <= 0 || !Number.isInteger(limit)) {
-            res.status(400).send("provide correct limit of products");
+            return res.status(400).send("Provide correct limit of products");
         }
 
-        ProductModel.estimatedDocumentCount(
-            (error, total): void => {
+        Product.estimatedDocumentCount(
+            (error, total): Response => {
                 if (error) {
-                    res.status(500).send("Failed to calculate document count");
+                    return res
+                        .status(500)
+                        .send("Failed to calculate document count");
                 }
 
                 const offset = limit * (page - 1);
 
-                ProductModel.find(
+                Product.find(
                     {},
                     null,
                     {
                         limit,
                         skip: offset
                     },
-                    (error, products): void => {
+                    (error, products): Response => {
                         if (error) {
-                            res.status(500).send("Failed to load data from DB");
+                            return res
+                                .status(500)
+                                .send("Failed to load data from DB");
                         }
 
-                        res.json({
+                        return res.json({
                             data: products,
                             meta: {
                                 offset,
@@ -57,9 +64,9 @@ router.get(
 router.post(
     "/",
     (req, res): void => {
-        const products = generateRandomProducts(10);
+        const { products } = req.body;
 
-        ProductModel.insertMany(
+        Product.insertMany(
             products,
             (error): void => {
                 if (error) {
@@ -93,7 +100,7 @@ router.get(
     (req, res): void => {
         const { slug } = req.params;
 
-        ProductModel.findOne(
+        Product.findOne(
             { slug },
             (error, product): Response => {
                 if (error) {
@@ -104,16 +111,28 @@ router.get(
 
                 if (!product) return res.sendStatus(404);
 
-                res.json(product);
+                const { id, image, isAvailable, name, price, slug } = product;
+
+                res.json({
+                    data: {
+                        id,
+                        image,
+                        isAvailable,
+                        name,
+                        price,
+                        slug
+                    }
+                });
             }
         );
     }
 );
 
-router.patch(
+router.put(
     "/:slug",
     (req, res): Response => {
-        if (!req.body) {
+        const isBodyEmpty = Object.keys(req.body).length === 0;
+        if (isBodyEmpty) {
             return res
                 .status(400)
                 .send("Please, provide correct params to update product");
@@ -121,19 +140,21 @@ router.patch(
 
         const { slug } = req.params;
 
-        ProductModel.findOne(
+        Product.findOne(
             { slug },
             (error, product): Response => {
                 if (error) {
+                    return res.status(500).send("Failed to update product");
+                }
+
+                if (!product) {
                     return res
-                        .status(500)
+                        .status(404)
                         .send("Cannot find product with this slug");
                 }
 
-                product = { ...product, ...req.body };
-
-                product.save(
-                    (error): Response => {
+                Object.assign(product, req.body).save(
+                    (error: MongoError): Response => {
                         if (error) {
                             return res.sendStatus(500);
                         }
@@ -151,7 +172,7 @@ router.delete(
     (req, res): void => {
         const { slug } = req.params;
 
-        ProductModel.findOneAndRemove(
+        Product.findOneAndRemove(
             { slug },
             (error, product): Response => {
                 if (error) {

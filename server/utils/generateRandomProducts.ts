@@ -11,7 +11,7 @@ function generateProducts(limit: number = 100) {
             image: faker.image.fashion(),
             isAvailable: faker.random.boolean(),
             name: productName,
-            price: faker.commerce.price(),
+            price: parseInt(faker.commerce.price()),
             slug: faker.helpers.slugify(productName)
         });
     }
