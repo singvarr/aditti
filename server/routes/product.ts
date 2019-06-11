@@ -1,7 +1,6 @@
 import { Router, Response } from "express";
 import mongoose from "mongoose";
 import Product from "models/Product";
-import { MongoError } from "mongodb";
 
 const router = Router();
 
@@ -131,8 +130,10 @@ router.get(
 router.put(
     "/:slug",
     (req, res): Response => {
-        const isBodyEmpty = Object.keys(req.body).length === 0;
-        if (isBodyEmpty) {
+        const { productData } = req.body;
+
+        const hasBody = productData && Object.keys(productData).length >= 0;
+        if (!hasBody) {
             return res
                 .status(400)
                 .send("Please, provide correct params to update product");
@@ -140,8 +141,10 @@ router.put(
 
         const { slug } = req.params;
 
-        Product.findOne(
+        Product.findOneAndUpdate(
             { slug },
+            null,
+            { fields: productData, runValidators: true },
             (error, product): Response => {
                 if (error) {
                     return res.status(500).send("Failed to update product");
@@ -153,15 +156,7 @@ router.put(
                         .send("Cannot find product with this slug");
                 }
 
-                Object.assign(product, req.body).save(
-                    (error: MongoError): Response => {
-                        if (error) {
-                            return res.sendStatus(500);
-                        }
-
-                        res.send("Product updated");
-                    }
-                );
+                return res.send("Product updated");
             }
         );
     }

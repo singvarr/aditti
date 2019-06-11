@@ -149,7 +149,7 @@ describe("/product/:slug - single product", (): void => {
             );
     });
 
-    it("PUT - with correct body", (done): void => {
+    it("PUT - with correct data", (done): void => {
         const [PRODUCT_REPLACEMENT] = generateProducts(1);
 
         const newProduct = new Product(product);
@@ -157,11 +157,29 @@ describe("/product/:slug - single product", (): void => {
             (err, result): void => {
                 chai.request(app)
                     .put(`/product/${slug}`)
-                    .send(PRODUCT_REPLACEMENT)
+                    .send({ productData: PRODUCT_REPLACEMENT })
                     .end(
                         (err, res): void => {
                             expect(err).to.be.null;
                             expect(res).to.have.status(200);
+                            done();
+                        }
+                    );
+            }
+        );
+    });
+
+    it("PUT - with incorrect data", (done): void => {
+        const newProduct = new Product(product);
+        newProduct.save(
+            (err, result): void => {
+                chai.request(app)
+                    .put(`/product/${slug}`)
+                    .send({ productData: { ololo: "random" } })
+                    .end(
+                        (err, res): void => {
+                            expect(err).to.be.null;
+                            expect(res).to.have.status(500);
                             done();
                         }
                     );
@@ -186,10 +204,10 @@ describe("/product/:slug - single product", (): void => {
         );
     });
 
-    it("PUT - lacking product with correct body", (done): void => {
+    it("PUT - update lacking product with correct body", (done): void => {
         chai.request(app)
             .put(`/product/${slug}`)
-            .send(product)
+            .send({ productData: product })
             .end(
                 (err, res): void => {
                     expect(err).to.be.null;
