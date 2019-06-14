@@ -15,7 +15,7 @@ module.exports = merge(baseConfig, {
     plugins: [
         new CleanWebpackPlugin(),
         new WebpackShellPlugin({
-            onBuildEnd: "mocha dist/test/**/*.spec.js"
+            onBuildEnd: "mocha --timeout 50000 dist/test/**/*.spec.js"
         })
     ]
 });

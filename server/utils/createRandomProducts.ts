@@ -1,17 +1,16 @@
 import faker from "faker";
+import { ProductInterface } from "models/Product";
 
-function createRandomProducts(limit: number = 100) {
+function createRandomProducts(limit: number = 100): ProductInterface[] {
     let products = [];
     for (let i = 0; i < limit; i++) {
-        const productName = faker.commerce.productName();
-
         products.push({
             id: faker.random.uuid(),
             image: faker.image.fashion(),
             isAvailable: faker.random.boolean(),
-            name: productName,
+            name: faker.commerce.productName(),
             price: parseInt(faker.commerce.price()),
-            slug: faker.helpers.slugify(productName)
+            slug: faker.random.uuid()
         });
     }
 
