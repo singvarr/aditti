@@ -63,13 +63,16 @@ router.get(
 router.post("/", (req, res): void => {
     const { products } = req.body;
 
-    Product.insertMany(products, (error): void => {
-        if (error) {
-            res.status(500).send("Failed to load documents in db");
-        }
+    Product.insertMany(
+        products,
+        (error): Response => {
+            if (error) {
+                return res.status(500).send("Failed to load documents in db");
+            }
 
-        res.status(200).send("Successfully stored");
-    });
+            return res.status(200).send("Successfully stored");
+        }
+    );
 });
 
 router.delete("/", (req, res): void => {
