@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 const PRODUCT_COUNT = 150;
 
 beforeEach((done): void => {
-    Product.remove({}, (err): void => {
+    Product.deleteMany({}, (err): void => {
         err ? done(err) : done();
     });
 });
@@ -69,6 +69,41 @@ describe("/product - list of products", (): void => {
                     done();
                 });
         });
+    });
+
+    it("POST - single product", (done): void => {
+        const [product] = createRandomProducts(1);
+        chai.request(app)
+            .post("/product")
+            .send({ products: product })
+            .end((err, res): void => {
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it("POST - array of products", (done): void => {
+        const products = createRandomProducts(PRODUCT_COUNT);
+        chai.request(app)
+            .post("/product")
+            .send({ products })
+            .end((err, res): void => {
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it("POST - invalid data", (done): void => {
+        chai.request(app)
+            .post("/product")
+            .send({})
+            .end((err, res): void => {
+                expect(err).to.be.null;
+                expect(res).to.have.status(500);
+                done();
+            });
     });
 
     it("DELETE", (done): void => {
@@ -131,22 +166,6 @@ describe("/product/:slug - single product", (): void => {
                 });
         });
     });
-
-    // it("PUT - with data of incompatible type", (done): void => {
-    //     const newProduct = new Product(product);
-    //     const update = { productData: { price: "random" } };
-
-    //     newProduct.save((err, result): void => {
-    //         chai.request(app)
-    //             .put(`/product/${slug}`)
-    //             .send(update)
-    //             .end((err, res): void => {
-    //                 expect(err).to.be.null;
-    //                 expect(res).to.have.status(500);
-    //                 done();
-    //             });
-    //     });
-    // });
 
     it("PUT - with data of incompatible type", (done): void => {
         const newProduct = new Product(product);
