@@ -1,8 +1,7 @@
 import faker from "faker";
 
-function generateProducts(limit: number = 100) {
+function createRandomProducts(limit: number = 100) {
     let products = [];
-
     for (let i = 0; i < limit; i++) {
         const productName = faker.commerce.productName();
 
@@ -19,4 +18,4 @@ function generateProducts(limit: number = 100) {
     return products;
 }
 
-export default generateProducts;
+export default createRandomProducts;
