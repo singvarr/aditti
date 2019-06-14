@@ -60,72 +60,55 @@ router.get(
     }
 );
 
-router.post(
-    "/",
-    (req, res): void => {
-        const { products } = req.body;
+router.post("/", (req, res): void => {
+    const { products } = req.body;
 
-        Product.insertMany(
-            products,
-            (error): void => {
-                if (error) {
-                    res.status(500).send("Failed to load documents in db");
-                }
+    Product.insertMany(products, (error): void => {
+        if (error) {
+            res.status(500).send("Failed to load documents in db");
+        }
 
-                res.status(200).send("Successfully stored");
+        res.status(200).send("Successfully stored");
+    });
+});
+
+router.delete("/", (req, res): void => {
+    mongoose.connection.db.dropCollection("products", (error): void => {
+        if (error) {
+            res.status(500).send("Failed to delete documents in db");
+        }
+
+        res.status(200).send("Successfully deleted");
+    });
+});
+
+router.get("/:slug", (req, res): void => {
+    const { slug } = req.params;
+
+    Product.findOne(
+        { slug },
+        (error, product): Response => {
+            if (error) {
+                return res.status(500).send("Cannot retrieve product from DB");
             }
-        );
-    }
-);
 
-router.delete(
-    "/",
-    (req, res): void => {
-        mongoose.connection.db.dropCollection(
-            "products",
-            (error): void => {
-                if (error) {
-                    res.status(500).send("Failed to delete documents in db");
+            if (!product) return res.sendStatus(404);
+
+            const { id, image, isAvailable, name, price, slug } = product;
+
+            res.json({
+                data: {
+                    id,
+                    image,
+                    isAvailable,
+                    name,
+                    price,
+                    slug
                 }
-
-                res.status(200).send("Successfully deleted");
-            }
-        );
-    }
-);
-
-router.get(
-    "/:slug",
-    (req, res): void => {
-        const { slug } = req.params;
-
-        Product.findOne(
-            { slug },
-            (error, product): Response => {
-                if (error) {
-                    return res
-                        .status(500)
-                        .send("Cannot retrieve product from DB");
-                }
-
-                if (!product) return res.sendStatus(404);
-
-                const { id, image, isAvailable, name, price, slug } = product;
-
-                res.json({
-                    data: {
-                        id,
-                        image,
-                        isAvailable,
-                        name,
-                        price,
-                        slug
-                    }
-                });
-            }
-        );
-    }
-);
+            });
+        }
+    );
+});
 
 router.put(
     "/:slug",
@@ -143,11 +126,12 @@ router.put(
 
         Product.findOneAndUpdate(
             { slug },
-            null,
-            { fields: productData, runValidators: true },
+            { ...productData },
+            { runValidators: true }
+        ).exec(
             (error, product): Response => {
                 if (error) {
-                    return res.status(500).send("Failed to update product");
+                    return res.status(500).send({ error });
                 }
 
                 if (!product) {
@@ -162,28 +146,23 @@ router.put(
     }
 );
 
-router.delete(
-    "/:slug",
-    (req, res): void => {
-        const { slug } = req.params;
+router.delete("/:slug", (req, res): void => {
+    const { slug } = req.params;
 
-        Product.findOneAndRemove(
-            { slug },
-            (error, product): Response => {
-                if (error) {
-                    return res
-                        .status(500)
-                        .send("Cannot delete product from DB");
-                }
-
-                if (!product) {
-                    return res.status(404).send("Cannot find product");
-                }
-
-                res.send("Product was deleted successfully");
+    Product.findOneAndRemove(
+        { slug },
+        (error, product): Response => {
+            if (error) {
+                return res.status(500).send("Cannot delete product from DB");
             }
-        );
-    }
-);
+
+            if (!product) {
+                return res.status(404).send("Cannot find product");
+            }
+
+            res.send("Product was deleted successfully");
+        }
+    );
+});
 
 export default router;

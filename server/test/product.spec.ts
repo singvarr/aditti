@@ -74,7 +74,7 @@ describe("/product - list of products", (): void => {
     it("DELETE", (done): void => {
         const products = createRandomProducts(PRODUCT_COUNT);
 
-        Product.insertMany(products, (err, documents) => {
+        Product.insertMany(products, (err, documents): void => {
             expect(documents.length).to.equal(PRODUCT_COUNT);
 
             chai.request(app)
@@ -132,12 +132,30 @@ describe("/product/:slug - single product", (): void => {
         });
     });
 
-    it("PUT - with incorrect data", (done): void => {
+    // it("PUT - with data of incompatible type", (done): void => {
+    //     const newProduct = new Product(product);
+    //     const update = { productData: { price: "random" } };
+
+    //     newProduct.save((err, result): void => {
+    //         chai.request(app)
+    //             .put(`/product/${slug}`)
+    //             .send(update)
+    //             .end((err, res): void => {
+    //                 expect(err).to.be.null;
+    //                 expect(res).to.have.status(500);
+    //                 done();
+    //             });
+    //     });
+    // });
+
+    it("PUT - with data of incompatible type", (done): void => {
         const newProduct = new Product(product);
+        const update = { productData: { price: "random" } };
+
         newProduct.save((err, result): void => {
             chai.request(app)
                 .put(`/product/${slug}`)
-                .send({ productData: { ololo: "random" } })
+                .send(update)
                 .end((err, res): void => {
                     expect(err).to.be.null;
                     expect(res).to.have.status(500);
