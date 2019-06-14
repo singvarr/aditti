@@ -20,7 +20,7 @@ const { DB_URL, DB_PASSWORD, DB_USER, NODE_ENV, PORT } = process.env;
 
 const app = express();
 
-// if (NODE_ENV === "development") app.use(morgan("dev"));
+if (NODE_ENV === "development") app.use(morgan("dev"));
 
 mongoose.Promise = global.Promise;
 
