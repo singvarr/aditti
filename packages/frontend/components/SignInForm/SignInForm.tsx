@@ -7,7 +7,7 @@ import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { History } from "history";
 import { postSignIn } from "actions/auth";
-import { default as AppState } from "types/state";
+import { default as AppState } from "store/state";
 import "./SignInForm.less";
 
 type Props = {

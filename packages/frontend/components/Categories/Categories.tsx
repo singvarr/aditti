@@ -6,8 +6,7 @@ import { Action } from "redux";
 import FetchStatus from "components/FetchStatus";
 import CategoriesCarousel from "components/CategoriesCarousel";
 import getCategories from "actions/categories";
-
-import State, { CategoriesState } from "types/state";
+import State, { CategoriesState } from "store/state";
 
 type Props = {
     onGetCategories: () => void;

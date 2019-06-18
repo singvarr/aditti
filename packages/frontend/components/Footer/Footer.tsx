@@ -1,5 +1,5 @@
 import React from "react";
-import FooterLinksType from "types/footer";
+import FooterLinksType from "@aditti/types/footer";
 import "./Footer.less";
 
 export type Props = {

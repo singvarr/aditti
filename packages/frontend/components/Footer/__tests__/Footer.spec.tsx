@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Footer from "../Footer";
-import FooterLinksType from "types/footer";
+import FooterLinksType from "@aditti/types/footer";
 
 describe("<Footer />", () => {
     const linksList: FooterLinksType = [

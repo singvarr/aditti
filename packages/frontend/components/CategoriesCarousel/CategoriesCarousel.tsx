@@ -1,7 +1,7 @@
 import React, { Component, RefObject } from "react";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
-import CategoryType from "types/categories";
+import CategoryType from "@aditti/types/categories";
 import "./CategoriesCarousel.less";
 
 type Props = {

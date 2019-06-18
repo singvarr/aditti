@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import Slide from "components/Slide";
-import FeaturedProductType from "types/carousel";
+import FeaturedProductType from "@aditti/types/carousel";
 import "./FeaturedProductsCarousel.less";
 
 type Props = {

@@ -11,7 +11,7 @@ import {
 import { getCartTotalPrice, getCartItems } from "selectors/cart";
 
 import State from "types/state";
-import { CartProductType } from "types/cart";
+import { CartProductType } from "@aditti/types";
 
 type Props = {
     cartItems: Array<CartProductType>;

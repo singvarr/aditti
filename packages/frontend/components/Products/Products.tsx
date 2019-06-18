@@ -6,7 +6,7 @@ import { ThunkDispatch } from "redux-thunk";
 import Product from "components/Product";
 import FetchStatus from "components/FetchStatus";
 import getProducts from "actions/products";
-import State, { ProductsState } from "types/state";
+import State, { ProductsState } from "store/state";
 import "./Products.less";
 
 type Props = {

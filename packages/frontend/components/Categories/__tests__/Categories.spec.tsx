@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import { Categories } from "../Categories";
 import FetchStatus from "components/FetchStatus";
 import CategoriesCarousel from "components/CategoriesCarousel";
-import CategoryType from "types/categories";
+import CategoryType from "@aditti/types/categories";
 
 describe("<Categories />", () => {
     const onGetCategories = jest.fn();

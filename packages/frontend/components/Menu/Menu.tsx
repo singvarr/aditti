@@ -5,7 +5,7 @@ import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 import { postSignOut } from "actions/auth";
-import State from "types/state";
+import State from "store/state";
 import "./Menu.less";
 
 type Props = {
