@@ -4,8 +4,8 @@ import {
     GET_CAROUSEL_SUCCESS,
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
-import { GetFeaturedProductsType } from "types/state";
-import FeaturedProductType from "types/carousel";
+import { GetFeaturedProductsType } from "store/state";
+import FeaturedProductType from "@aditti/types/carousel";
 
 export const getCarouselLoading = () => action(GET_CAROUSEL_LOADING);
 export const getCarouselSuccess = (products: Array<FeaturedProductType>) => {

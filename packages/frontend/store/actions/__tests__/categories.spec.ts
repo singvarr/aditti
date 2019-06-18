@@ -9,7 +9,7 @@ import getCategories, {
     getCategoriesLoading,
     getCategoriesError
 } from "actions/categories";
-import { MockStoreCreatorType } from "types/state";
+import { MockStoreCreatorType } from "store/state";
 
 const middlewares = [thunk];
 const mockStore: MockStoreCreatorType = configureMockStore(middlewares);

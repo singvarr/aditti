@@ -4,9 +4,9 @@ import {
     getCartTotalQuantity,
     getCartItems
 } from "selectors/cart";
-import State, { CartState } from "types/state";
-import { CartProductType } from "types/cart";
-import ProductType from "types/products";
+import State, { CartState } from "store/state";
+import { CartProductType } from "@aditti/types/cart";
+import ProductType from "@aditti/types/products";
 
 describe("cart selectors", () => {
     const products: Array<ProductType> = [

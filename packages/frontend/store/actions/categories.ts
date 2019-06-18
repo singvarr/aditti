@@ -4,8 +4,8 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import { GetCategoriesType } from "types/state";
-import CategoryType from "types/categories";
+import { GetCategoriesType } from "store/state";
+import CategoryType from "@aditti/types/categories";
 
 export const getCategoriesLoading = () => action(GET_CATEGORIES_LOADING);
 export const getCategoriesSuccess = (categories: Array<CategoryType>) => {

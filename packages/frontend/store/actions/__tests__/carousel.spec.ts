@@ -10,8 +10,8 @@ import getCarousel, {
     getCarouselSuccess,
     getCarouselError
 } from "actions/carousel";
-import { MockStoreCreatorType } from "types/state";
-import FeaturedProductType from "types/carousel";
+import { MockStoreCreatorType } from "store/state";
+import FeaturedProductType from "@aditti/types/carousel";
 
 const middlewares = [thunk];
 const mockStore: MockStoreCreatorType = configureMockStore(middlewares);

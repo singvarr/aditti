@@ -3,7 +3,7 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR
 } from "constants/categories";
-import { CategoriesAction, CategoriesState } from "types/state";
+import { CategoriesAction, CategoriesState } from "store/state";
 
 export const initialState: CategoriesState = {
     data: [],

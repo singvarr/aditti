@@ -5,8 +5,12 @@ import {
     GET_CATEGORIES_ERROR
 } from "constants/categories";
 import reducer, { initialState } from "reducers/categories";
-import { getCategoriesActions } from "actions/categories";
-import { CategoriesState } from "types/state";
+import {
+    getCategoriesLoading,
+    getCategoriesSuccess,
+    getCategoriesError
+} from "actions/categories";
+import { CategoriesState } from "store/state";
 
 describe("categories reducer", () => {
     it("returns initial state by default", () => {
@@ -16,9 +20,9 @@ describe("categories reducer", () => {
     });
 
     it("sets loading status on fetch start", () => {
-        const action: ActionType<
-            typeof getCategoriesActions.getCategoriesLoading
-        > = { type: GET_CATEGORIES_LOADING };
+        const action: ActionType<typeof getCategoriesLoading> = {
+            type: GET_CATEGORIES_LOADING
+        };
         const state: CategoriesState = {
             data: [],
             isLoading: false,
@@ -40,9 +44,7 @@ describe("categories reducer", () => {
             { name: "accesories", src: "img/categories/purse.png" }
         ];
 
-        const action: ActionType<
-            typeof getCategoriesActions.getCategoriesSuccess
-        > = {
+        const action: ActionType<typeof getCategoriesSuccess> = {
             type: GET_CATEGORIES_SUCCESS,
             payload: { categories: payload }
         };
@@ -61,9 +63,9 @@ describe("categories reducer", () => {
     });
 
     it("sets error status and unsets loading on failed fetch", () => {
-        const action: ActionType<
-            typeof getCategoriesActions.getCategoriesError
-        > = { type: GET_CATEGORIES_ERROR };
+        const action: ActionType<typeof getCategoriesError> = {
+            type: GET_CATEGORIES_ERROR
+        };
         const state: CategoriesState = {
             data: [],
             isLoading: true,

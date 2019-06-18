@@ -5,7 +5,7 @@ import {
     DECREASE_ITEM_QUANTITY,
     CLEAR_CART
 } from "constants/cart";
-import { CartAction, CartState } from "types/state";
+import { CartAction, CartState } from "store/state";
 
 export const defaultState: CartState = Map();
 

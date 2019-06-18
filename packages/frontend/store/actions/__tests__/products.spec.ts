@@ -10,8 +10,8 @@ import getProducts, {
     getProductsError
 } from "actions/products";
 
-import { MockStoreCreatorType } from "types/state";
-import ProductType from "types/products";
+import { MockStoreCreatorType } from "store/state";
+import ProductType from "@aditti/types/products";
 
 const middlewares = [thunk];
 const mockStore: MockStoreCreatorType = configureMockStore(middlewares);

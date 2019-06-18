@@ -4,8 +4,8 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
-import ProductType from "types/products";
-import { GetProductsType } from "types/state";
+import ProductType from "@aditti/types/products";
+import { GetProductsType } from "store/state";
 
 export const getProductsLoading = () => action(GET_PRODUCTS_LOADING);
 export const getProductsSuccess = (products: Array<ProductType>) => {

@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
-import State from "types/state";
-import { CartProductType } from "types/cart";
+import State from "store/state";
+import { CartProductType } from "@aditti/types/cart";
 
 const productsSelector = (state: State) => state.products;
 const cartSelector = (state: State) => state.cart;

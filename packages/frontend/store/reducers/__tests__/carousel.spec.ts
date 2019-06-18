@@ -5,9 +5,13 @@ import {
     GET_CAROUSEL_ERROR
 } from "constants/carousel";
 import reducer, { initialState } from "reducers/carousel";
-import { getCarouselActions } from "actions/carousel";
-import { FeaturedProductsState } from "types/state";
-import FeaturedProductType from "types/carousel";
+import {
+    getCarouselError,
+    getCarouselLoading,
+    getCarouselSuccess
+} from "actions/carousel";
+import { FeaturedProductsState } from "store/state";
+import FeaturedProductType from "@aditti/types/carousel";
 
 describe("carousel reducer", () => {
     it("returns initial state by default", () => {
@@ -18,7 +22,7 @@ describe("carousel reducer", () => {
 
     it("sets loading status on start of fetch", () => {
         const action: ActionType<
-            typeof getCarouselActions.getCarouselLoading
+            typeof getCarouselLoading
         > = {
             type: GET_CAROUSEL_LOADING
         };
@@ -51,7 +55,7 @@ describe("carousel reducer", () => {
         ];
 
         const action: ActionType<
-            typeof getCarouselActions.getCarouselSuccess
+            typeof getCarouselSuccess
         > = {
             type: GET_CAROUSEL_SUCCESS,
             payload: { products: payload }
@@ -71,7 +75,7 @@ describe("carousel reducer", () => {
     });
 
     it("sets error status and unsets loading on failed fetch", () => {
-        const action: ActionType<typeof getCarouselActions.getCarouselError> = {
+        const action: ActionType<typeof getCarouselError> = {
             type: GET_CAROUSEL_ERROR
         };
         const state: FeaturedProductsState = {

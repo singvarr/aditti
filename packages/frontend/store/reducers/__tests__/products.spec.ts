@@ -4,10 +4,14 @@ import {
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_ERROR
 } from "constants/products";
-import { getProductsActions } from "actions/products";
+import {
+    getProductsError,
+    getProductsLoading,
+    getProductsSuccess
+} from "actions/products";
 import reducer, { defaultState } from "reducers/products";
-import { ProductsState } from "types/state";
-import ProductType from "types/products";
+import { ProductsState } from "store/state";
+import ProductType from "@aditti/types/products";
 
 describe("catalogue reducer", () => {
     it("returns initial state by default", () => {
@@ -17,9 +21,7 @@ describe("catalogue reducer", () => {
     });
 
     it("sets loading status on fetch start", () => {
-        const action: ActionType<
-            typeof getProductsActions.getProductsLoading
-        > = {
+        const action: ActionType<typeof getProductsLoading> = {
             type: GET_PRODUCTS_LOADING
         };
         const state: ProductsState = {
@@ -47,9 +49,7 @@ describe("catalogue reducer", () => {
             }
         ];
 
-        const action: ActionType<
-            typeof getProductsActions.getProductsSuccess
-        > = {
+        const action: ActionType<typeof getProductsSuccess> = {
             type: GET_PRODUCTS_SUCCESS,
             payload: { products: payload }
         };
@@ -68,7 +68,7 @@ describe("catalogue reducer", () => {
     });
 
     it("sets error status and unsets loading status on failed fetch", () => {
-        const action: ActionType<typeof getProductsActions.getProductsError> = {
+        const action: ActionType<typeof getProductsError> = {
             type: GET_PRODUCTS_ERROR
         };
         const state: ProductsState = {
