@@ -1,5 +1,5 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": "@aditti/config/tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
         "jsx": "react",
@@ -13,7 +13,6 @@
             "routes/*": ["routes/*"],
             "selectors/*": ["store/selectors/*"],
             "store/*": ["store/*"],
-            "types/*": ["../types/*"]
         }
     }
 }

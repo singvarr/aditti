@@ -1,0 +1,14 @@
+{
+  "name": "@aditti/types",
+  "version": "1.0.0",
+  "description": "Type definitions for aditti project",
+  "main": "index.d.ts",
+  "scripts": {
+  },
+  "keywords": ["typescript", "definitions"],
+  "author": "Ihor Sokolov",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  }
+}

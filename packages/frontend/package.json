@@ -1,5 +1,5 @@
 {
-  "name": "aditti",
+  "name": "@aditti/frontend",
   "version": "1.0.0",
   "description": "Simple clothes online-shop",
   "main": "frontend/index.jsx",
@@ -15,8 +15,12 @@
   "author": "Ihor Sokolov",
   "license": "ISC",
   "dependencies": {
+    "@aditti/config": "*",
+    "@aditti/types": "*",
     "dotenv": "^6.2.0",
+    "eslint": "^5.16.0",
     "node-fetch": "^2.6.0",
+    "prettier": "^1.18.2",
     "react": "^16.6.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",

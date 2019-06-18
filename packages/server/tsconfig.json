@@ -1,5 +1,5 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": "@aditti/config/tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
         "outDir": "./dist",
@@ -8,7 +8,7 @@
             "routes/*": ["routes/*"],
             "models/*": ["models/*"],
             "config/*": ["config/*"],
-            "types/*": ["../types/*"],
+            "types/*": ["types/*"],
             "utils/*": ["utils/*"]
         }
     }
