@@ -4,6 +4,7 @@ import { Action } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
+import routes from "constants/routes";
 import { postSignUp } from "actions/auth";
 import { default as AppState } from "types/state";
 import "./SignUpForm.less";
@@ -143,7 +144,10 @@ class SignUpForm extends Component<Props, State> {
                 {this.state.isRegistrationCompleted && (
                     <div className="signup__redirect">
                         {"Now you are registered. Please, "}
-                        <Link className="signup__redirect-link" to="/signin">
+                        <Link
+                            className="signup__redirect-link"
+                            to={routes.SIGN_IN}
+                        >
                             sign in
                         </Link>
                         , to enter your account
