@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import routes from "constants/routes";
 import { getCartTotalPrice, getCartTotalQuantity } from "selectors/cart";
 import State from "types/state";
-
 import "./CartTotal.less";
 
 type Props = {
@@ -14,7 +13,7 @@ type Props = {
 
 export function CartTotal(props: Props) {
     return (
-        <Link to="/cart">
+        <Link to={routes.CART}>
             <div className="cart-total">
                 <div className="cart-total__price">{`$ ${
                     props.totalPrice

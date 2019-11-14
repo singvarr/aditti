@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-
+import routes from "constants/routes";
 import { postSignOut } from "actions/auth";
 import State from "types/state";
 import "./Menu.less";
@@ -43,12 +43,18 @@ export function Menu(props: Props) {
                 ) : (
                     <Fragment>
                         <li className="main-menu__item">
-                            <Link className="main-menu__link" to="/signup">
+                            <Link
+                                className="main-menu__link"
+                                to={routes.SIGN_UP}
+                            >
                                 Sign up
                             </Link>
                         </li>
                         <li className="main-menu__item">
-                            <Link className="main-menu__link" to="/signin">
+                            <Link
+                                className="main-menu__link"
+                                to={routes.SIGN_IN}
+                            >
                                 Sign in
                             </Link>
                         </li>

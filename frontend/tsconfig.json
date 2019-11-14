@@ -6,7 +6,7 @@
         "outDir": "./dist",
         "paths": {
             "actions/*": ["store/actions/*"],
-            "constants/*": ["store/constants/*"],
+            "constants/*": ["constants/*", "store/constants/*"],
             "components/*": ["components/*"],
             "fixtures/*": ["fixtures/*"],
             "reducers/*": ["store/reducers/*"],
