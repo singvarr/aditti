@@ -2,11 +2,11 @@
     "name": "@aditti/api",
     "version": "1.0.0",
     "description": "API for aditti project",
-    "main": "index.ts",
+    "main": "src/index.ts",
     "scripts": {
-        "build": "webpack --config ./config/webpack/webpack.main.js",
-        "start": "webpack --config ./config/webpack/webpack.main.js -w",
-        "test": "webpack --config ./config/webpack/webpack.test.js"
+        "build": "webpack --config ./config/webpack.main.js",
+        "start": "webpack --config ./config/webpack.main.js -w",
+        "test": "webpack --config ./config/webpack.test.js"
     },
     "keywords": [
         "express",
