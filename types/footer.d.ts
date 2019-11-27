@@ -1,9 +1,9 @@
-type FooterLinksType = Array<{
+type FooterLinksType = {
     name: string;
-    links: Array<{
+    links: {
         name: string;
         href: string;
-    }>;
-}>;
+    }[];
+}[];
 
 export default FooterLinksType;

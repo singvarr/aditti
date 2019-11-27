@@ -1,3 +1,7 @@
 import ProductType from "types/products";
 
-export type CartProductType = ProductType & { quantity: number };
+interface CartProductType extends ProductType {
+    quantity: number;
+}
+
+export default CartProductType;

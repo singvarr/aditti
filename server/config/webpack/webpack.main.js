@@ -2,10 +2,11 @@ const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const WebpackShellPlugin = require("webpack-shell-plugin");
 const merge = require("webpack-merge");
+require("dotenv").config();
+
 const baseConfig = require("./webpack.base");
 const PROJECT_ROOT = require("./root");
 
-require("dotenv").config();
 const { NODE_ENV } = process.env;
 
 const DEVELOPMENT_MODE = "development";
