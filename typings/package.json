@@ -1,11 +1,9 @@
 {
   "name": "typings",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Typings for aditti monorepo",
+  "main": "src/index.ts",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
