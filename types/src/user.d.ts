@@ -1,6 +1,6 @@
-type UserType = {
+interface IUser {
     login: string;
     password: string;
 }
 
-export default UserType;
+export default IUser;

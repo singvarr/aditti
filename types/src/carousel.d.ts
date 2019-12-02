@@ -1,7 +1,7 @@
-type FeaturedProductType = {
-    readonly description: string;
-    readonly heading: string;
-    readonly imgSrc?: string;
-};
+interface ICarousel {
+    description: string;
+    heading: string;
+    imgSrc?: string;
+}
 
-export default FeaturedProductType;
+export default ICarousel;

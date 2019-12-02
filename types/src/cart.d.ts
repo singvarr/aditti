@@ -1,7 +1,7 @@
-import ProductType from "types/products";
+import IProduct from "./products";
 
-interface CartProductType extends ProductType {
+interface ICart extends IProduct {
     quantity: number;
 }
 
-export default CartProductType;
+export default ICart;

@@ -1,6 +1,6 @@
-type CategoryType = {
+interface ICategory {
     name: string;
     src: string;
-};
+}
 
-export default CategoryType;
+export default ICategory;
