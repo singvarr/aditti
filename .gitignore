@@ -1,5 +1,12 @@
+# Modules
 node_modules
+
+# Webpack output
 dist
+
+# Environment variables
 .env
+
+# Editor files
 .idea
 .vscode
